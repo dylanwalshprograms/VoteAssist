@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,7 @@ public class CallLog {
 	@ManyToOne
 	private Long volunteerId;
 	@ManyToOne
-	private Long voterId;
+	private Long voterDataId;
 
 	public Long getId() {
 		return id;
@@ -48,16 +49,16 @@ public class CallLog {
 	}
 
 	public Long getVoterId() {
-		return voterId;
+		return voterDataId;
 	}
 
 	public void setVoterId(Long voterId) {
-		this.voterId = voterId;
+		this.voterDataId = voterId;
 	}
 
 	@Override
 	public String toString() {
-		return "CallLog [id=" + id + ", callTime=" + callTime + ", volunteerId=" + volunteerId + ", voterId=" + voterId
+		return "CallLog [id=" + id + ", callTime=" + callTime + ", volunteerId=" + volunteerId + ", voterId=" + voterDataId
 				+ "]";
 	}
 }
