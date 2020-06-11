@@ -19,10 +19,10 @@ public class CallLog {
 	private Long id;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDateTime callTime;
-	//@ManyToOne
-	private Long volunteerId;
-	//@ManyToOne
-	private Long voterDataId;
+	@ManyToOne
+	private Volunteer volunteer;
+	@ManyToOne
+	private VoterData voterData;
 
 	public Long getId() {
 		return id;
@@ -40,25 +40,25 @@ public class CallLog {
 		this.callTime = callTime;
 	}
 
-	public Long getVolunteerId() {
-		return volunteerId;
+	public Volunteer getVolunteer() {
+		return volunteer;
 	}
 
-	public void setVolunteerId(Long volunteerId) {
-		this.volunteerId = volunteerId;
+	public void setVolunteer(Volunteer volunteer) {
+		this.volunteer = volunteer;
 	}
 
-	public Long getVoterId() {
-		return voterDataId;
+	public VoterData getVoterData() {
+		return voterData;
 	}
 
-	public void setVoterId(Long voterId) {
-		this.voterDataId = voterId;
+	public void setVoterData(VoterData voterData) {
+		this.voterData = voterData;
 	}
 
 	@Override
 	public String toString() {
-		return "CallLog [id=" + id + ", callTime=" + callTime + ", volunteerId=" + volunteerId + ", voterId=" + voterDataId
+		return "CallLog [id=" + id + ", callTime=" + callTime + ", volunteer=" + volunteer + ", voterData=" + voterData
 				+ "]";
 	}
 }
