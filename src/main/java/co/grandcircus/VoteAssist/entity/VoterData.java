@@ -15,7 +15,7 @@ public class VoterData {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy = "voterDataId")
+	//@OneToMany(mappedBy = "voterDataId")
 	private Long id;
 	private String name;
 	private String phone;

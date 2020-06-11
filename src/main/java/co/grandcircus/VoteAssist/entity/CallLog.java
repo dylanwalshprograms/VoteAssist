@@ -19,9 +19,9 @@ public class CallLog {
 	private Long id;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDateTime callTime;
-	@ManyToOne
+	//@ManyToOne
 	private Long volunteerId;
-	@ManyToOne
+	//@ManyToOne
 	private Long voterDataId;
 
 	public Long getId() {
