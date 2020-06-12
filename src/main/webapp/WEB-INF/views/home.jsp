@@ -111,14 +111,16 @@
 								<td>
 									<ul>
 										<c:forEach items="${office.officialIndices}" var="index">
-											<li><c:out
-													value="${civicResponse.officials.get(index).name}" /></li>
+											<li><c:out value="${civicResponse.officials.get(index).name}" /></li>
+
 										</c:forEach>
 									</ul>
 								</td>
-								<td><c:out value="${official.address}" /></td>
-								<td><c:out value="${official.party}" /></td>
-								<td><c:out value="${official.emails}" /></td>
+									<c:forEach items="${office.officialIndices}" var="index">
+										<td><c:out value="${civicResponse.officials.get(index).address}"/></td>
+	      								<td><c:out value="${civicResponse.officials.get(index).party}"/></td>
+	      								<td><c:out value="${civicResponse.officials.get(index).emails}"/></td>
+	      							</c:forEach>
 							</tr>
 						</c:forEach>
 
