@@ -28,7 +28,7 @@
 		<p>${ voter.result }</p>
 </p>
 </div>
-<div class="accordian" id="accordianExample">
+<div class="accordion" id="accordionExample">
 	<div class="card">
 		<div class="card-header" id="headingOne">
 			 <h2 class="mb-0">
@@ -40,7 +40,6 @@
 		<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       		<div class="card-body">
       					
-      		 
       		</div>
       	</div>	 	 
 	</div>
@@ -52,42 +51,41 @@
         		</button>
       		</h2>
    		 </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      	<div class="card-body">
-      	
-      	</div>
+    	<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      		<div class="card-body">
+      			<table>
+	      			<tr>
+	      			<th>Official's Name</th>
+	      			<th>Official's Address</th>
+	      			<th>Official's Party</th>
+	      			<th>Official's Email Address</th>
+	      			</tr>
+	      			<tr>
+	      			<c:forEach items="${civicResponse.offices}" var="office">
+	      				
+	      					<td><c:out value="${office.name}"/></td>
+	      					
+	      						<c:forEach items="${office.officialIndices}" var="index">
+	      							<td>
+		      							<ul>
+			      							<li>
+			      								<c:out value="${civicResponse.officials.get(index).name}"/>
+			      							</li>
+		      							</ul>
+	      							</td>
+	      						</c:forEach>
+	      					
+	      					<td><c:out value="${official.address}"/></td>
+	      					<td><c:out value="${official.party}"/></td>
+	      					<td><c:out value="${official.emails}"/></td>
+	      			</c:forEach>
+	      			</tr>	
+      			</table> 
+      		</div>
     	</div>
 	</div>
 </div> 
-<table>
-      			<tr>
-      			<th>Official's Name</th>
-      			<th>Official's Address</th>
-      			<th>Official's Party</th>
-      			<th>Official's Email Address</th>
-      			</tr>
-      			<tr>
-      			<c:forEach items="${civicResponse.offices}" var="office">
-      				
-      					<td><c:out value="${office.name}"/></td>
-      					
-      						<c:forEach items="${office.officialIndices}" var="index">
-      							<td>
-	      							<ul>
-		      							<li>
-		      								<c:out value="${civicResponse.officials.get(index).name}"/>
-		      							</li>
-	      							</ul>
-      							</td>
-      						</c:forEach>
-      					
-      					<td><c:out value="${official.address}"/></td>
-      					<td><c:out value="${official.party}"/></td>
-      					<td><c:out value="${official.emails}"/></td>
-      				</c:forEach>
-      			
-      			</tr>	
-      			</table>       
+      
 
 <!-- <p>${ civicResponse }</p>  -->
 <!-- <p>${ civicResponse.normalizedInput }</p>  -->
