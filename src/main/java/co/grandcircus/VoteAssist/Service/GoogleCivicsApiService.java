@@ -15,7 +15,7 @@ public class GoogleCivicsApiService {
 	private RestTemplate rest = new RestTemplate();
 	
 	@Value("${app.key}")
-	private String appKey; 
+	private String key; 
 	
 	public CivicApiResponse civicResponse(String address, String city, String state, String zip) {
 		
@@ -29,11 +29,10 @@ public class GoogleCivicsApiService {
 	private URI buildAddressList(String address, String city, String state, String zip) {
 		
 		UriComponentsBuilder b = UriComponentsBuilder.fromHttpUrl("https://www.googleapis.com/civicinfo/v2/representatives")
-				.queryParam("app.key", appKey)
+				.queryParam("key", key)
 				.queryParam("address", address + " " + city + " " + state + " " + zip);
 		
 		return b.build().toUri();
 	}
 	
-
 }

@@ -13,7 +13,7 @@
 <body>
 
 <p>
-	<c:forEach items="${ voterData }" var="voter">
+	
 		<p>${ voter.name }</p>
 		<p>${ voter.phone }</p>
 		<p>${ voter.address }</p>
@@ -30,7 +30,6 @@
 		
 		
 		
-	</c:forEach>
 </p>
 
 <p>${ civicResponse }</p>

@@ -25,13 +25,16 @@ public class VolunteerPageController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		
-		CivicApiResponse civicResponse = googleService.civicResponse(address, city, state, zip);
+		VoterData voterData = voterRepo.findById(1L).orElse(null);
 		
-		List<VoterData> voterData = voterRepo.findAll();
-		//one voter to use getters for civicResponse
+		
+		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
+				voterData.getCity(), voterData.getState(), voterData.getZip());;
+		
+		
 		
 		model.addAttribute("civicResponse", civicResponse);
-		model.addAttribute("voterData", voterData);
+		model.addAttribute("voter", voterData);
 		
 		return "home";
 		
