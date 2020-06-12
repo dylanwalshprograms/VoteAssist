@@ -2,10 +2,13 @@ package co.grandcircus.VoteAssist.controller;
 
 
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.entity.VoterData;
@@ -40,8 +43,12 @@ public class VolunteerPageController {
 		
 	}
 	
-	@RequestMapping("/submit/next")
-	public String submitNext(Model model) {
+	@RequestMapping("/submit")
+	public String submitNext(@RequestParam String notes,
+			@RequestParam(required = true) String result, @RequestParam(required = false) LocalDateTime nextCall,
+			@RequestParam String button, Model model) {
+		
+		System.out.println(result + nextCall + button);
 		
 		return "redirect:/home";
 	}
