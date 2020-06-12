@@ -29,6 +29,7 @@
 		<p>${ voter.lastCall }</p>
 
 		<p>${ voter.result }</p>
+
 		</p>
 
 	</div>
@@ -39,33 +40,25 @@
 			<input class="note-text" type="text" name="notes"
 				value="${ voter.notes }">
 		</div>
-		<div>	
-		
+		<div>
+
 			<input type="radio" id="NA" name="result" value="NA" required>
-			<label for="NA">No answer/Voicemail</label><br>
-			
-			<input type="radio" id="RQ" name="result" value="RQ">
-			<label for="RQ">Requested callback</label><br>
-			
-			<input type="datetime-local" name="nextCall">
-			
-			<input type="radio" id="VIP" name="result" value="VIP">
-			<label for="VIP">Will vote in person</label><br>
-			
-			<input type="radio" id="WVBM" name="result" value="WVBM">
-			<label for="WVBM">Will register to Vote by Mail</label><br>
-			
-			<input type="radio" id="AVBM" name="result" value="AVBM">
-			<label for="AVBM">Already registered to Vote by Mail</label><br>
-			
-			<input type="radio" id="NV" name="result" value="NV">
-			<label for="NV">Not voting</label><br>
-			
-			<input type="radio" id="DNC" name="result" value="DNC">
-			<label for="DNC">Do not call</label><br>
-			
-			
-		
+			<label for="NA">No answer/Voicemail</label><br> <input
+				type="radio" id="RQ" name="result" value="RQ"> <label
+				for="RQ">Requested callback</label><br> <input
+				type="datetime-local" name="nextCall"> <input type="radio"
+				id="VIP" name="result" value="VIP"> <label for="VIP">Will
+				vote in person</label><br> <input type="radio" id="WVBM" name="result"
+				value="WVBM"> <label for="WVBM">Will register to
+				Vote by Mail</label><br> <input type="radio" id="AVBM" name="result"
+				value="AVBM"> <label for="AVBM">Already registered
+				to Vote by Mail</label><br> <input type="radio" id="NV" name="result"
+				value="NV"> <label for="NV">Not voting</label><br> <input
+				type="radio" id="DNC" name="result" value="DNC"> <label
+				for="DNC">Do not call</label><br>
+
+
+
 		</div>
 		<div>
 			<button name="button" value="next">Submit/Next</button>
@@ -74,7 +67,9 @@
 	</form>
 
 
-	<div class="accordian" id="accordianExample">
+	</p>
+	</div>
+	<div class="accordion" id="accordionExample">
 		<div class="card">
 			<div class="card-header" id="headingOne">
 				<h2 class="mb-0">
@@ -108,33 +103,30 @@
 							<th>Official's Party</th>
 							<th>Official's Email Address</th>
 						</tr>
-						<tr>
-							<c:forEach items="${civicResponse.offices}" var="office">
 
+						<c:forEach items="${civicResponse.offices}" var="office">
+							<tr>
 								<td><c:out value="${office.name}" /></td>
 
-								<c:forEach items="${office.officialIndices}" var="index">
-									<td>
-										<ul>
+								<td>
+									<ul>
+										<c:forEach items="${office.officialIndices}" var="index">
 											<li><c:out
 													value="${civicResponse.officials.get(index).name}" /></li>
-										</ul>
-									</td>
-								</c:forEach>
-
+										</c:forEach>
+									</ul>
+								</td>
 								<td><c:out value="${official.address}" /></td>
 								<td><c:out value="${official.party}" /></td>
 								<td><c:out value="${official.emails}" /></td>
-							</c:forEach>
+							</tr>
+						</c:forEach>
 
-						</tr>
 					</table>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 
 
