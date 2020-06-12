@@ -41,24 +41,23 @@
 				value="${ voter.notes }">
 		</div>
 		<div>
+			<input type = "hidden"name = "voterId" value = "${voter.id}">
 
 			<input type="radio" id="NA" name="result" value="NA" required>
-			<label for="NA">No answer/Voicemail</label><br> <input
-				type="radio" id="RQ" name="result" value="RQ"> <label
-				for="RQ">Requested callback</label><br> <input
-				type="datetime-local" name="nextCall"> <input type="radio"
-				id="VIP" name="result" value="VIP"> <label for="VIP">Will
-				vote in person</label><br> <input type="radio" id="WVBM" name="result"
-				value="WVBM"> <label for="WVBM">Will register to
-				Vote by Mail</label><br> <input type="radio" id="AVBM" name="result"
-				value="AVBM"> <label for="AVBM">Already registered
-				to Vote by Mail</label><br> <input type="radio" id="NV" name="result"
-				value="NV"> <label for="NV">Not voting</label><br> <input
-				type="radio" id="DNC" name="result" value="DNC"> <label
-				for="DNC">Do not call</label><br>
-
-
-
+			<label for="NA">No answer/Voicemail</label><br> 
+			<input type="radio" id="RQ" name="result" value="RQ"> 
+			<label for="RQ">Requested callback</label><br> 
+			<input type="datetime-local" name="nextCall"> 
+			<input type="radio" id="VIP" name="result" value="VIP"> 
+			<label for="VIP">Will vote in person</label><br> 
+			<input type="radio" id="WVBM" name="result" value="WVBM"> 
+			<label for="WVBM">Will register to Vote by Mail</label><br>
+			<input type="radio" id="AVBM" name="result" value="AVBM">
+			<label for="AVBM">Already registered to Vote by Mail</label><br> 
+			<input type="radio" id="NV" name="result" value="NV"> 
+			<label for="NV">Not voting</label><br> 
+			<input type="radio" id="DNC" name="result" value="DNC"> 
+			<label for="DNC">Do not call</label><br>
 		</div>
 		<div>
 			<button name="button" value="next">Submit/Next</button>

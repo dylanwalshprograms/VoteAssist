@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
+import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
+import co.grandcircus.VoteAssist.repository.CallLogRepository;
+import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
 @Controller
@@ -23,6 +26,12 @@ public class VolunteerPageController {
 	
 	@Autowired
 	private VoterRepository voterRepo;
+	
+	@Autowired
+	private CallLogRepository callLogRepo;
+	
+	@Autowired 
+	private VolunteerRepository volunteerRepo;
 	
 	
 	@RequestMapping("/home")
@@ -45,11 +54,14 @@ public class VolunteerPageController {
 	
 	@RequestMapping("/submit")
 	public String submitNext(@RequestParam String notes,
-			@RequestParam(required = true) String result, @RequestParam(required = false) LocalDateTime nextCall,
-			@RequestParam String button, Model model) {
-		
-		System.out.println(result + nextCall + button);
-		
+			@RequestParam(required = true) String result, @RequestParam(required = false) String nextCall,
+			@RequestParam String button, @RequestParam Long voterId, Model model) {
+		LocalDateTime currentTime = LocalDateTime.now();
+		//TODO get volunteer id from jsp once login function is built
+		//TODO update voterdata
+		CallLog log = new CallLog(currentTime, volunteerRepo.findById(1L).orElse(null), voterRepo.findById(voterId).orElse(null));
+		callLogRepo.save(log);
+		//TODO create confirmation page or popup window for demo purposes
 		return "redirect:/home";
 	}
 

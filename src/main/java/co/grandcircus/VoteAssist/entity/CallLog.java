@@ -22,6 +22,19 @@ public class CallLog {
 	private Volunteer volunteer;
 	@ManyToOne
 	private VoterData voterData;
+	
+	
+	public CallLog() {
+		super();
+	}
+	
+	public CallLog(LocalDateTime callTime, Volunteer volunteer, VoterData voterData) {
+		super();
+		this.callTime = callTime;
+		this.volunteer = volunteer;
+		this.voterData = voterData;
+	}
+
 
 	public Long getId() {
 		return id;
