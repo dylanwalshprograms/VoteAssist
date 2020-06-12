@@ -25,7 +25,7 @@ public class VolunteerPageController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		
-		VoterData voterData = voterRepo.findById(1L).orElse(null);
+		VoterData voterData = voterRepo.findVoterByNextCall();
 		
 		
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
