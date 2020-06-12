@@ -67,9 +67,20 @@
       			<th>Official's Email Address</th>
       			</tr>
       			<tr>
-      			<c:forEach items="${civicResponse.offices.officialIndices}" var="office" varStatus="status">
+      			<c:forEach items="${civicResponse.offices}" var="office">
       				
-      					<td><c:out value="${office.name} : ${civicResponse.offices.name}"/></td>
+      					<td><c:out value="${office.name}"/></td>
+      					
+      						<c:forEach items="${office.officialIndices}" var="index">
+      							<td>
+	      							<ul>
+		      							<li>
+		      								<c:out value="${civicResponse.officials.get(index).name}"/>
+		      							</li>
+	      							</ul>
+      							</td>
+      						</c:forEach>
+      					
       					<td><c:out value="${official.address}"/></td>
       					<td><c:out value="${official.party}"/></td>
       					<td><c:out value="${official.emails}"/></td>
