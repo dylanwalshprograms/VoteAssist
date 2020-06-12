@@ -22,7 +22,7 @@ public class VolunteerPageController {
 	private VoterRepository voterRepo;
 	
 	
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String home(Model model) {
 		
 		VoterData voterData = voterRepo.findVoterByNextCall();
@@ -38,6 +38,12 @@ public class VolunteerPageController {
 		
 		return "home";
 		
+	}
+	
+	@RequestMapping("/submit/next")
+	public String submitNext(Model model) {
+		
+		return "redirect:/home";
 	}
 
 }
