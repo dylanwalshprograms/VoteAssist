@@ -11,7 +11,6 @@ public class Volunteer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@OneToMany(mappedBy = "volunteerId")
 	private Long id;
 	private String name;
 	private String userName;

@@ -12,6 +12,27 @@
 </head>
 <body>
 
+<p>
+	<c:forEach items="${ voterData }" var="voter">
+		<p>${ voter.name }</p>
+		<p>${ voter.phone }</p>
+		<p>${ voter.address }</p>
+		<p>${ voter.city }</p>
+		<p>${ voter.state }</p>
+		<p>${ voter.zip }</p>
+		<p>${ voter.partyPref }</p>
+		<p>${ voter.voteByMail }</p>
+		<p>${ voter.nextCall }</p>
+		<p>${ voter.lastCall }</p>
+		<p>${ voter.notes }</p>
+		<p>${ voter.result }</p>
+		
+		
+		
+		
+	</c:forEach>
+</p>
+
 <p>${ civicResponse }</p>
 <p>${ civicResponse.normalizedInput }</p>
 <p>${ civicResponse.offices }</p>
