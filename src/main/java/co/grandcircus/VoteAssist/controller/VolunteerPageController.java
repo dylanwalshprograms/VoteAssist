@@ -25,11 +25,10 @@ public class VolunteerPageController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		
-		String address = "3011 Rowena Los Angeles CA 90039";
-		
-		CivicApiResponse civicResponse = googleService.civicResponse(address);
+		CivicApiResponse civicResponse = googleService.civicResponse(address, city, state, zip);
 		
 		List<VoterData> voterData = voterRepo.findAll();
+		//one voter to use getters for civicResponse
 		
 		model.addAttribute("civicResponse", civicResponse);
 		model.addAttribute("voterData", voterData);
