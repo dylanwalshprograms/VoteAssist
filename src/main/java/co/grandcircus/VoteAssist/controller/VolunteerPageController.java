@@ -49,7 +49,9 @@ public class VolunteerPageController {
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
 				voterData.getCity(), voterData.getState(), voterData.getZip());;
 		
-		
+		if (voterData.getNextCall().compareTo(LocalDateTime.now()) <= 0 || voterData.getDoNotCall() == true) {
+			return "no-more-records";
+		}
 		
 		model.addAttribute("civicResponse", civicResponse);
 		model.addAttribute("voter", voterData);
@@ -64,7 +66,6 @@ public class VolunteerPageController {
 			@RequestParam String button, @RequestParam Long voterId, Model model) {
 		LocalDateTime currentTime = LocalDateTime.now();
 		//TODO get volunteer id from jsp once login function is built
-		//TODO update voterdata
 		
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
 		
