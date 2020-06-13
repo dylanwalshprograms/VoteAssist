@@ -44,18 +44,20 @@ public class VolunteerPageController {
 	public String home(Model model) {
 		
 		VoterData voterData = voterRepo.findVoterByNextCall();
-		
-		
+				
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
 				voterData.getCity(), voterData.getState(), voterData.getZip());;
+				
+				model.addAttribute("civicResponse", civicResponse);
+				model.addAttribute("voter", voterData);
 		
-		if (voterData.getNextCall().compareTo(LocalDateTime.now()) <= 0 || voterData.getDoNotCall() == true) {
+		if (voterData.getNextCall() == null) {
+			return "home";
+		}
+		else if (voterData.getNextCall().compareTo(LocalDateTime.now()) >= 0) { 
 			return "no-more-records";
 		}
-		
-		model.addAttribute("civicResponse", civicResponse);
-		model.addAttribute("voter", voterData);
-		
+			
 		return "home";
 		
 	}
@@ -126,7 +128,13 @@ public class VolunteerPageController {
 		CallLog log = new CallLog(currentTime, volunteerRepo.findById(1L).orElse(null), voterRepo.findById(voterId).orElse(null));
 		callLogRepo.save(log);
 		//TODO create confirmation page or popup window for demo purposes
-		return "redirect:/home";
+		
+		if (button.equals("next")) {
+			return "redirect:/home";
+		} else {
+			return "no-more-records";
+		}
+		
 	}
 
 }
