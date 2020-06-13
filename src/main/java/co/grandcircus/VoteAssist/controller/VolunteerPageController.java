@@ -33,6 +33,12 @@ public class VolunteerPageController {
 	@Autowired 
 	private VolunteerRepository volunteerRepo;
 	
+	private long delayNA = 24;
+	private long delayVIP = 48;
+	private long delayWVBM = 72;
+	private long delayAVBM = 96;
+	
+	
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
@@ -59,6 +65,63 @@ public class VolunteerPageController {
 		LocalDateTime currentTime = LocalDateTime.now();
 		//TODO get volunteer id from jsp once login function is built
 		//TODO update voterdata
+		
+		VoterData voter = voterRepo.findById(voterId).orElse(null);
+		
+		if (result.equals("NA")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(currentTime.plusHours(delayNA));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			
+		} else if (result.equals("RQ")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(LocalDateTime.parse(nextCall));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			
+		} else if (result.equals("VIP")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(currentTime.plusHours(delayVIP));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			
+		} else if (result.equals("WVBM")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(currentTime.plusHours(delayWVBM));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			
+		} else if (result.equals("AVBM")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(currentTime.plusHours(delayAVBM));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			
+		} else if (result.equals("NV")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(currentTime.plusHours(10000));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			
+		} else if (result.equals("DNC")) {
+			
+			voter.setLastCall(currentTime);
+			voter.setNextCall(currentTime.plusHours(10000));
+			voter.setNotes(notes);
+			voter.setResult(result);
+			voter.setDoNotCall(true);
+			
+		}
+		
+		voterRepo.save(voter);
+		
 		CallLog log = new CallLog(currentTime, volunteerRepo.findById(1L).orElse(null), voterRepo.findById(voterId).orElse(null));
 		callLogRepo.save(log);
 		//TODO create confirmation page or popup window for demo purposes
