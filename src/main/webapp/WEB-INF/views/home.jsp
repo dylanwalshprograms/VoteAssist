@@ -33,7 +33,8 @@
 		</p>
 
 	</div>
-
+	<div><jsp:include page="main-script.jsp"/></div>
+	
 
 	<form action="/submit">
 		<div>

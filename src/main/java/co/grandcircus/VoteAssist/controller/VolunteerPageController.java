@@ -42,6 +42,8 @@ public class VolunteerPageController {
 	private long delayVIP = 48;
 	private long delayWVBM = 72;
 	private long delayAVBM = 96;
+	private String username = "Joe";
+	private String campaignName = "Test campaign 1";
 	
 	
 	
@@ -54,7 +56,9 @@ public class VolunteerPageController {
 				voterData.getCity(), voterData.getState(), voterData.getZip());
 		
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
-		
+				
+				model.addAttribute("username", username);
+				model.addAttribute("campaignName", campaignName);
 				model.addAttribute("stateResponse", stateResponse);
 				model.addAttribute("civicResponse", civicResponse);
 				model.addAttribute("voter", voterData);
