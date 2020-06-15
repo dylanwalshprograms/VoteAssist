@@ -69,6 +69,7 @@ public class VolunteerPageController {
 		
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
 		
+				model.addAttribute("electionDay", electionDay);
 				model.addAttribute("regCutoff", regCutoff);
 				model.addAttribute("username", username);
 				model.addAttribute("campaignName", campaignName);

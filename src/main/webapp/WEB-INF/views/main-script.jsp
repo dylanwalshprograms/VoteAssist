@@ -16,13 +16,13 @@
 </head>
 <body>
 <div>
-<p>1. Hello, may I speak with ${voter.name}.</p>
-<p>2. This is ${username} calling on behalf of ${campaignName}.</p>
+<p>1. Hello, may I speak with <b>${voter.name}</b>.</p>
+<p>2. This is <b>${username}</b> calling on behalf of <b>${campaignName}</b>.</p>
 <p>3. We aren’t concerned if you’re a Democrat or a Republican. What we want to do is make sure that every registered voter goes to the polls and votes. 
 A lot of people think that this election is one of the most significant in years. Issues such as National Security, Taxes, and Healthcare will all be affected by this election, and we want every voter in North Carolina to stand up and be counted.</p>
-<p>4. Do you plan to go to the polls and vote on ${electionDay}?</p>
+<p>4. Do you plan to go to the polls and vote on <b>${electionDay}?</b></p>
 <p>YES
-5(a). That’s Great! Remember, the deadline to vote by mail is ${regCutoff}. Do you need information about where your polling place is and what hours it’s open? [If yes to polling place, say:] 
+5(a). That’s Great! Remember, the deadline to register to vote by mail is <b>${regCutoff}</b>. Do you need information about where your polling place is and what hours it’s open? [If yes to polling place, say:] 
 No problem, we can easily look that up for you and get back to you with the information.</p>
 <p>UNDECIDED/NO
 5(b). Well, we want to remind you that this is a very important election – there’s a lot at stake – and you can voice your opinion by going to the polls and voting.

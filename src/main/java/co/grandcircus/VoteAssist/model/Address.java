@@ -41,6 +41,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [line1=" + line1 + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
+		String address = line1 + "/n" + city + ", " + state + zip;
+		return address;
 	}
 }

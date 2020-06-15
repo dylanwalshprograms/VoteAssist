@@ -68,8 +68,8 @@
 			<input type="radio" id="NA" name="result" value="NA" required>
 			<label for="NA">No answer/Voicemail</label><br> 
 			<input type="radio" id="RQ" name="result" value="RQ"> 
-			<label for="RQ">Requested callback</label><br> 
-			<input type="datetime-local" name="nextCall"> 
+			<label for="RQ">Requested callback</label>
+			<input type="datetime-local" name="nextCall"><br>
 			<input type="radio" id="VIP" name="result" value="VIP"> 
 			<label for="VIP">Will vote in person</label><br> 
 			<input type="radio" id="WVBM" name="result" value="WVBM"> 
@@ -143,6 +143,7 @@
 				<div class="card-body">
 					<table>
 						<tr>
+							<th>Office</th>
 							<th>Official's Name</th>
 							<th>Official's Address</th>
 							<th>Official's Party</th>
@@ -162,8 +163,19 @@
 									</ul>
 								</td>
 									<c:forEach items="${office.officialIndices}" var="index">
-										<td><c:out value="${civicResponse.officials.get(index).address}"/></td>
+										
+										<!-- 
+										<td>
+											<ul>
+												<c:forEach items="${civicResponse.officials.get(index).address}" var="address">
+													<li>${address.line1}</li>
+													<li>${address.city}, ${address.state} ${address.zip}</li>																																		
+												</c:forEach>
+											</ul>
+										</td>
+										
 	      								<td><c:out value="${civicResponse.officials.get(index).party}"/></td>
+	      								 -->
 	      								<td><c:out value="${civicResponse.officials.get(index).emails}"/></td>
 	      							</c:forEach>
 							</tr>
