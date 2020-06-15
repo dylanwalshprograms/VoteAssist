@@ -17,16 +17,16 @@
 <body>
 	<div class="voter-data">
 		<p>
-		<p>${ voter.name }</p>
-		<p>${ voter.phone }</p>
-		<p>${ voter.address }</p>
-		<p>${ voter.city }</p>
-		<p>${ voter.state }</p>
-		<p>${ voter.zip }</p>
-		<p>${ voter.partyPref }</p>
-		<p>${ voter.voteByMail }</p>
-		<p>${ voter.nextCall }</p>
-		<p>${ voter.lastCall }</p>
+		<p>Name - ${ voter.name }</p>
+		<p>Phone - ${ voter.phone }</p>
+		<p>Street Address - ${ voter.address }</p>
+		<p>City - ${ voter.city }</p>
+		<p>State - ${ voter.state }</p>
+		<p>Zip Code - ${ voter.zip }</p>
+		<p>Party Preference - ${ voter.partyPref }</p>
+		<p>Is this person voting by mail? - ${ voter.voteByMail }</p>
+		<p>Next Scheduled Call - ${ voter.nextCall }</p>
+		<p>Last Call - ${ voter.lastCall }</p>
 
 		<p>${ voter.result }</p>
 

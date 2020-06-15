@@ -45,7 +45,10 @@ public class VolunteerPageController {
 	private String username = "Joe";
 	private String campaignName = "Test campaign 1";
 	
-	
+	@RequestMapping("/")
+	public String startup() {
+		return "redirect:/home";
+	}
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
