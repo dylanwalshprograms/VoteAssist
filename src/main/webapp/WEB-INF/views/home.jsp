@@ -15,34 +15,130 @@
 
 </head>
 <body>
+	<div class="top left">
+	        <main class="container">
 
+            <article class="card mx-auto">
+
+                <section class="card-header">
+					<h1>Voter Information</h1>
+                </section>
+
+                <section class="card-body">
+
+					Name - ${voter.name}<br>
+					Phone - ${voter.phone}<br>
+					Street Address - ${voter.address}<br>
+					City - ${voter.city}<br>
+					State - ${voter.state}<br>
+					Zip Code - ${voter.zip}<br>
+					Party Preference - ${voter.partyPref}<br>
+					Is this person voting by mail? - ${voter.voteByMail}<br>
+					Next Scheduled Call - ${voter.nextCall}<br>
+					Last Call - ${voter.lastCall}<br>
+
+                </section>
+
+            </article>
+
+        </main>
 	</div>
-		<div class="accordion" id="accordionExample" style="width:50%">
+
+	<div class="top right">
+        <main class="container">
+
+            <article class="card mx-auto">
+
+                <section class="card-header">
+
+                    <h1>Comments</h1>
+
+                </section>
+
+                <section class="card-body">
+
+	<form action="/submit">
+		<div>
+			<textarea class="note-text" rows="3" name="notes"
+				value="${voter.notes}"></textarea>
+		</div>
+		<div>
+			<input type = "hidden"name = "voterId" value = "${voter.id}">
+
+			<input type="radio" id="NA" name="result" value="NA" required>
+			<label for="NA">No answer/Voicemail</label><br> 
+			<input type="radio" id="RQ" name="result" value="RQ"> 
+			<label for="RQ">Requested callback</label><br> 
+			<input type="datetime-local" name="nextCall"> 
+			<input type="radio" id="VIP" name="result" value="VIP"> 
+			<label for="VIP">Will vote in person</label><br> 
+			<input type="radio" id="WVBM" name="result" value="WVBM"> 
+			<label for="WVBM">Will register to Vote by Mail</label><br>
+			<input type="radio" id="AVBM" name="result" value="AVBM">
+			<label for="AVBM">Already registered to Vote by Mail</label><br> 
+			<input type="radio" id="NV" name="result" value="NV"> 
+			<label for="NV">Not voting</label><br> 
+			<input type="radio" id="DNC" name="result" value="DNC"> 
+			<label for="DNC">Do not call</label><br>
+		</div>
+		<div>
+			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
+			<button name="button" value="end">Submit/END</button>
+		</div>
+	</form>
+
+                </section>
+
+            </article>
+
+        </main>
+	</div>
+        
+        <div class="bottom left">
+                <main class="container">
+
+            <article class="card mx-auto">
+
+                <section class="card-header">
+
+                    <h1>Script</h1>
+
+                </section>
+
+                <section class="card-body">
+
+					<jsp:include page="main-script.jsp"/>
+
+                </section>
+
+            </article>
+
+        	</main>
+        </div>
+        <div class="bottom right">
+                <main class="login container">
+
+            <article class="card mx-auto">
+
+                <section class="card-header">
+
+                    <h1>Additional Information</h1>
+
+                </section>
+
+                <section class="card-body">
+
+		<div class="accordion" id="accordionExample">
 		<div class="card">
 			<div class="card-header" id="headingOne">
 				<h2 class="mb-0">
-					<button class="btn btn-link btn-block text-left" type="button"
-						data-toggle="collapse" data-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">Voter
-						local election data</button>
-				</h2>
-			</div>
-			<div id="collapseOne" class="collapse show"
-				aria-labelledby="headingOne" data-parent="#accordionExample">
-				<div class="card-body">
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" id="headingTwo">
-				<h2 class="mb-0">
 					<button class="btn btn-link btn-block text-left collapsed"
-						type="button" data-toggle="collapse" data-target="#collapseTwo"
-						aria-expanded="false" aria-controls="collapseTwo">
+						type="button" data-toggle="collapse" data-target="#collapseOne"
+						aria-expanded="false" aria-controls="collapseOne">
 						Representative data</button>
 				</h2>
 			</div>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+			<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 				data-parent="#accordionExample">
 				<div class="card-body">
 					<table>
@@ -77,14 +173,14 @@
 			</div>
 		</div>
 		<div class="card">
-			<div class="card-header" id="headingThree">
+			<div class="card-header" id="headingTwo">
 				<h2 class="mb-0">
-					<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 						Voter Registration Information
 					</button>
 				</h2>
 			</div>
-			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 				<div class="card-body">
 						<div>
 							<c:out value="${stateResponse.state.details.voterReg}" escapeXml="false"/>
@@ -93,71 +189,15 @@
 			</div>
 		</div>
 	</div>
+
+
+                </section>
+
+            </article>
+
+        </main>
+        </div>
 	
-	<div class="voter-data">
-		<p>
-		<p>Name - ${ voter.name }</p>
-		<p>Phone - ${ voter.phone }</p>
-		<p>Street Address - ${ voter.address }</p>
-		<p>City - ${ voter.city }</p>
-		<p>State - ${ voter.state }</p>
-		<p>Zip Code - ${ voter.zip }</p>
-		<p>Party Preference - ${ voter.partyPref }</p>
-		<p>Is this person voting by mail? - ${ voter.voteByMail }</p>
-		<p>Next Scheduled Call - ${ voter.nextCall }</p>
-		<p>Last Call - ${ voter.lastCall }</p>
-
-		<p>${ voter.result }</p>
-
-		</p>
-
-
-	<div><jsp:include page="main-script.jsp"/></div>
-	
-
-	<form action="/submit">
-		<div>
-			<input class="note-text" type="text" name="notes"
-				value="${ voter.notes }">
-		</div>
-		<div>
-			<input type = "hidden"name = "voterId" value = "${voter.id}">
-
-			<input type="radio" id="NA" name="result" value="NA" required>
-			<label for="NA">No answer/Voicemail</label><br> 
-			<input type="radio" id="RQ" name="result" value="RQ"> 
-			<label for="RQ">Requested callback</label><br> 
-			<input type="datetime-local" name="nextCall"> 
-			<input type="radio" id="VIP" name="result" value="VIP"> 
-			<label for="VIP">Will vote in person</label><br> 
-			<input type="radio" id="WVBM" name="result" value="WVBM"> 
-			<label for="WVBM">Will register to Vote by Mail</label><br>
-			<input type="radio" id="AVBM" name="result" value="AVBM">
-			<label for="AVBM">Already registered to Vote by Mail</label><br> 
-			<input type="radio" id="NV" name="result" value="NV"> 
-			<label for="NV">Not voting</label><br> 
-			<input type="radio" id="DNC" name="result" value="DNC"> 
-			<label for="DNC">Do not call</label><br>
-		</div>
-		<div>
-			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
-			<button name="button" value="end">Submit/END</button>
-		</div>
-	</form>
-
-
-	</p>
-	</div>
-
-	
-
-
-
-
-	<!-- <p>${ civicResponse }</p>  -->
-	<!-- <p>${ civicResponse.normalizedInput }</p>  -->
-	<!-- <p>${ civicResponse.offices }</p>  -->
-	<!-- <p>${ civicResponse.officials }</p> -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

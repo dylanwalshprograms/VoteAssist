@@ -1,6 +1,28 @@
 @charset "ISO-8859-1";
 
-.accordion {
-	float: right;
-	margin-top: 0px;
+.note-text {
+	width: 90%;
+	height: 40%;
+	box-sizing: border-box;
 }
+
+.top { 
+	height: 50%; 
+	top:    0; 
+	float: left;
+	}
+.bottom {
+	height: 50%; 
+	bottom: 0;
+	float: right;
+	}
+.left {
+	width: 50%; 
+	left: 0;
+	float: left;
+	}
+.right {
+	width: 50%; 
+	right:  0;
+	float: right;
+	}
