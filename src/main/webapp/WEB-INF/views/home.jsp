@@ -15,61 +15,8 @@
 
 </head>
 <body>
-	<div class="voter-data">
-		<p>
-		<p>Name - ${ voter.name }</p>
-		<p>Phone - ${ voter.phone }</p>
-		<p>Street Address - ${ voter.address }</p>
-		<p>City - ${ voter.city }</p>
-		<p>State - ${ voter.state }</p>
-		<p>Zip Code - ${ voter.zip }</p>
-		<p>Party Preference - ${ voter.partyPref }</p>
-		<p>Is this person voting by mail? - ${ voter.voteByMail }</p>
-		<p>Next Scheduled Call - ${ voter.nextCall }</p>
-		<p>Last Call - ${ voter.lastCall }</p>
-
-		<p>${ voter.result }</p>
-
-		</p>
-
 	</div>
-	<div><jsp:include page="main-script.jsp"/></div>
-	
-
-	<form action="/submit">
-		<div>
-			<input class="note-text" type="text" name="notes"
-				value="${ voter.notes }">
-		</div>
-		<div>
-			<input type = "hidden"name = "voterId" value = "${voter.id}">
-
-			<input type="radio" id="NA" name="result" value="NA" required>
-			<label for="NA">No answer/Voicemail</label><br> 
-			<input type="radio" id="RQ" name="result" value="RQ"> 
-			<label for="RQ">Requested callback</label><br> 
-			<input type="datetime-local" name="nextCall"> 
-			<input type="radio" id="VIP" name="result" value="VIP"> 
-			<label for="VIP">Will vote in person</label><br> 
-			<input type="radio" id="WVBM" name="result" value="WVBM"> 
-			<label for="WVBM">Will register to Vote by Mail</label><br>
-			<input type="radio" id="AVBM" name="result" value="AVBM">
-			<label for="AVBM">Already registered to Vote by Mail</label><br> 
-			<input type="radio" id="NV" name="result" value="NV"> 
-			<label for="NV">Not voting</label><br> 
-			<input type="radio" id="DNC" name="result" value="DNC"> 
-			<label for="DNC">Do not call</label><br>
-		</div>
-		<div>
-			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
-			<button name="button" value="end">Submit/END</button>
-		</div>
-	</form>
-
-
-	</p>
-	</div>
-	<div class="accordion" id="accordionExample">
+		<div class="accordion" id="accordionExample" style="width:50%">
 		<div class="card">
 			<div class="card-header" id="headingOne">
 				<h2 class="mb-0">
@@ -129,6 +76,61 @@
 			</div>
 		</div>
 	</div>
+	<div class="voter-data">
+		<p>
+		<p>Name - ${ voter.name }</p>
+		<p>Phone - ${ voter.phone }</p>
+		<p>Street Address - ${ voter.address }</p>
+		<p>City - ${ voter.city }</p>
+		<p>State - ${ voter.state }</p>
+		<p>Zip Code - ${ voter.zip }</p>
+		<p>Party Preference - ${ voter.partyPref }</p>
+		<p>Is this person voting by mail? - ${ voter.voteByMail }</p>
+		<p>Next Scheduled Call - ${ voter.nextCall }</p>
+		<p>Last Call - ${ voter.lastCall }</p>
+
+		<p>${ voter.result }</p>
+
+		</p>
+
+
+	<div><jsp:include page="main-script.jsp"/></div>
+	
+
+	<form action="/submit">
+		<div>
+			<input class="note-text" type="text" name="notes"
+				value="${ voter.notes }">
+		</div>
+		<div>
+			<input type = "hidden"name = "voterId" value = "${voter.id}">
+
+			<input type="radio" id="NA" name="result" value="NA" required>
+			<label for="NA">No answer/Voicemail</label><br> 
+			<input type="radio" id="RQ" name="result" value="RQ"> 
+			<label for="RQ">Requested callback</label><br> 
+			<input type="datetime-local" name="nextCall"> 
+			<input type="radio" id="VIP" name="result" value="VIP"> 
+			<label for="VIP">Will vote in person</label><br> 
+			<input type="radio" id="WVBM" name="result" value="WVBM"> 
+			<label for="WVBM">Will register to Vote by Mail</label><br>
+			<input type="radio" id="AVBM" name="result" value="AVBM">
+			<label for="AVBM">Already registered to Vote by Mail</label><br> 
+			<input type="radio" id="NV" name="result" value="NV"> 
+			<label for="NV">Not voting</label><br> 
+			<input type="radio" id="DNC" name="result" value="DNC"> 
+			<label for="DNC">Do not call</label><br>
+		</div>
+		<div>
+			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
+			<button name="button" value="end">Submit/END</button>
+		</div>
+	</form>
+
+
+	</p>
+	</div>
+
 	
 	<div>
 		
