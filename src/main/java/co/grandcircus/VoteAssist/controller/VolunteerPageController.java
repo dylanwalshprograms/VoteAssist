@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
+import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
+import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
@@ -23,6 +25,9 @@ public class VolunteerPageController {
 	
 	@Autowired
 	private GoogleCivicsApiService googleService;
+	
+	@Autowired
+	private VoteSmartApiService voteSmartService;
 	
 	@Autowired
 	private VoterRepository voterRepo;
@@ -46,8 +51,11 @@ public class VolunteerPageController {
 		VoterData voterData = voterRepo.findVoterByNextCall();
 				
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
-				voterData.getCity(), voterData.getState(), voterData.getZip());;
-				
+				voterData.getCity(), voterData.getState(), voterData.getZip());
+		
+		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
+		
+				model.addAttribute("stateResponse", stateResponse);
 				model.addAttribute("civicResponse", civicResponse);
 				model.addAttribute("voter", voterData);
 		

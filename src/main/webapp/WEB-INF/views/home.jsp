@@ -128,6 +128,12 @@
 			</div>
 		</div>
 	</div>
+	
+	<div>
+		
+		<c:out value="${stateResponse.state.details.voterReg}" escapeXml="false"/>
+	
+	</div>
 
 
 
