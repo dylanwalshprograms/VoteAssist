@@ -15,6 +15,7 @@
 
 </head>
 <body>
+
 	</div>
 		<div class="accordion" id="accordionExample" style="width:50%">
 		<div class="card">
@@ -28,7 +29,8 @@
 			</div>
 			<div id="collapseOne" class="collapse show"
 				aria-labelledby="headingOne" data-parent="#accordionExample">
-				<div class="card-body"></div>
+				<div class="card-body">
+				</div>
 			</div>
 		</div>
 		<div class="card">
@@ -70,12 +72,28 @@
 	      							</c:forEach>
 							</tr>
 						</c:forEach>
-
 					</table>
 				</div>
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-header" id="headingThree">
+				<h2 class="mb-0">
+					<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						Voter Registration Information
+					</button>
+				</h2>
+			</div>
+			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+				<div class="card-body">
+						<div>
+							<c:out value="${stateResponse.state.details.voterReg}" escapeXml="false"/>
+						</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	
 	<div class="voter-data">
 		<p>
 		<p>Name - ${ voter.name }</p>
@@ -132,11 +150,7 @@
 	</div>
 
 	
-	<div>
-		
-		<c:out value="${stateResponse.state.details.voterReg}" escapeXml="false"/>
-	
-	</div>
+
 
 
 
