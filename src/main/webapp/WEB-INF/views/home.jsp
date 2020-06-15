@@ -60,7 +60,7 @@
 			<label for="DNC">Do not call</label><br>
 		</div>
 		<div>
-			<button name="button" value="next">Submit/Next</button>
+			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
 			<button name="button" value="end">Submit/END</button>
 		</div>
 	</form>
@@ -146,5 +146,10 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
+		<script>
+		function mySavedNoteAlert(){
+			alert("Notes saved successfully!");
+		}
+		</script>
 </body>
 </html>
