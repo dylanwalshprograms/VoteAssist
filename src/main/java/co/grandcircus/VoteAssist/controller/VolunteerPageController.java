@@ -3,6 +3,7 @@ package co.grandcircus.VoteAssist.controller;
 
 
 import java.time.LocalDateTime;
+import java.time.Period;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
+import co.grandcircus.VoteAssist.repository.RegDayRepo;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
@@ -37,6 +39,9 @@ public class VolunteerPageController {
 	
 	@Autowired 
 	private VolunteerRepository volunteerRepo;
+	
+	@Autowired
+	private RegDayRepo regDayRepo;
 	
 	private long delayNA = 24;
 	private long delayVIP = 48;
@@ -59,7 +64,12 @@ public class VolunteerPageController {
 				voterData.getCity(), voterData.getState(), voterData.getZip());
 		
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
-				
+		
+		LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
+		
+		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
+		
+				model.addAttribute("regCutoff", regCutoff);
 				model.addAttribute("username", username);
 				model.addAttribute("campaignName", campaignName);
 				model.addAttribute("stateResponse", stateResponse);
