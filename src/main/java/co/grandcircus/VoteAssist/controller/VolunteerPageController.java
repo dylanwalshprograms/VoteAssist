@@ -16,6 +16,7 @@ import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.VoterData;
+import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
@@ -50,6 +51,7 @@ public class VolunteerPageController {
 	private long delayAVBM = 96;
 	private String username = "Joe";
 	private String campaignName = "Test campaign 1";
+	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
 	@RequestMapping("/")
 	public String startup() {
@@ -66,27 +68,22 @@ public class VolunteerPageController {
 		
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
 		
-		LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
 		
-		String electionMonth = electionDay.getMonth().toString();
-		int electionDate = electionDay.getDayOfMonth();
+		String lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
+		String nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
 		
-		String regCutoffMonth = regCutoff.getMonth().toString();
-		int regCutoffDate = regCutoff.getDayOfMonth();
-		String regCutoffDayOfWeek = regCutoff.getDayOfWeek().toString();
+		String scriptName = "main-script";
 		
-			model.addAttribute("electionMonth", electionMonth);
-			model.addAttribute("electionDate", electionDate);
-			model.addAttribute("regCutoffMonth", regCutoffMonth);
-			model.addAttribute("regCutoffDate", regCutoffDate);
-			model.addAttribute("regCutoffDayOfWeek", regCutoffDayOfWeek);
-			model.addAttribute("regCutoff", regCutoff);
-			model.addAttribute("username", username);
-			model.addAttribute("campaignName", campaignName);
-			model.addAttribute("stateResponse", stateResponse);
-			model.addAttribute("civicResponse", civicResponse);
-			model.addAttribute("voter", voterData);
+		model.addAttribute("nextCall", nextCall);
+		model.addAttribute("lastCall", lastCall);
+		model.addAttribute("electionDay", VoteAssistMethods.localDateTimeInWords(electionDay));
+		model.addAttribute("regCutOffDay", VoteAssistMethods.localDateTimeInWords(regCutoff));
+		model.addAttribute("username", username);
+		model.addAttribute("campaignName", campaignName);
+		model.addAttribute("stateResponse", stateResponse);
+		model.addAttribute("civicResponse", civicResponse);
+		model.addAttribute("voter", voterData);
 		
 		if (voterData.getNextCall() == null) {
 			return "home";
@@ -94,6 +91,14 @@ public class VolunteerPageController {
 		else if (voterData.getNextCall().compareTo(LocalDateTime.now()) >= 0) { 
 			return "no-more-records";
 		}
+		
+		if (voterData.getResult().equals("WVBM")) {
+			scriptName = "vbm-reminder-script";
+		} else if (voterData.getResult().equals("VIP")) {
+			scriptName = "vip-reminder-script";
+		}
+		
+		model.addAttribute("script", scriptName);
 			
 		return "home";
 		

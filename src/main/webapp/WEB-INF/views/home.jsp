@@ -31,7 +31,7 @@
 					State - ${voter.state}<br> Zip Code - ${voter.zip}<br>
 					Party Preference - ${voter.partyPref}<br> Is this person
 					voting by mail? - ${voter.voteByMail}<br> Next Scheduled Call
-					- ${voter.nextCall}<br> Last Call - ${voter.lastCall}<br>
+					- ${nextCall}<br> Last Call - ${lastCall}<br>
 
 				</section>
 
@@ -101,7 +101,7 @@
 
 				<section class="card-body">
 
-					<jsp:include page="main-script.jsp" />
+					<jsp:include page="${script}.jsp" />
 
 				</section>
 
