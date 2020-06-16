@@ -246,7 +246,7 @@ public class VolunteerPageController {
 		
 		voterRepo.save(voter);
 		
-		CallLog log = new CallLog(currentTime, volunteerRepo.findById(1L).orElse(null), voterRepo.findById(voterId).orElse(null));
+		CallLog log = new CallLog(currentTime, (Volunteer) session.getAttribute("user"), voterRepo.findById(voterId).orElse(null));
 		callLogRepo.save(log);
 		
 		if (button.equals("next")) {
