@@ -28,12 +28,6 @@
 					<c:out value="${message}" />
 
 					<div class="form-group">
-						<label>Name</label> <input class="form-control"
-							name="name" type="text" required />
-
-					</div>
-
-					<div class="form-group">
 						<label>Username</label> <input class="form-control"
 							name="userName" type="text" required />
 
