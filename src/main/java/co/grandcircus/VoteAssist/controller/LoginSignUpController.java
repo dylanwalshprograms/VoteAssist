@@ -33,7 +33,7 @@ public class LoginSignUpController {
 	}
 	
 	@RequestMapping("/login/submit") // Login page
-	public String submitLoginForm(@RequestParam("name") String name, @RequestParam("userName") String userName, @RequestParam("password") String password,
+	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password,
 			Model model) {
 
 		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
