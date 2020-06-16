@@ -3,6 +3,7 @@ package co.grandcircus.VoteAssist.controller;
 
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
@@ -59,6 +61,62 @@ public class VolunteerPageController {
 	private LocalDateTime timeMachineLDT = LocalDateTime.now();
 	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 	
+	@RequestMapping ("/") // Home page
+	public String login(Model model) {
+		if (session.getAttribute("user") != null) {
+			return "home";
+		} else {
+			return "login";
+		}
+	}
+	
+	@RequestMapping("/login/submit") // Login page
+	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password,
+			Model model) {
+
+		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
+		if (foundUser.isPresent()) {
+			session.setAttribute("user", foundUser.get());
+			return "redirect:/home";
+		} else {
+			model.addAttribute("message", "Incorrect username or password.");
+			return "login";
+		}
+		
+	}
+	
+	@RequestMapping("/sign-up")
+	public String signUpForm() {
+		return "sign-up";
+	}
+	
+	@RequestMapping("/sign-up/submit")
+	public String signUpSubmit(Volunteer volunteer, Model model) {
+		
+		Volunteer volunteerCheck = volunteerRepo.findByUserName(volunteer.getUserName());
+		
+		if (volunteerCheck != null) {
+			model.addAttribute("message", "Username already exists. Please try again.");
+			return "sign-up";
+		} else {
+			volunteerRepo.save(volunteer);
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping("/logout") // Logs out current user
+	public String logout(RedirectAttributes redir, Model model) {
+		if (session.getAttribute("user") != null) {
+			redir.addFlashAttribute("message","Logged out successfully");
+			
+			session.invalidate();
+			return "redirect:/";
+		} else {
+			model.addAttribute("message", "Not logged in");
+			return "login";
+		}
+	}
+		
 	@RequestMapping("/reset-time")
 	public String resetTime(@RequestParam(required = false) String time) {
 		
@@ -70,12 +128,11 @@ public class VolunteerPageController {
 		
 		return "redirect:/home";
 	}
-	
-	
+		
 	@RequestMapping("/home")
-	public String home(Volunteer foundUser, Model model) { 
-		System.out.println(foundUser.getName());
-		System.out.println(foundUser.getUserName());
+	public String home(Model model) { 		
+		
+		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
 		
 		VoterData voterData = voterRepo.findVoterByNextCall();
 				
@@ -99,7 +156,7 @@ public class VolunteerPageController {
 		
 		model.addAttribute("electionDay", VoteAssistMethods.localDateTimeInWords(electionDay));
 		model.addAttribute("regCutOffDay", VoteAssistMethods.localDateTimeInWords(regCutoff));
-		model.addAttribute("volunteerName", foundUser.getUserName());
+		model.addAttribute("volunteerName", currentVolunteer.getName());
 		model.addAttribute("campaignName", campaignName);
 		model.addAttribute("stateResponse", stateResponse);
 		model.addAttribute("civicResponse", civicResponse);
