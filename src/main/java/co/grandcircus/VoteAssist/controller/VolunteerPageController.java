@@ -56,6 +56,21 @@ public class VolunteerPageController {
 	private String campaignName = "Test campaign 1";
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
+	private LocalDateTime timeMachineLDT = LocalDateTime.now();
+	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
+	
+	@RequestMapping("/reset-time")
+	public String resetTime(@RequestParam(required = false) String time) {
+		
+		
+		if (time != null) {
+			timeMachineLDT = LocalDateTime.parse(time);
+			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
+		}
+		
+		return "redirect:/home";
+	}
+	
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
@@ -74,10 +89,12 @@ public class VolunteerPageController {
 			lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
 			nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
 		}
-		
+		model.addAttribute("timeMachineString", timeMachineString);
 		model.addAttribute("nextCall", nextCall);
 		model.addAttribute("lastCall", lastCall);
+		
 		String scriptName = "main-script";
+		
 		model.addAttribute("electionDay", VoteAssistMethods.localDateTimeInWords(electionDay));
 		model.addAttribute("regCutOffDay", VoteAssistMethods.localDateTimeInWords(regCutoff));
 		model.addAttribute("username", username);
@@ -89,7 +106,7 @@ public class VolunteerPageController {
 		if (voterData.getNextCall() == null) {
 			return "home";
 		}
-		else if (voterData.getNextCall().compareTo(LocalDateTime.now()) >= 0) { 
+		else if (voterData.getNextCall().compareTo(timeMachineLDT) >= 0) {  //REPLACED BY TIME MACHINE LocalDateTime.now()) >= 0) { 
 			return "no-more-records";
 		}
 		
@@ -109,7 +126,9 @@ public class VolunteerPageController {
 	public String submitNext(@RequestParam String notes,
 			@RequestParam(required = true) String result, @RequestParam(required = false) String nextCall,
 			@RequestParam String button, @RequestParam Long voterId, Model model) {
-		LocalDateTime currentTime = LocalDateTime.now();
+		
+		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
+		
 		//TODO get volunteer id from jsp once login function is built
 		
 		VoterData voter = voterRepo.findById(voterId).orElse(null);

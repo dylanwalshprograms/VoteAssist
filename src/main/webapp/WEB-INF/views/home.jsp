@@ -15,7 +15,16 @@
 
 </head>
 <body>
+
 	<nav class="navbar bg-light">
+		
+		<form action="/reset-time">
+			<input type="datetime-local" name="time">
+			<button>Change "Current" Date</button>
+		</form>
+		
+		<label>"Current" Date: ${timeMachineString}</label>
+		
 		<ul class="nav">
 			
 			<li class="nav-item">
