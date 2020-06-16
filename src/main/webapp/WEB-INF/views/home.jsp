@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Vote Assist</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -55,8 +55,7 @@
 
 					<form action="/submit">
 						<div>
-							<textarea class="note-text" rows="3" name="notes"
-								value="${voter.notes}"></textarea>
+							<textarea class="note-text" rows="3" name="notes">${voter.notes}</textarea>
 						</div>
 						<div>
 							<input type="hidden" name="voterId" value="${voter.id}">
