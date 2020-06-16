@@ -120,7 +120,7 @@
 
                 <section class="card-body">
 
-					<jsp:include page="main-script.jsp"/>
+					<jsp:include page="${script}.jsp"/>
 
                 </section>
 
