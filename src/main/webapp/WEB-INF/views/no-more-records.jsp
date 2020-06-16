@@ -12,6 +12,23 @@
 </head>
 <body>
 
+	<nav class="navbar bg-light">
+		
+		<form action="/reset-time">
+			<input type="datetime-local" name="time">
+			<button>Change "Current" Date</button>
+		</form>
+		
+		<label>"Current" Date: ${timeMachineString}</label>
+		
+		<ul class="nav">
+			
+			<li class="nav-item">
+			<a class="nav-link" href="/logout">Logout</a>
+			</li>
+		</ul>
+	</nav>
+
 	<h1>NO MORE RECORDS</h1>
 	
 </body>
