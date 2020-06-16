@@ -16,200 +16,190 @@
 </head>
 <body>
 	<div class="top left">
-	        <main class="container">
+		<main class="container">
 
-            <article class="card mx-auto">
+			<article class="card mx-auto">
 
-                <section class="card-header">
+				<section class="card-header">
 					<h1>Voter Information</h1>
-                </section>
+				</section>
 
-                <section class="card-body">
+				<section class="card-body">
 
-					Name - ${voter.name}<br>
-					Phone - ${voter.phone}<br>
-					Street Address - ${voter.address}<br>
-					City - ${voter.city}<br>
-					State - ${voter.state}<br>
-					Zip Code - ${voter.zip}<br>
-					Party Preference - ${voter.partyPref}<br>
-					Is this person voting by mail? - ${voter.voteByMail}<br>
-					Next Scheduled Call - ${voter.nextCall}<br>
-					Last Call - ${voter.lastCall}<br>
+					Name - ${voter.name}<br> Phone - ${voter.phone}<br>
+					Street Address - ${voter.address}<br> City - ${voter.city}<br>
+					State - ${voter.state}<br> Zip Code - ${voter.zip}<br>
+					Party Preference - ${voter.partyPref}<br> Is this person
+					voting by mail? - ${voter.voteByMail}<br> Next Scheduled Call
+					- ${voter.nextCall}<br> Last Call - ${voter.lastCall}<br>
 
-                </section>
+				</section>
 
-            </article>
+			</article>
 
-        </main>
+		</main>
 	</div>
 
 	<div class="top right">
-        <main class="container">
+		<main class="container">
 
-            <article class="card mx-auto">
+			<article class="card mx-auto">
 
-                <section class="card-header">
+				<section class="card-header">
 
-                    <h1>Comments</h1>
+					<h1>Comments</h1>
 
-                </section>
+				</section>
 
-                <section class="card-body">
+				<section class="card-body">
 
-	<form action="/submit">
-		<div>
-			<textarea class="note-text" rows="3" name="notes"
-				value="${voter.notes}"></textarea>
-		</div>
-		<div>
-			<input type = "hidden"name = "voterId" value = "${voter.id}">
-
-			<input type="radio" id="NA" name="result" value="NA" required>
-			<label for="NA">No answer/Voicemail</label><br> 
-			<input type="radio" id="RQ" name="result" value="RQ"> 
-			<label for="RQ">Requested callback</label>
-			<input type="datetime-local" name="nextCall"><br>
-			<input type="radio" id="VIP" name="result" value="VIP"> 
-			<label for="VIP">Will vote in person</label><br> 
-			<input type="radio" id="WVBM" name="result" value="WVBM"> 
-			<label for="WVBM">Will register to Vote by Mail</label><br>
-			<input type="radio" id="AVBM" name="result" value="AVBM">
-			<label for="AVBM">Already registered to Vote by Mail</label><br> 
-			<input type="radio" id="NV" name="result" value="NV"> 
-			<label for="NV">Not voting</label><br> 
-			<input type="radio" id="DNC" name="result" value="DNC"> 
-			<label for="DNC">Do not call</label><br>
-		</div>
-		<div>
-			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
-			<button name="button" value="end">Submit/END</button>
-		</div>
-	</form>
-
-                </section>
-
-            </article>
-
-        </main>
-	</div>
-        
-        <div class="bottom left">
-                <main class="container">
-
-            <article class="card mx-auto">
-
-                <section class="card-header">
-
-                    <h1>Script</h1>
-
-                </section>
-
-                <section class="card-body">
-
-					<jsp:include page="main-script.jsp"/>
-
-                </section>
-
-            </article>
-
-        	</main>
-        </div>
-        <div class="bottom right">
-                <main class="login container">
-
-            <article class="card mx-auto">
-
-                <section class="card-header">
-
-                    <h1>Additional Information</h1>
-
-                </section>
-
-                <section class="card-body">
-
-		<div class="accordion" id="accordionExample">
-		<div class="card">
-			<div class="card-header" id="headingOne">
-				<h2 class="mb-0">
-					<button class="btn btn-link btn-block text-left collapsed"
-						type="button" data-toggle="collapse" data-target="#collapseOne"
-						aria-expanded="false" aria-controls="collapseOne">
-						Representative data</button>
-				</h2>
-			</div>
-			<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-				data-parent="#accordionExample">
-				<div class="card-body">
-					<table>
-						<tr>
-							<th>Office</th>
-							<th>Official's Name</th>
-							<th>Official's Address</th>
-							<th>Official's Party</th>
-							<th>Official's Email Address</th>
-						</tr>
-
-						<c:forEach items="${civicResponse.offices}" var="office">
-							<tr>
-								<td><c:out value="${office.name}" /></td>
-
-								<td>
-									<ul>
-										<c:forEach items="${office.officialIndices}" var="index">
-											<li><c:out value="${civicResponse.officials.get(index).name}" /></li>
-
-										</c:forEach>
-									</ul>
-								</td>
-									<c:forEach items="${office.officialIndices}" var="index">
-										
-										<!-- 
-										<td>
-											<ul>
-												<c:forEach items="${civicResponse.officials.get(index).address}" var="address">
-													<li>${address.line1}</li>
-													<li>${address.city}, ${address.state} ${address.zip}</li>																																		
-												</c:forEach>
-											</ul>
-										</td>
-										
-	      								<td><c:out value="${civicResponse.officials.get(index).party}"/></td>
-	      								 -->
-	      								<td><c:out value="${civicResponse.officials.get(index).emails}"/></td>
-	      							</c:forEach>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" id="headingTwo">
-				<h2 class="mb-0">
-					<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						Voter Registration Information
-					</button>
-				</h2>
-			</div>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-				<div class="card-body">
+					<form action="/submit">
 						<div>
-							<c:out value="${stateResponse.state.details.voterReg}" escapeXml="false"/>
+							<textarea class="note-text" rows="3" name="notes"
+								value="${voter.notes}"></textarea>
 						</div>
-				</div>
-			</div>
-		</div>
+						<div>
+							<input type="hidden" name="voterId" value="${voter.id}">
+
+							<input type="radio" id="NA" name="result" value="NA" required>
+							<label for="NA">No answer/Voicemail</label><br> <input
+								type="radio" id="RQ" name="result" value="RQ"> <label
+								for="RQ">Requested callback</label> <input type="datetime-local"
+								name="nextCall"><br> <input type="radio" id="VIP"
+								name="result" value="VIP"> <label for="VIP">Will
+								vote in person</label><br> <input type="radio" id="WVBM"
+								name="result" value="WVBM"> <label for="WVBM">Will
+								register to Vote by Mail</label><br> <input type="radio" id="AVBM"
+								name="result" value="AVBM"> <label for="AVBM">Already
+								registered to Vote by Mail</label><br> <input type="radio" id="NV"
+								name="result" value="NV"> <label for="NV">Not
+								voting</label><br> <input type="radio" id="DNC" name="result"
+								value="DNC"> <label for="DNC">Do not call</label><br>
+						</div>
+						<div>
+							<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
+							<button name="button" value="end">Submit/END</button>
+						</div>
+					</form>
+
+				</section>
+
+			</article>
+
+		</main>
 	</div>
 
+	<div class="bottom left">
+		<main class="container">
 
-                </section>
+			<article class="card mx-auto">
 
-            </article>
+				<section class="card-header">
 
-        </main>
-        </div>
-	
+					<h1>Script</h1>
+
+				</section>
+
+				<section class="card-body">
+
+					<jsp:include page="main-script.jsp" />
+
+				</section>
+
+			</article>
+
+		</main>
+	</div>
+	<div class="bottom right">
+		<main class="login container">
+
+			<article class="card mx-auto">
+
+				<section class="card-header">
+
+					<h1>Additional Information</h1>
+
+				</section>
+
+				<section class="card-body">
+
+					<div class="accordion" id="accordionExample">
+						<div class="card">
+							<div class="card-header" id="headingOne">
+								<h2 class="mb-0">
+									<button class="btn btn-link btn-block text-left collapsed"
+										type="button" data-toggle="collapse"
+										data-target="#collapseOne" aria-expanded="false"
+										aria-controls="collapseOne">Representative data</button>
+								</h2>
+							</div>
+							<div id="collapseOne" class="collapse"
+								aria-labelledby="headingOne" data-parent="#accordionExample">
+								<div class="card-body">
+									<table>
+										<tr>
+											<th>Office</th>
+											<th>Official's Name</th>
+											<th>Official's Address</th>
+											<th>Official's Party</th>
+											<th>Official's Email Address</th>
+										</tr>
+										<p>
+											<c:forEach items="${civicResponse.offices}" var="office">
+												<br><b><c:out value="${office.name}" /></b><br>
+												<ul>
+												<c:forEach items="${office.officialIndices}" var="index">
+													<li><c:out value="${civicResponse.officials.get(index).name}" /><i><c:out value="	${civicResponse.officials.get(index).party}" /></i><br></li>
+													
+													<c:out value="	${civicResponse.officials.get(index).emails}" />
+												</c:forEach>
+												</ul>
+												<c:forEach items="${office.officialIndices}" var="index">
+													<!-- 
+													<c:forEach items="${civicResponse.officials.get(index).address}" var="address">
+														${address.line1}<br>
+														${address.city},${address.state} ${address.zip}<br>
+													</c:forEach>
+													 -->
+													
+													
+												</c:forEach>
+											</c:forEach>
+										</p>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingTwo">
+								<h2 class="mb-0">
+									<button class="btn btn-link btn-block text-left collapsed"
+										type="button" data-toggle="collapse"
+										data-target="#collapseTwo" aria-expanded="false"
+										aria-controls="collapseTwo">Voter Registration
+										Information</button>
+								</h2>
+							</div>
+							<div id="collapseTwo" class="collapse"
+								aria-labelledby="headingTwo" data-parent="#accordionExample">
+								<div class="card-body">
+									<div>
+										<c:out value="${stateResponse.state.details.voterReg}"
+											escapeXml="false" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</section>
+
+			</article>
+
+		</main>
+	</div>
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -221,10 +211,10 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
-		<script>
-		function mySavedNoteAlert(){
+	<script>
+		function mySavedNoteAlert() {
 			alert("Notes saved successfully!");
 		}
-		</script>
+	</script>
 </body>
 </html>
