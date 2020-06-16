@@ -136,27 +136,25 @@
 							<div id="collapseOne" class="collapse"
 								aria-labelledby="headingOne" data-parent="#accordionExample">
 								<div class="card-body">
-									<table>
-										<tr>
-											<th>Office</th>
-											<th>Official's Name</th>
-											<th>Official's Address</th>
-											<th>Official's Party</th>
-											<th>Official's Email Address</th>
-										</tr>
+								
 										<p>
 											<c:forEach items="${civicResponse.offices}" var="office">
 												<br><b><c:out value="${office.name}" /></b><br>
-												<ul>
+											<ul>
 												<c:forEach items="${office.officialIndices}" var="index">
 													<li><c:out value="${civicResponse.officials.get(index).name}" />, <i><c:out value="	${civicResponse.officials.get(index).party}" /></i><br></li>
-													
-													<c:out value="	${civicResponse.officials.get(index).emails}" />
 												</c:forEach>
-												</ul>
+												<c:forEach items="${office.officialIndices}" var="index">
+												<c:forEach items="${civicResponse.officials.get(index).emails}" var="email">
+													<c:out value="	${email}" />
+												</c:forEach>
+												</c:forEach>
+											</ul>
+
 											</c:forEach>
+
+											
 										</p>
-									</table>
 								</div>
 							</div>
 						</div>
