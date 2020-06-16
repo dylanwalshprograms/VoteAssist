@@ -3,6 +3,7 @@ package co.grandcircus.VoteAssist.controller;
 
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.Period;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,16 +67,26 @@ public class VolunteerPageController {
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
 		
 		LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
-		
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
 		
-				model.addAttribute("electionDay", electionDay);
-				model.addAttribute("regCutoff", regCutoff);
-				model.addAttribute("username", username);
-				model.addAttribute("campaignName", campaignName);
-				model.addAttribute("stateResponse", stateResponse);
-				model.addAttribute("civicResponse", civicResponse);
-				model.addAttribute("voter", voterData);
+		String electionMonth = electionDay.getMonth().toString();
+		int electionDate = electionDay.getDayOfMonth();
+		
+		String regCutoffMonth = regCutoff.getMonth().toString();
+		int regCutoffDate = regCutoff.getDayOfMonth();
+		String regCutoffDayOfWeek = regCutoff.getDayOfWeek().toString();
+		
+			model.addAttribute("electionMonth", electionMonth);
+			model.addAttribute("electionDate", electionDate);
+			model.addAttribute("regCutoffMonth", regCutoffMonth);
+			model.addAttribute("regCutoffDate", regCutoffDate);
+			model.addAttribute("regCutoffDayOfWeek", regCutoffDayOfWeek);
+			model.addAttribute("regCutoff", regCutoff);
+			model.addAttribute("username", username);
+			model.addAttribute("campaignName", campaignName);
+			model.addAttribute("stateResponse", stateResponse);
+			model.addAttribute("civicResponse", civicResponse);
+			model.addAttribute("voter", voterData);
 		
 		if (voterData.getNextCall() == null) {
 			return "home";

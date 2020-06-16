@@ -154,16 +154,6 @@
 													<c:out value="	${civicResponse.officials.get(index).emails}" />
 												</c:forEach>
 												</ul>
-												<c:forEach items="${office.officialIndices}" var="index">
-													<!-- 
-													<c:forEach items="${civicResponse.officials.get(index).address}" var="address">
-														${address.line1}<br>
-														${address.city},${address.state} ${address.zip}<br>
-													</c:forEach>
-													 -->
-													
-													
-												</c:forEach>
 											</c:forEach>
 										</p>
 									</table>
