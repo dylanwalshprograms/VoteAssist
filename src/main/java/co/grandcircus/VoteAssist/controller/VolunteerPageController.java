@@ -1,9 +1,7 @@
 package co.grandcircus.VoteAssist.controller;
 
-
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,8 +26,13 @@ import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
 @Controller
-public class VolunteerPageController {
+public class VolunteerPageController implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	private GoogleCivicsApiService googleService;
 	
@@ -60,49 +63,6 @@ public class VolunteerPageController {
 	
 	private LocalDateTime timeMachineLDT = LocalDateTime.now();
 	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
-	
-	@RequestMapping ("/") // Home page
-	public String login(Model model) {
-		if (session.getAttribute("user") != null) {
-			return "home";
-		} else {
-			return "login";
-		}
-	}
-	
-	@RequestMapping("/login/submit") // Login page
-	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password,
-			Model model) {
-
-		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
-		if (foundUser.isPresent()) {
-			session.setAttribute("user", foundUser.get());
-			return "redirect:/home";
-		} else {
-			model.addAttribute("message", "Incorrect username or password.");
-			return "login";
-		}
-		
-	}
-	
-	@RequestMapping("/sign-up")
-	public String signUpForm() {
-		return "sign-up";
-	}
-	
-	@RequestMapping("/sign-up/submit")
-	public String signUpSubmit(Volunteer volunteer, Model model) {
-		
-		Volunteer volunteerCheck = volunteerRepo.findByUserName(volunteer.getUserName());
-		
-		if (volunteerCheck != null) {
-			model.addAttribute("message", "Username already exists. Please try again.");
-			return "sign-up";
-		} else {
-			volunteerRepo.save(volunteer);
-			return "redirect:/training";
-		}
-	}
 	
 	@RequestMapping("/training")
 	public String training() {
