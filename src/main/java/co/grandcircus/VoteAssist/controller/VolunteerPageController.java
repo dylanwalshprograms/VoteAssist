@@ -100,8 +100,13 @@ public class VolunteerPageController {
 			return "sign-up";
 		} else {
 			volunteerRepo.save(volunteer);
-			return "redirect:/";
+			return "redirect:/training";
 		}
+	}
+	
+	@RequestMapping("/training")
+	public String training() {
+		return "training";
 	}
 	
 	@RequestMapping("/logout") // Logs out current user
