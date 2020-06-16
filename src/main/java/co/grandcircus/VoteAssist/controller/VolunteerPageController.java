@@ -68,14 +68,16 @@ public class VolunteerPageController {
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
 		
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
-		
-		String lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
-		String nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
-		
-		String scriptName = "main-script";
+		String lastCall = "";
+		String nextCall = "";
+		if (voterData.getLastCall() != null && voterData.getNextCall() != null) {
+			lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
+			nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
+		}
 		
 		model.addAttribute("nextCall", nextCall);
 		model.addAttribute("lastCall", lastCall);
+		String scriptName = "main-script";
 		model.addAttribute("electionDay", VoteAssistMethods.localDateTimeInWords(electionDay));
 		model.addAttribute("regCutOffDay", VoteAssistMethods.localDateTimeInWords(regCutoff));
 		model.addAttribute("username", username);
@@ -168,7 +170,6 @@ public class VolunteerPageController {
 		
 		CallLog log = new CallLog(currentTime, volunteerRepo.findById(1L).orElse(null), voterRepo.findById(voterId).orElse(null));
 		callLogRepo.save(log);
-		//TODO create confirmation page or popup window for demo purposes
 		
 		if (button.equals("next")) {
 			return "redirect:/home";

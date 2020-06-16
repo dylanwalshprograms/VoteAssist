@@ -15,6 +15,14 @@
 
 </head>
 <body>
+	<nav class="navbar bg-light">
+		<ul class="nav">
+			
+			<li class="nav-item">
+			<a class="nav-link" href="/logout">Logout</a>
+			</li>
+		</ul>
+	</nav>
 	<div class="top left">
 		<main class="container">
 
@@ -41,87 +49,83 @@
 	</div>
 
 	<div class="top right">
-		<main class="container">
 
-			<article class="card mx-auto">
+        <main class="container">
 
-				<section class="card-header">
+            <article class="card mx-auto">
 
-					<h1>Comments</h1>
+                <section class="card-header">
 
-				</section>
+                    <h1>Comments</h1>
 
-				<section class="card-body">
+                </section>
 
-					<form action="/submit">
-						<div>
-							<textarea class="note-text" rows="3" name="notes">${voter.notes}</textarea>
-						</div>
-						<div>
-							<input type="hidden" name="voterId" value="${voter.id}">
+                <section class="card-body">
 
-							<input type="radio" id="NA" name="result" value="NA" required>
-							<label for="NA">No answer/Voicemail</label><br> <input
-								type="radio" id="RQ" name="result" value="RQ"> <label
-								for="RQ">Requested callback</label> <input type="datetime-local"
-								name="nextCall"><br> <input type="radio" id="VIP"
-								name="result" value="VIP"> <label for="VIP">Will
-								vote in person</label><br> <input type="radio" id="WVBM"
-								name="result" value="WVBM"> <label for="WVBM">Will
-								register to Vote by Mail</label><br> <input type="radio" id="AVBM"
-								name="result" value="AVBM"> <label for="AVBM">Already
-								registered to Vote by Mail</label><br> <input type="radio" id="NV"
-								name="result" value="NV"> <label for="NV">Not
-								voting</label><br> <input type="radio" id="DNC" name="result"
-								value="DNC"> <label for="DNC">Do not call</label><br>
-						</div>
-						<div>
-							<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
-							<button name="button" value="end">Submit/END</button>
-						</div>
-					</form>
+	<form action="/submit">
+		<div>
+			<textarea class="note-text" rows="3" name="notes">${voter.notes}</textarea>
+		</div>
+		<div>
+			<input type = "hidden"name = "voterId" value = "${voter.id}">
 
-				</section>
+			<input type="radio" id="NA" name="result" value="NA" required>
+			<label for="NA">No answer/Voicemail</label><br> 
+			<input type="radio" id="RQ" name="result" value="RQ"> 
+			<label for="RQ">Requested callback</label>
+			<input type="datetime-local" name="nextCall"><br> 
+			<input type="radio" id="VIP" name="result" value="VIP"> 
+			<label for="VIP">Will vote in person</label><br> 
+			<input type="radio" id="WVBM" name="result" value="WVBM"> 
+			<label for="WVBM">Will register to Vote by Mail</label><br>
+			<input type="radio" id="AVBM" name="result" value="AVBM">
+			<label for="AVBM">Already registered to Vote by Mail</label><br> 
+			<input type="radio" id="NV" name="result" value="NV"> 
+			<label for="NV">Not voting</label><br> 
+			<input type="radio" id="DNC" name="result" value="DNC"> 
+			<label for="DNC">Do not call</label><br>
+		</div>
+		<div>
+			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
+			<button name="button" value="end">Submit/END</button>
+		</div>
+	</form>
 
-			</article>
+                </section>
 
-		</main>
+            </article>
+
+        </main>
 	</div>
+        
+        <div class="bottom left">
+                <main class="container">
 
-	<div class="bottom left">
-		<main class="container">
+            <article class="card mx-auto">
 
-			<article class="card mx-auto">
+                <section class="card-header">
 
-				<section class="card-header">
+                    <h1>Script</h1>
 
-					<h1>Script</h1>
+                </section>
 
-				</section>
+                <section class="card-body">
 
-				<section class="card-body">
+					<jsp:include page="main-script.jsp"/>
 
-					<jsp:include page="${script}.jsp" />
+                </section>
 
-				</section>
+            </article>
 
-			</article>
-
-		</main>
-	</div>
+        	</main>
+        </div>
 	<div class="bottom right">
 		<main class="login container">
-
 			<article class="card mx-auto">
-
 				<section class="card-header">
-
 					<h1>Additional Information</h1>
-
 				</section>
-
 				<section class="card-body">
-
 					<div class="accordion" id="accordionExample">
 						<div class="card">
 							<div class="card-header" id="headingOne">
@@ -135,7 +139,6 @@
 							<div id="collapseOne" class="collapse"
 								aria-labelledby="headingOne" data-parent="#accordionExample">
 								<div class="card-body">
-								
 										<p>
 											<c:forEach items="${civicResponse.offices}" var="office">
 												<br><b><c:out value="${office.name}" /></b><br>
@@ -149,10 +152,7 @@
 												</c:forEach>
 												</c:forEach>
 											</ul>
-
 											</c:forEach>
-
-											
 										</p>
 								</div>
 							</div>
@@ -178,14 +178,11 @@
 							</div>
 						</div>
 					</div>
-
-
 				</section>
-
 			</article>
-
 		</main>
 	</div>
+
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

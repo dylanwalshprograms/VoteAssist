@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
@@ -61,6 +62,19 @@ public class LoginSignUpController {
 		} else {
 			volunteerRepo.save(volunteer);
 			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping("/logout") // Logs out current user
+	public String logout(RedirectAttributes redir, Model model) {
+		if (session.getAttribute("user") != null) {
+			redir.addFlashAttribute("message","Logged out successfully");
+			
+			session.invalidate();
+			return "redirect:/";
+		} else {
+			model.addAttribute("message", "Not logged in");
+			return "login";
 		}
 	}
 }
