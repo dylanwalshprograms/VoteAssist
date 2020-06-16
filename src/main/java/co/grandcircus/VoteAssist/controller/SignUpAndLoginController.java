@@ -1,5 +1,6 @@
 package co.grandcircus.VoteAssist.controller;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -14,8 +15,13 @@ import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 
 @Controller
-public class SignUpAndLoginController {
+public class SignUpAndLoginController implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Autowired 
 	private VolunteerRepository volunteerRepo;
 	
