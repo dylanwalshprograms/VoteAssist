@@ -9,5 +9,6 @@ import co.grandcircus.VoteAssist.entity.Volunteer;
 public interface VolunteerRepository extends JpaRepository<Volunteer, Long>{
 	
 	Optional<Volunteer> findByUserNameAndPassword(String userName, String password);
+	Volunteer findByUserName(String userName);
 
 }

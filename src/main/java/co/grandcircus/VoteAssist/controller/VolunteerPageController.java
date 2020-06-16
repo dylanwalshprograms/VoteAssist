@@ -3,11 +3,8 @@ package co.grandcircus.VoteAssist.controller;
 
 
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.Period;
-import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
-import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
@@ -48,8 +44,8 @@ public class VolunteerPageController {
 	@Autowired
 	private RegDayRepo regDayRepo;
 	
-	@Autowired
-	private HttpSession session;
+//	@Autowired
+//	private HttpSession session;
 	
 	private long delayNA = 24;
 	private long delayVIP = 48;
@@ -58,27 +54,6 @@ public class VolunteerPageController {
 	private String username = "Joe";
 	private String campaignName = "Test campaign 1";
 	
-	@RequestMapping ("/") // Home page
-	public String login(Model model) {
-		if (session.getAttribute("user") != null) {
-			return "home";
-		} else {
-			return "login";
-		}
-	}
-	@RequestMapping("/login/submit") // Login page
-	public String submitLoginForm(@RequestParam("name") String name, @RequestParam("userName") String userName, @RequestParam("password") String password,
-			Model model) {
-
-		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
-		if (foundUser.isPresent()) {
-			session.setAttribute("user", foundUser.get());
-			return "redirect:/home";
-		} else {
-			model.addAttribute("message", "Incorrect username or password.");
-			return "login";
-		}
-	}
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
