@@ -3,8 +3,8 @@ package co.grandcircus.VoteAssist.controller;
 
 
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.Period;
+
+//import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +45,9 @@ public class VolunteerPageController {
 	@Autowired
 	private RegDayRepo regDayRepo;
 	
+//	@Autowired
+//	private HttpSession session;
+	
 	private long delayNA = 24;
 	private long delayVIP = 48;
 	private long delayWVBM = 72;
@@ -53,10 +56,6 @@ public class VolunteerPageController {
 	private String campaignName = "Test campaign 1";
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
-	@RequestMapping("/")
-	public String startup() {
-		return "redirect:/home";
-	}
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
