@@ -149,7 +149,7 @@
 												<br><b><c:out value="${office.name}" /></b><br>
 												<ul>
 												<c:forEach items="${office.officialIndices}" var="index">
-													<li><c:out value="${civicResponse.officials.get(index).name}" /><i><c:out value="	${civicResponse.officials.get(index).party}" /></i><br></li>
+													<li><c:out value="${civicResponse.officials.get(index).name}" />, <i><c:out value="	${civicResponse.officials.get(index).party}" /></i><br></li>
 													
 													<c:out value="	${civicResponse.officials.get(index).emails}" />
 												</c:forEach>
