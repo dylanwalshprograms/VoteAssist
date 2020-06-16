@@ -18,7 +18,7 @@ import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 public class LoginSignUpController {
 
 	@Autowired
-	private HttpSession session;
+	public HttpSession session;
 	
 	@Autowired 
 	private VolunteerRepository volunteerRepo;
@@ -44,6 +44,7 @@ public class LoginSignUpController {
 			model.addAttribute("message", "Incorrect username or password.");
 			return "login";
 		}
+		
 	}
 	
 	@RequestMapping("/sign-up")

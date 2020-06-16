@@ -8,12 +8,12 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link href="/style.css" rel="stylesheet" />
+<link href="/login-and-sign-up.css"  rel="stylesheet" />
 </head>
 <body>
 <main>
 <div class="login">
-	<article class="card mx-auto" style="50%">
+	<article class="card mx-auto">
 
 			<section class="card-header">
 

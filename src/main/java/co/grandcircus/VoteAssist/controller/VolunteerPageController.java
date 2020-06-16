@@ -4,7 +4,7 @@ package co.grandcircus.VoteAssist.controller;
 
 import java.time.LocalDateTime;
 
-//import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
+import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
@@ -45,14 +46,13 @@ public class VolunteerPageController {
 	@Autowired
 	private RegDayRepo regDayRepo;
 	
-//	@Autowired
-//	private HttpSession session;
+	@Autowired
+	private HttpSession session;
 	
 	private long delayNA = 24;
 	private long delayVIP = 48;
 	private long delayWVBM = 72;
 	private long delayAVBM = 96;
-	private String username = "Joe";
 	private String campaignName = "Test campaign 1";
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
@@ -73,7 +73,9 @@ public class VolunteerPageController {
 	
 	
 	@RequestMapping("/home")
-	public String home(Model model) {
+	public String home(Volunteer foundUser, Model model) { 
+		System.out.println(foundUser.getName());
+		System.out.println(foundUser.getUserName());
 		
 		VoterData voterData = voterRepo.findVoterByNextCall();
 				
@@ -97,7 +99,7 @@ public class VolunteerPageController {
 		
 		model.addAttribute("electionDay", VoteAssistMethods.localDateTimeInWords(electionDay));
 		model.addAttribute("regCutOffDay", VoteAssistMethods.localDateTimeInWords(regCutoff));
-		model.addAttribute("username", username);
+		model.addAttribute("volunteerName", foundUser.getUserName());
 		model.addAttribute("campaignName", campaignName);
 		model.addAttribute("stateResponse", stateResponse);
 		model.addAttribute("civicResponse", civicResponse);

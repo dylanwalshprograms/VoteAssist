@@ -17,7 +17,7 @@
 			1. Hello, may I speak with <b>${voter.name}</b>.
 		</p>
 		<p>
-			2. This is <b>${username}</b> calling on behalf of <b>${campaignName}</b>.
+			2. This is <b>${volunteerName}</b> calling on behalf of <b>${campaignName}</b>.
 		</p>
 		<p>
 			3. We last reached out on <b>${lastCall}</b> and you indicated that you
