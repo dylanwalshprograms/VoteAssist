@@ -100,8 +100,13 @@ public class VolunteerPageController {
 			return "sign-up";
 		} else {
 			volunteerRepo.save(volunteer);
-			return "redirect:/";
+			return "redirect:/training";
 		}
+	}
+	
+	@RequestMapping("/training")
+	public String training() {
+		return "training";
 	}
 	
 	@RequestMapping("/logout") // Logs out current user
@@ -188,10 +193,10 @@ public class VolunteerPageController {
 		
 		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
 		
-		//TODO get volunteer id from jsp once login function is built
-		
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
 		
+		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voter.getState()).getDaysBeforeElection());
+				
 		if (result.equals("NA")) {
 			
 			voter.setLastCall(currentTime);
@@ -209,14 +214,14 @@ public class VolunteerPageController {
 		} else if (result.equals("VIP")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(delayVIP));
+			voter.setNextCall(electionDay.minusDays(delayVIP));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
 		} else if (result.equals("WVBM")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(delayWVBM));
+			voter.setNextCall(regCutoff.minusDays(delayWVBM));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
