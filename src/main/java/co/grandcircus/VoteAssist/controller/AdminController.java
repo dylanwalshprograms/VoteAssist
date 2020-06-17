@@ -42,7 +42,7 @@ public class AdminController implements Serializable{
 	
 	@RequestMapping("/admin/update-config")
 	public String adminUpdateConfig(AdminConfiguration adminConfig) {
-		adminConfig = adminRepo.findAll();
+		//adminConfig = adminRepo.findAll();
 		
 		
 		return "redirect:/admin";
