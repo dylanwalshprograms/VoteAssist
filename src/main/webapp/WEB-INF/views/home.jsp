@@ -206,7 +206,7 @@
 		crossorigin="anonymous"></script>
 	<script>
 		function mySavedNoteAlert() {
-			alert("Next call date set to: " + ${nextCall});
+			alert("Next call date set to: (${nextCall})");
 		}
 	</script>
 </body>
