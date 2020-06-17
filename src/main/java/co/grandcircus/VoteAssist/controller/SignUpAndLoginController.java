@@ -82,5 +82,4 @@ public class SignUpAndLoginController implements Serializable{
 			return "redirect:/training";
 		}
 	}
-
 }
