@@ -86,16 +86,19 @@ public class VolunteerPageController implements Serializable{
 	public String resetTime(@RequestParam(required = false) String time) {
 		
 		
-		if (time != null) {
+		if (time != null || ! time.isEmpty()) {
 			timeMachineLDT = LocalDateTime.parse(time);
 			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 		}
-		
 		return "redirect:/home";
 	}
 		
 	@RequestMapping("/home")
-	public String home(Model model) { 		
+	public String home(Model model) {
+		
+		if (session.getAttribute("user") == null) {
+			return "login";
+		}
 		
 		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
 		
