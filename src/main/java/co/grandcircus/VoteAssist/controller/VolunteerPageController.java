@@ -83,10 +83,14 @@ public class VolunteerPageController implements Serializable{
 	}
 		
 	@RequestMapping("/reset-time")
-	public String resetTime(@RequestParam(required = false) String time) {
+	public String resetTime(@RequestParam(required = true) String time) {
 		
-		
-		if (time != null || ! time.isEmpty()) {
+		System.out.println("Time:" + time);
+		if (time == null || time.isEmpty()) {
+			timeMachineLDT = LocalDateTime.now();
+			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
+		}
+		else {
 			timeMachineLDT = LocalDateTime.parse(time);
 			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 		}

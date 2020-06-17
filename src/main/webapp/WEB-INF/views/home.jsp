@@ -19,7 +19,7 @@
 	<nav class="navbar bg-light">
 		
 		<form action="/reset-time">
-			<input type="datetime-local" name="time">
+			<input type="datetime-local" name="time" required>
 			<button>Change "Current" Date</button>
 		</form>
 		
