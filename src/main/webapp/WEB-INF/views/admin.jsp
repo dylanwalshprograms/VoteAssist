@@ -34,23 +34,23 @@
 						<input type="text" name="campaignName"><br>
 						
 						<label>No Answer delay:</label>
-						<input type="number" name="NA" min="0">
+						<input type="number" name="delayNA" min="0">
 						<label>MIN HOURS before next call scheduled.</label><br>
 						
 						<label>Already VBM delay:</label>
-						<input type="number" name="NA" min="0">
+						<input type="number" name="delayAVBM" min="0">
 						<label>MIN DAYS before election day.</label><br>
 						
 						<label>Will vote in person delay:</label>
-						<input type="number" name="NA" min="0">
+						<input type="number" name="delayVIP" min="0">
 						<label>MIN DAYS before election day.</label><br>
 						
 						<label>Will VBM delay:</label>
-						<input type="number" name="NA" min="0">
+						<input type="number" name="delayWVBM" min="0">
 						<label>MIN DAYS before VBM registration deadline.</label><br>
 						
 						<label>Not Voting delay:</label>
-						<input type="number" name="NA" min="0">
+						<input type="number" name="delayNV" min="0">
 						<label>MIN HOURS before next call scheduled.</label><br>
 						
 						<label>Set Response Priority:</label><br>
