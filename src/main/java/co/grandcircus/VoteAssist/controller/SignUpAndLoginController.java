@@ -31,7 +31,7 @@ public class SignUpAndLoginController implements Serializable{
 	@RequestMapping ("/") 
 	public String login(Model model) {
 		if (session.getAttribute("user") != null) {
-			return "home";
+			return "redirect:/home";
 		} else {
 			return "login";
 		}

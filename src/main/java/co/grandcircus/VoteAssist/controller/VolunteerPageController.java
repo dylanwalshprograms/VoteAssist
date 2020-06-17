@@ -134,20 +134,23 @@ public class VolunteerPageController implements Serializable{
 		model.addAttribute("civicResponse", civicResponse);
 		model.addAttribute("voter", voterData);
 		
+	
+		if (voterData.getResult() == null) {
+			scriptName = "main-script";
+		} else if (voterData.getResult().equals("VIP")) {
+			scriptName = "vip-reminder-script";
+		} else if (voterData.getResult().equals("WVBM")) {
+			scriptName = "wvbm-reminder-script";
+		}
+		
+		model.addAttribute("script", scriptName);
+		
 		if (voterData.getNextCall() == null) {
 			return "home";
 		}
 		else if (voterData.getNextCall().compareTo(timeMachineLDT) >= 0) {  //REPLACED BY TIME MACHINE LocalDateTime.now()) >= 0) { 
 			return "no-more-records";
 		}
-		
-		if (voterData.getResult().equals("WVBM")) {
-			scriptName = "vbm-reminder-script";
-		} else if (voterData.getResult().equals("VIP")) {
-			scriptName = "vip-reminder-script";
-		}
-		
-		model.addAttribute("script", scriptName);
 			
 		return "home";
 		
