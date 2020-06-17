@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.grandcircus.VoteAssist.entity.AdminConfiguration;
 import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 
@@ -38,5 +39,16 @@ public class AdminController implements Serializable{
 			return "redirect:/";
 		}
 	}
+	
+	@RequestMapping("/admin/update-config")
+	public String adminUpdateConfig(AdminConfiguration adminConfig) {
+		adminConfig = adminRepo.findAll();
+		
+		
+		return "redirect:/admin";
 
-}
+	}
+}	
+	
+	
+	

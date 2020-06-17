@@ -140,7 +140,7 @@ public class VolunteerPageController implements Serializable{
 		} else if (voterData.getResult().equals("VIP")) {
 			scriptName = "vip-reminder-script";
 		} else if (voterData.getResult().equals("WVBM")) {
-			scriptName = "wvbm-reminder-script";
+			scriptName = "vbm-reminder-script";
 		}
 		
 		model.addAttribute("script", scriptName);
