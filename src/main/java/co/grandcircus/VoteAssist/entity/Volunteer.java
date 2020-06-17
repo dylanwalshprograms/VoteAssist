@@ -14,6 +14,7 @@ public class Volunteer {
 	private String name;
 	private String userName;
 	private String password;
+	private Boolean isAdmin;
 
 	public Long getId() {
 		return id;
@@ -47,8 +48,18 @@ public class Volunteer {
 		this.password = password;
 	}
 
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	@Override
 	public String toString() {
-		return "Volunteer [id=" + id + ", name=" + name + ", userName=" + userName + ", password=" + password + "]";
+		return "Volunteer [id=" + id + ", name=" + name + ", userName=" + userName + ", password=" + password
+				+ ", isAdmin=" + isAdmin + "]";
 	}
+
 }

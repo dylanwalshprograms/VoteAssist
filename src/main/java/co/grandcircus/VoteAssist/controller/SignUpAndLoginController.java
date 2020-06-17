@@ -38,13 +38,25 @@ public class SignUpAndLoginController implements Serializable{
 	}
 	
 	@RequestMapping("/login/submit") 
-	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password,
+	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password, @RequestParam(required = true) String loginType,
 			Model model) {
 
 		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
 		if (foundUser.isPresent()) {
+			if (loginType.equals("admin")) {
+				if (foundUser.get().getIsAdmin()) {
 			session.setAttribute("user", foundUser.get());
-			return "redirect:/home";
+			session.setAttribute("loginType", loginType);
+			return "redirect:/admin";
+				} else {
+					model.addAttribute("message", "You do not have administrative access. Please login as volunteer.");
+					return "login";
+				}
+			} else {
+				session.setAttribute("user", foundUser.get());
+				session.setAttribute("loginType", loginType);
+				return "redirect:/home";
+			}
 		} else {
 			model.addAttribute("message", "Incorrect username or password.");
 			return "login";

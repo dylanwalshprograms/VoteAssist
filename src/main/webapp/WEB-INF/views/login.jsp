@@ -38,7 +38,7 @@
 							name="password" type="password" required />
 					</div>
 
-					<button class="btn btn-block btn-secondary">Login</button>
+					<button class="btn btn-block btn-secondary" name="loginType" value="volunteer">Login as Volunteer</button><button class="btn btn-block btn-secondary" name="loginType" value="admin">Login as Admin</button>
 
 				</form>
 				
