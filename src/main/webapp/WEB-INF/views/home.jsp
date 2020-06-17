@@ -79,20 +79,20 @@
 			<input type = "hidden"name = "voterId" value = "${voter.id}">
 
 			<input type="radio" id="NA" name="result" value="NA" required>
-			<label for="NA">No answer/Voicemail</label><br> 
+			<label for="NA">No Answer/Voicemail</label><br> 
 			<input type="radio" id="RQ" name="result" value="RQ"> 
-			<label for="RQ">Requested callback</label>
+			<label for="RQ">Requested Callback</label>
 			<input type="datetime-local" name="nextCall"><br> 
 			<input type="radio" id="VIP" name="result" value="VIP"> 
-			<label for="VIP">Will vote in person</label><br> 
+			<label for="VIP">Will Vote in Person</label><br> 
 			<input type="radio" id="WVBM" name="result" value="WVBM"> 
-			<label for="WVBM">Will register to Vote by Mail</label><br>
+			<label for="WVBM">Will Register to Vote by Mail</label><br>
 			<input type="radio" id="AVBM" name="result" value="AVBM">
-			<label for="AVBM">Already registered to Vote by Mail</label><br> 
+			<label for="AVBM">Already Registered to Vote by Mail</label><br> 
 			<input type="radio" id="NV" name="result" value="NV"> 
-			<label for="NV">Not voting</label><br> 
+			<label for="NV">Not Voting</label><br> 
 			<input type="radio" id="DNC" name="result" value="DNC"> 
-			<label for="DNC">Do not call</label><br>
+			<label for="DNC">Do Not Call</label><br>
 		</div>
 		<div>
 			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
