@@ -58,13 +58,13 @@ public class VolunteerPageController implements Serializable{
 	private long delayVIP = 14;
 	private long delayWVBM = 14;
 	private long delayAVBM = 14;
-	private String campaignName = "Test campaign 1";
+	private String campaignName = "Presidential Campaign 2020";
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
 	private LocalDateTime timeMachineLDT = LocalDateTime.now();
 	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 	
-	@RequestMapping("/training")
+	@RequestMapping("/training") // Mapping for training page view
 	public String training() {
 		return "training";
 	}
@@ -85,7 +85,6 @@ public class VolunteerPageController implements Serializable{
 	@RequestMapping("/reset-time")
 	public String resetTime(@RequestParam(required = true) String time) {
 		
-		System.out.println("Time:" + time);
 		if (time == null || time.isEmpty()) {
 			timeMachineLDT = LocalDateTime.now();
 			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
