@@ -42,30 +42,30 @@
 					<form action="/admin/update-config">
 					
 						<label>Campaign Name:</label>
-						<input type="text" name="campaignName"><br>
+						<input type="text" name="campaignName" value = "${adminConfig.campaignName}"><br>
 						
 						<label>No Answer delay:</label>
-						<input type="number" name="delayNA" min="0">
+						<input type="number" name="delayNA" min="0" value = "${adminConfig.delayNA}">
 						<label>MIN HOURS before next call scheduled.</label><br>
 						
 						<label>Already VBM delay:</label>
-						<input type="number" name="delayAVBM" min="0">
+						<input type="number" name="delayAVBM" min="0" value = "${adminConfig.delayAVBM}">
 						<label>MIN DAYS before election day.</label><br>
 						
 						<label>Will vote in person delay:</label>
-						<input type="number" name="delayVIP" min="0">
+						<input type="number" name="delayVIP" min="0" value = "${adminConfig.delayVIP}">
 						<label>MIN DAYS before election day.</label><br>
 						
 						<label>Will VBM delay:</label>
-						<input type="number" name="delayWVBM" min="0">
+						<input type="number" name="delayWVBM" min="0" value = "${adminConfig.delayWVBM}">
 						<label>MIN DAYS before VBM registration deadline.</label><br>
 						
 						<label>Not Voting delay:</label>
-						<input type="number" name="delayNV" min="0">
+						<input type="number" name="delayNV" min="0" value = "${adminConfig.delayNV}">
 						<label>MIN HOURS before next call scheduled.</label><br>
 						
 						<label>Set Response Priority:</label><br>
-						
+						<p>Current priority set to: ${adminConfig.priority}</p>
 						<input type="radio" id="prioritizeWVBM" name="priority" value="prioritizeWVBM">
 						<label for="prioritizeWVBM">Prioritize WVBM reminders</label><br>
 						 

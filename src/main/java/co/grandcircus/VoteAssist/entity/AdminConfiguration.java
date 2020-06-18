@@ -17,9 +17,8 @@ public class AdminConfiguration {
 	private Long delayVIP;
 	private Long delayWVBM;
 	private Long delayAVBM;
-	private Boolean prioritizeSTD;
-	private Boolean prioritizeWVBM;
-	private Boolean prioritizeWVIP;
+	private Long delayNV;
+	private String priority;
 
 	public Long getId() {
 		return id;
@@ -77,36 +76,27 @@ public class AdminConfiguration {
 		this.delayAVBM = delayAVBM;
 	}
 
-	public Boolean getPrioritizeSTD() {
-		return prioritizeSTD;
+	public String getPriority() {
+		return priority;
 	}
 
-	public void setPrioritizeSTD(Boolean prioritizeSTD) {
-		this.prioritizeSTD = prioritizeSTD;
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 
-	public Boolean getPrioritizeWVBM() {
-		return prioritizeWVBM;
+	public Long getDelayNV() {
+		return delayNV;
 	}
 
-	public void setPrioritizeWVBM(Boolean prioritizeWVBM) {
-		this.prioritizeWVBM = prioritizeWVBM;
-	}
-
-	public Boolean getPrioritizeWVIP() {
-		return prioritizeWVIP;
-	}
-
-	public void setPrioritizeWVIP(Boolean prioritizeWVIP) {
-		this.prioritizeWVIP = prioritizeWVIP;
+	public void setDelayNV(Long delayNV) {
+		this.delayNV = delayNV;
 	}
 
 	@Override
 	public String toString() {
 		return "AdminConfiguration [id=" + id + ", campaignName=" + campaignName + ", campaignPresetName="
 				+ campaignPresetName + ", delayNA=" + delayNA + ", delayVIP=" + delayVIP + ", delayWVBM=" + delayWVBM
-				+ ", delayAVBM=" + delayAVBM + ", prioritizeSTD=" + prioritizeSTD + ", prioritizeWVBM=" + prioritizeWVBM
-				+ ", prioritizeWVIP=" + prioritizeWVIP + "]";
+				+ ", delayAVBM=" + delayAVBM + ", delayNV=" + delayNV + ", priority=" + priority + "]";
 	}
 
 }
