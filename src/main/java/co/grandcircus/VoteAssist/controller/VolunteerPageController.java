@@ -55,9 +55,9 @@ public class VolunteerPageController implements Serializable{
 	private HttpSession session;
 	
 	private long delayNA = 24;
-	private long delayVIP = 48;
-	private long delayWVBM = 72;
-	private long delayAVBM = 96;
+	private long delayVIP = 14;
+	private long delayWVBM = 14;
+	private long delayAVBM = 14;
 	private String campaignName = "Test campaign 1";
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
@@ -198,21 +198,21 @@ public class VolunteerPageController implements Serializable{
 		} else if (result.equals("AVBM")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(delayAVBM));
+			voter.setNextCall(electionDay.minusDays(delayAVBM));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
 		} else if (result.equals("NV")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(10000));
+			voter.setNextCall(currentTime.plusHours(8760));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
 		} else if (result.equals("DNC")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(10000));
+			voter.setNextCall(currentTime.plusHours(0));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			voter.setDoNotCall(true);
