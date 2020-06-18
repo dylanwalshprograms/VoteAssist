@@ -119,7 +119,19 @@
 
                 <section class="card-header">
 
-                    <h1>Script</h1>
+                    <c:set var="main-script" value="${script}"/>
+                <c:if test = "${script == 'main-script'}">
+					<h1>Main Script</h1>
+					</c:if>
+					<c:set var="vip-reminder-script" value="${script}"/>
+                <c:if test = "${script == 'vip-reminder-script'}">
+					<h1>Voting in Person Script</h1>
+					</c:if>
+					<c:set var="vbm-reminder-script" value="${script}"/>
+                <c:if test = "${script == 'vbm-reminder-script'}">
+					<h1>Will Vote by Mail Script</h1>
+					</c:if>
+
 
                 </section>
 
