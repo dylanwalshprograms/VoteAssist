@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>No More Records</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link href="/style.css" rel="stylesheet" />
+<link href="/login-and-sign-up.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -28,8 +28,28 @@
 			</li>
 		</ul>
 	</nav>
+	<div class="records">
+	<main>
+	<article class="card mx-auto">
 
-	<h1>NO MORE RECORDS</h1>
-	
+			<section class="card-header">
+
+				<h1>No More Records</h1>
+
+			</section>
+
+			<section class="card-body">
+
+				<p>You've reached the end of the available records.</p>
+				<p>We thank you for your dedication and hard work.</p>
+				<p>If you would like to continue please use our time machine to pull records that are scheduled for the future.</p>
+				<p class="disclaimer">*Please note that this is for demo purposes only. We do not actually have the capability to go to the future.</p>
+
+			</section>
+
+		</article>
+
+	</main>
+	</div>
 </body>
 </html>
