@@ -197,7 +197,7 @@ public class VolunteerPageController implements Serializable{
 		} else if (result.equals("AVBM")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(electionDay.minusDays(delayAVBM));
+			voter.setNextCall(currentTime.plusHours(8760));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
@@ -226,7 +226,7 @@ public class VolunteerPageController implements Serializable{
 		if (button.equals("next")) {
 			return "redirect:/home";
 		} else {
-			return "logout";
+			return "redirect:/logout";
 		}
 		
 	}

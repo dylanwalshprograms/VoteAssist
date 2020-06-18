@@ -15,6 +15,17 @@
 
 </head>
 <body>
+
+<nav class="navbar bg-light">
+					
+		<ul class="nav">
+			
+			<li class="nav-item">
+			<a class="nav-link" href="/logout">Logout</a>
+			</li>
+		</ul>
+	</nav>
+	
 	<div class="top left">
 		<main class="container">
 
