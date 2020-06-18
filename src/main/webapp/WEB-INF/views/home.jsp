@@ -53,7 +53,7 @@
 					Is this person voting by mail? - ${voter.voteByMail}<br> 
 					Next Scheduled Call - ${nextCall}<br> 
 					Last Call - ${lastCall}<br>
-					Last Call Result = ${voter.result}<br>
+					Last Call Result - ${voter.result}<br>
 
 				</section>
 

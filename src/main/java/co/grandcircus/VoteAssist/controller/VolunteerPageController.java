@@ -20,6 +20,7 @@ import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
+import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.RegDayRepo;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
@@ -50,15 +51,13 @@ public class VolunteerPageController implements Serializable{
 	
 	@Autowired
 	private RegDayRepo regDayRepo;
+
+	@Autowired
+	private AdminRepository adminRepo;
 	
 	@Autowired
 	private HttpSession session;
-	
-	private long delayNA = 24;
-	private long delayVIP = 14;
-	private long delayWVBM = 14;
-	private long delayAVBM = 14;
-	private String campaignName = "Presidential Campaign 2020";
+		
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
 	
 	private LocalDateTime timeMachineLDT = LocalDateTime.now();
@@ -98,6 +97,9 @@ public class VolunteerPageController implements Serializable{
 		
 	@RequestMapping("/home")
 	public String home(Model model) {
+		
+		String campaignName = adminRepo.findByLowestId().getCampaignName();
+		
 		
 		if (session.getAttribute("user") == null) {
 			return "login";
@@ -160,6 +162,13 @@ public class VolunteerPageController implements Serializable{
 			@RequestParam(required = true) String result, @RequestParam(required = false) String nextCall,
 			@RequestParam String button, @RequestParam Long voterId, Model model) {
 		
+		Long delayNA = adminRepo.findByLowestId().getDelayNA();
+		Long delayVIP = adminRepo.findByLowestId().getDelayVIP();
+		Long delayWVBM = adminRepo.findByLowestId().getDelayWVBM();
+		Long delayAVBM = adminRepo.findByLowestId().getDelayAVBM();
+		Long delayNV = adminRepo.findByLowestId().getDelayNV();
+		
+		
 		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
 		
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
@@ -197,14 +206,14 @@ public class VolunteerPageController implements Serializable{
 		} else if (result.equals("AVBM")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(8760));
+			voter.setNextCall(currentTime.plusHours(delayAVBM));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
 		} else if (result.equals("NV")) {
 			
 			voter.setLastCall(currentTime);
-			voter.setNextCall(currentTime.plusHours(8760));
+			voter.setNextCall(currentTime.plusHours(delayNV));
 			voter.setNotes(notes);
 			voter.setResult(result);
 			
