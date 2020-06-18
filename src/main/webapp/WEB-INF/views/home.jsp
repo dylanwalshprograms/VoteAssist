@@ -43,12 +43,17 @@
 
 				<section class="card-body">
 
-					Name - ${voter.name}<br> Phone - ${voter.phone}<br>
-					Street Address - ${voter.address}<br> City - ${voter.city}<br>
-					State - ${voter.state}<br> Zip Code - ${voter.zip}<br>
-					Party Preference - ${voter.partyPref}<br> Is this person
-					voting by mail? - ${voter.voteByMail}<br> Next Scheduled Call
-					- ${nextCall}<br> Last Call - ${lastCall}<br>
+					Name - ${voter.name}<br> 
+					Phone - ${voter.phone}<br>
+					Street Address - ${voter.address}<br> 
+					City - ${voter.city}<br>
+					State - ${voter.state}<br> 
+					Zip Code - ${voter.zip}<br>
+					Party Preference - ${voter.partyPref}<br> 
+					Is this person voting by mail? - ${voter.voteByMail}<br> 
+					Next Scheduled Call - ${nextCall}<br> 
+					Last Call - ${lastCall}<br>
+					Last Call Result = ${voter.result}<br>
 
 				</section>
 
