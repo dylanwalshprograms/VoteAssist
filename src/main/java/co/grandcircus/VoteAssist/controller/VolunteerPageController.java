@@ -227,7 +227,7 @@ public class VolunteerPageController implements Serializable{
 		if (button.equals("next")) {
 			return "redirect:/home";
 		} else {
-			return "no-more-records";
+			return "logout";
 		}
 		
 	}
