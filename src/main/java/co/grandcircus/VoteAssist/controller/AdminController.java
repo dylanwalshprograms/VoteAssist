@@ -79,6 +79,11 @@ public class AdminController implements Serializable{
 		return "redirect:/admin";
 
 	}
+	@RequestMapping("/call-log")
+	public String callLog(Model model) {
+		
+		return "call-log";
+	}
 }	
 	
 	

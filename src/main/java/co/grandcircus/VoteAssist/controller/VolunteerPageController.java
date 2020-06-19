@@ -232,7 +232,7 @@ public class VolunteerPageController implements Serializable{
 		
 		voterRepo.save(voter);
 		
-		CallLog log = new CallLog(currentTime, (Volunteer) session.getAttribute("user"), voterRepo.findById(voterId).orElse(null));
+		CallLog log = new CallLog(currentTime, voter.getNextCall(), (Volunteer) session.getAttribute("user"), voterRepo.findById(voterId).orElse(null), voter.getResult(), voter.getNotes());
 		callLogRepo.save(log);
 		
 		if (button.equals("next")) {
