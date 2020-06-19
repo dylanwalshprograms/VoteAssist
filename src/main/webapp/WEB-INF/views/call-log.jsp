@@ -22,8 +22,8 @@
 				<a class="nav-link" href="/logout">Logout</a>
 			</li>
 			<li>
-				<form class="form-inline my-2 my-lg-0">
-      				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<form class="form-inline my-2 my-lg-0" action = "/call-log">
+      				<input class="form-control mr-sm-2" type="search" value="${param.keyword}" name="keyword" placeholder="Search by Result" aria-label="Search">
       				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     			</form>	
 			<li>

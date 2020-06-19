@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.grandcircus.VoteAssist.entity.AdminConfiguration;
 import co.grandcircus.VoteAssist.entity.CallLog;
@@ -82,14 +83,22 @@ public class AdminController implements Serializable{
 
 	}
 	@RequestMapping("/call-log")
-	public String callLog(Model model) {
+	public String callLog(Model model, @RequestParam(value="keyword",required=false) String keyword) {
+		if(keyword != null && !keyword.isEmpty()) {
+			List<CallLog> callLog = callLogRepo.findByResultContainingIgnoreCase(keyword);
+			
+			model.addAttribute("callLog", callLog);
+		}else {
+			List<CallLog> callLog = callLogRepo.findAll();
+			
+			model.addAttribute("callLog", callLog);
+		}
 		
-		List<CallLog> callLog = callLogRepo.findAll();
-		
-		model.addAttribute("callLog", callLog);
 		
 		return "call-log";
+	
 	}
+	
 }	
 	
 	

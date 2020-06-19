@@ -1,5 +1,7 @@
 package co.grandcircus.VoteAssist.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,5 +11,7 @@ public interface CallLogRepository extends JpaRepository<CallLog,Long>{
 	
 	@Query(value = "SELECT count(*) FROM vote_assist.call_log;", nativeQuery = true)
 	int findAllCallsMade();
+	
+	List<CallLog> findByResultContainingIgnoreCase(String keyword);
 
 }
