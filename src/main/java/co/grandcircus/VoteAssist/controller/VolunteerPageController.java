@@ -1,7 +1,9 @@
 package co.grandcircus.VoteAssist.controller;
 
 import java.io.Serializable;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +25,6 @@ import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.RegDayRepo;
-import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
 @Controller
@@ -45,9 +46,6 @@ public class VolunteerPageController implements Serializable{
 	
 	@Autowired
 	private CallLogRepository callLogRepo;
-	
-	@Autowired 
-	private VolunteerRepository volunteerRepo;
 	
 	@Autowired
 	private RegDayRepo regDayRepo;
@@ -110,6 +108,10 @@ public class VolunteerPageController implements Serializable{
 		VoterData voterData = voterRepo.findVoterByNextCall();
 		voterData.setInUse(true);
 		voterRepo.save(voterData);
+		
+		List<CallLog> callLog = callLogRepo.findByVoterDataId(voterData.getId());
+		
+		model.addAttribute("callLog", callLog);
 				
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
 				voterData.getCity(), voterData.getState(), voterData.getZip());

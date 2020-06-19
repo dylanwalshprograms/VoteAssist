@@ -154,16 +154,53 @@
 				<section class="card-body">
 					<div class="accordion" id="accordionExample">
 						<div class="card">
-							<div class="card-header" id="headingOne">
+							<div class="card-header" id="headingTwo">
+      							<h2 class="mb-0">
+									<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										Previous Call History
+									</button>
+								</h2>
+							</div>
+							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+								<div class="card-body">
+									<table class="table">
+									  <thead>
+									    <tr>
+									      <th scope="col">Volunteer Id</th>
+									      <th scope="col">Voter Id</th>
+									      <th scope="col">Call Time</th>
+									      <th scope="col">Next Call Time</th>
+									      <th scope="col">Result</th>
+									      <th scope="col">Notes</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									  	<c:forEach var="call" items="${callLog}">
+									    <tr>
+									      <td><c:out value="${call.volunteer.id}"/></td>
+									      <td><c:out value="${call.voterData.id}"/></td>
+									      <td><c:out value="${call.callTime}"/></td>
+									      <td><c:out value="${call.nextCall}"/></td>
+									      <td><c:out value="${call.result}"/></td>
+									      <td><c:out value="${call.notes}"/></td>
+									    </tr>
+									    </c:forEach>
+									  </tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingThree">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left collapsed"
 										type="button" data-toggle="collapse"
-										data-target="#collapseOne" aria-expanded="false"
-										aria-controls="collapseOne">Representative data</button>
+										data-target="#collapseThree" aria-expanded="false"
+										aria-controls="collapseThree">Representative data</button>
 								</h2>
 							</div>
-							<div id="collapseOne" class="collapse"
-								aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div id="collapseThree" class="collapse"
+								aria-labelledby="headingThree" data-parent="#accordionExample">
 								<div class="card-body">
 										<p>
 											<c:forEach items="${civicResponse.offices}" var="office">
@@ -184,17 +221,17 @@
 							</div>
 						</div>
 						<div class="card">
-							<div class="card-header" id="headingTwo">
+							<div class="card-header" id="headingFour">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left collapsed"
 										type="button" data-toggle="collapse"
-										data-target="#collapseTwo" aria-expanded="false"
-										aria-controls="collapseTwo">Voter Registration
+										data-target="#collapseFour" aria-expanded="false"
+										aria-controls="collapseFour">Voter Registration
 										Information</button>
 								</h2>
 							</div>
-							<div id="collapseTwo" class="collapse"
-								aria-labelledby="headingTwo" data-parent="#accordionExample">
+							<div id="collapseFour" class="collapse"
+								aria-labelledby="headingFour" data-parent="#accordionExample">
 								<div class="card-body">
 									<div>
 										<c:out value="${stateResponse.state.details.voterReg}"
