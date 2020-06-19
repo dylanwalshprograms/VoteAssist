@@ -169,13 +169,11 @@ public class VolunteerPageController implements Serializable{
 		Long delayWVBM = adminRepo.findByLowestId().getDelayWVBM();
 		Long delayAVBM = adminRepo.findByLowestId().getDelayAVBM();
 		Long delayNV = adminRepo.findByLowestId().getDelayNV();
-		
-		
+				
 		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
 		
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
-		voter.setInUse(false);
-		
+				
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voter.getState()).getDaysBeforeElection());
 				
 		if (result.equals("NA")) {
@@ -230,6 +228,7 @@ public class VolunteerPageController implements Serializable{
 			
 		}
 		
+		voter.setInUse(false);
 		voterRepo.save(voter);
 		
 		CallLog log = new CallLog(currentTime, voter.getNextCall(), (Volunteer) session.getAttribute("user"), voterRepo.findById(voterId).orElse(null), voter.getResult(), voter.getNotes());
