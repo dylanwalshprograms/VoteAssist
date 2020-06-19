@@ -32,14 +32,6 @@ public class CallLog {
 		super();
 	}
 
-	public CallLog(LocalDateTime callTime, Volunteer volunteer, VoterData voterData) {
-		super();
-		this.callTime = callTime;
-		this.volunteer = volunteer;
-		this.voterData = voterData;
-	}
-	
-
 	public CallLog(LocalDateTime callTime, LocalDateTime nextCall, Volunteer volunteer, VoterData voterData,
 			String result, String notes) {
 		super();
