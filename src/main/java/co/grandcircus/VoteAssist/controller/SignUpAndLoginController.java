@@ -70,12 +70,19 @@ public class SignUpAndLoginController implements Serializable{
 	}
 	
 	@RequestMapping("/sign-up/submit")
-	public String signUpSubmit(Volunteer volunteer, Model model) {
+	public String signUpSubmit(Volunteer volunteer, @RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm, Model model) {
 		
 		Volunteer volunteerCheck = volunteerRepo.findByUserName(volunteer.getUserName());
-		
+				
 		if (volunteerCheck != null) {
 			model.addAttribute("message", "Username already exists. Please try again.");
+			return "sign-up";
+		} else if (password.length() < 8) {
+			if (! password.equals(passwordConfirm)) {
+				model.addAttribute("message", "Passwords do not match. Please try again.");
+				return "sign-up";
+			}
+			model.addAttribute("message", "Password is too short. Please try again with at least eight characters (letters, numbers, or special characters).");
 			return "sign-up";
 		} else {
 			volunteerRepo.save(volunteer);

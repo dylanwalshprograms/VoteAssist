@@ -42,6 +42,11 @@
 						<label>Password</label> <input class="form-control"
 							name="password" type="password" required />
 					</div>
+					
+					<div class="form-group">
+						<label>Confirm Password</label> <input class="form-control"
+							name="passwordConfirm" type="password" required />
+					</div>
 
 					<button class="btn btn-block btn-secondary">Sign up</button>
 
