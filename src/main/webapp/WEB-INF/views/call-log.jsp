@@ -27,9 +27,33 @@
       				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     			</form>	
 			<li>
-			
 		</ul>
 	</nav>
+	
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Volunteer Id</th>
+      <th scope="col">Voter Id</th>
+      <th scope="col">Call Time</th>
+      <th scope="col">Next Call Time</th>
+      <th scope="col">Result</th>
+      <th scope="col">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<c:forEach var="call" items="${callLog}">
+    <tr>
+      <td><c:out value="${call.volunteer.id}"/></td>
+      <td><c:out value="${call.voterData.id}"/></td>
+      <td><c:out value="${call.callTime}"/></td>
+      <td><c:out value="${call.nextCall}"/></td>
+      <td><c:out value="${call.result}"/></td>
+      <td><c:out value="${call.notes}"/></td>
+    </tr>
+    </c:forEach>
+  </tbody>
+</table>
 
 </body>
 </html>

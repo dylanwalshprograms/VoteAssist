@@ -43,7 +43,6 @@ public class CallLog {
 	public CallLog(LocalDateTime callTime, LocalDateTime nextCall, Volunteer volunteer, VoterData voterData,
 			String result, String notes) {
 		super();
-		this.id = id;
 		this.callTime = callTime;
 		this.nextCall = nextCall;
 		this.volunteer = volunteer;

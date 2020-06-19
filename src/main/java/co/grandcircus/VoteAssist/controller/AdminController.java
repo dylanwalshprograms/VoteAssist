@@ -1,6 +1,7 @@
 package co.grandcircus.VoteAssist.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.grandcircus.VoteAssist.entity.AdminConfiguration;
+import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
@@ -81,6 +83,10 @@ public class AdminController implements Serializable{
 	}
 	@RequestMapping("/call-log")
 	public String callLog(Model model) {
+		
+		List<CallLog> callLog = callLogRepo.findAll();
+		
+		model.addAttribute("callLog", callLog);
 		
 		return "call-log";
 	}
