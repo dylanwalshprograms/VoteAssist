@@ -82,7 +82,7 @@ public class SignUpAndLoginController implements Serializable{
 				model.addAttribute("message", "Passwords do not match. Please try again.");
 				return "sign-up";
 			}
-			model.addAttribute("message", "Password is too short. Please try again with at least eight characters (letters, numbers, or special characters).");
+			model.addAttribute("message", "Password is too short. Please try again with a length of 8-20 characters (letters and numbers only).");
 			return "sign-up";
 		} else {
 			volunteerRepo.save(volunteer);
