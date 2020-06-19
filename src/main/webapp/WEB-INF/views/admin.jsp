@@ -26,7 +26,7 @@
 		</ul>
 	</nav>
 	
-	<div class="top left">
+
 		<main class="container">
 
         	<article class="card mx-auto">
@@ -85,10 +85,33 @@
             </article>
 
         	</main>
-        </div>
 
+	
+		<main class="container">
 
+        	<article class="card mx-auto">
 
+            	<section class="card-header">
+
+                	<h1>Campaign Stats</h1>
+
+                </section>
+
+                <section class="card-body">
+                
+                <p>Number of Volunteers: ${totalVolunteers}</p>
+                <p>Total Calls Made: ${totalCalls}</p>
+                <p>Attempts per WVBM or WVIP: <fmt:formatNumber value="${totalWillVote}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
+                <p>Percentage of NV: <fmt:formatNumber value="${percentNV}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
+                <p>Percentage of DNC: <fmt:formatNumber value="${percentOfDNC}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
+                <a href="/call-log">View Call Log</a>
+
+                </section>
+
+            </article>
+
+        	</main>
+       
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
