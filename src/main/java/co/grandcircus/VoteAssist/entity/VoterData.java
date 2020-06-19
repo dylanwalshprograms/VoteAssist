@@ -31,6 +31,7 @@ public class VoterData {
 	private String result;
 	private Boolean emailSent;
 	private Boolean doNotCall;
+	private Boolean inUse;
 
 	public Long getId() {
 		return id;
@@ -152,11 +153,21 @@ public class VoterData {
 		this.doNotCall = doNotCall;
 	}
 
+	public Boolean getInUse() {
+		return inUse;
+	}
+
+	public void setInUse(Boolean inUse) {
+		this.inUse = inUse;
+	}
+
 	@Override
 	public String toString() {
 		return "VoterData [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", zip=" + zip + ", partyPref=" + partyPref + ", voteByMail=" + voteByMail
 				+ ", nextCall=" + nextCall + ", lastCall=" + lastCall + ", notes=" + notes + ", result=" + result
-				+ ", emailSent=" + emailSent + ", doNotCall=" + doNotCall + "]";
+				+ ", emailSent=" + emailSent + ", doNotCall=" + doNotCall + ", inUse=" + inUse + "]";
 	}
+
+	
 }

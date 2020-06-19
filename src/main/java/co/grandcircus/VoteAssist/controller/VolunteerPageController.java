@@ -108,6 +108,8 @@ public class VolunteerPageController implements Serializable{
 		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
 		
 		VoterData voterData = voterRepo.findVoterByNextCall();
+		voterData.setInUse(true);
+		voterRepo.save(voterData);
 				
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
 				voterData.getCity(), voterData.getState(), voterData.getZip());
@@ -172,6 +174,7 @@ public class VolunteerPageController implements Serializable{
 		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
 		
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
+		voter.setInUse(false);
 		
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voter.getState()).getDaysBeforeElection());
 				
