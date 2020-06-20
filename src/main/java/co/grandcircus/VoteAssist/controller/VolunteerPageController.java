@@ -251,10 +251,15 @@ public class VolunteerPageController implements Serializable{
 		
 	}
 	
+	@RequestMapping("email-popup")
+	public String emailPopup() {
+		return "email-popup";
+	}
+	
 	@RequestMapping("/send-email")
 	public String email(@RequestParam(required = true) String toEmail, @RequestParam String subject, @RequestParam String contentString) {
 		emailService.emailParams(toEmail, subject, contentString);
-		return "redirect:/home";
+		return "email-sent";
 	}
 
 }

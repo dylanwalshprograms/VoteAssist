@@ -56,6 +56,8 @@
 					Last Call Result - ${voter.result}<br>
 
 				</section>
+				
+				<a href="email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=400')">Send Email to Voter</a>
 
 			</article>
 
@@ -249,6 +251,7 @@
 									</button>
 								</h2>
 							</div>
+							<!-- 
 							<div id="collapseFive" class="collapse"
 								aria-labelledby="headingFive" data-parent="#accordionExample">
 								<div class="card-body">
@@ -263,6 +266,7 @@
 									</form>
 								</div>
 							</div>
+							 -->
 						</div>
 					</div>
 				</section>

@@ -19,7 +19,7 @@ public class EmailService {
 	private SendGrid sendGrid;
 	
 	public void emailParams(String toEmail, String subject, String contentString) {
-
+		
 		sendEmail(toEmail, subject, contentString);
 	}
 	
