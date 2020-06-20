@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
@@ -42,6 +43,9 @@ public class VolunteerPageController implements Serializable{
 	private VoteSmartApiService voteSmartService;
 	
 	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
 	private VoterRepository voterRepo;
 	
 	@Autowired
@@ -61,12 +65,12 @@ public class VolunteerPageController implements Serializable{
 	private LocalDateTime timeMachineLDT = LocalDateTime.now();
 	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 	
-	@RequestMapping("/training") // Mapping for training page view
+	@RequestMapping("/training") 
 	public String training() {
 		return "training";
 	}
 	
-	@RequestMapping("/logout") // Logs out current user
+	@RequestMapping("/logout") 
 	public String logout(RedirectAttributes redir, Model model) {
 		if (session.getAttribute("user") != null) {
 			redir.addFlashAttribute("message","Logged out successfully");
@@ -106,6 +110,9 @@ public class VolunteerPageController implements Serializable{
 		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
 		
 		VoterData voterData = voterRepo.findVoterByNextCall();
+		if (voterData == null) {
+			return "no-more-records";
+		} 
 		voterData.setInUse(true);
 		voterRepo.save(voterData);
 		
@@ -242,6 +249,12 @@ public class VolunteerPageController implements Serializable{
 			return "redirect:/logout";
 		}
 		
+	}
+	
+	@RequestMapping("/send-email")
+	public String email(@RequestParam(required = true) String toEmail, @RequestParam String subject, @RequestParam String contentString) {
+		emailService.emailParams(toEmail, subject, contentString);
+		return "redirect:/home";
 	}
 
 }

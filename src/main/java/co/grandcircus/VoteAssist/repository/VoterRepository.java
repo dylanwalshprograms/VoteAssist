@@ -1,6 +1,9 @@
 package co.grandcircus.VoteAssist.repository;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import co.grandcircus.VoteAssist.entity.VoterData;
@@ -23,5 +26,10 @@ public interface VoterRepository extends JpaRepository<VoterData, Long>{
 	
 	@Query(value = "SELECT count(*) FROM vote_assist.voter_data WHERE NOT result = 'NA' OR result = 'RQ';", nativeQuery = true)
 	double findAllResponsesMinusNAAndRQ();
+	
+	@Query(value = "UPDATE `vote_assist`.`voter_data` SET `do_not_call` = NULL, `last_call` = NULL, `next_call` = NULL, `result` = NULL, `in_use` = NULL;", nativeQuery = true)
+	@Modifying
+	@Transactional
+	void resetDatabase();
 
 }

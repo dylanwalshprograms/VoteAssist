@@ -33,8 +33,8 @@
 	<table class="table">
   <thead>
     <tr>
-      <th scope="col">Volunteer Id</th>
-      <th scope="col">Voter Id</th>
+      <th scope="col">Volunteer Name</th>
+      <th scope="col">Voter Name</th>
       <th scope="col">Call Time</th>
       <th scope="col">Next Call Time</th>
       <th scope="col">Result</th>
@@ -44,8 +44,8 @@
   <tbody>
   	<c:forEach var="call" items="${callLog}">
     <tr>
-      <td><c:out value="${call.volunteer.id}"/></td>
-      <td><c:out value="${call.voterData.id}"/></td>
+      <td><c:out value="${call.volunteer.name}"/></td>
+      <td><c:out value="${call.voterData.name}"/></td>
       <td><c:out value="${call.callTime}"/></td>
       <td><c:out value="${call.nextCall}"/></td>
       <td><c:out value="${call.result}"/></td>

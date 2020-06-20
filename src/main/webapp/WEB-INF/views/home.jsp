@@ -166,8 +166,7 @@
 									<table class="table">
 									  <thead>
 									    <tr>
-									      <th scope="col">Volunteer Id</th>
-									      <th scope="col">Voter Id</th>
+									      <th scope="col">Volunteer Name</th>
 									      <th scope="col">Call Time</th>
 									      <th scope="col">Next Call Time</th>
 									      <th scope="col">Result</th>
@@ -177,8 +176,7 @@
 									  <tbody>
 									  	<c:forEach var="call" items="${callLog}">
 									    <tr>
-									      <td><c:out value="${call.volunteer.id}"/></td>
-									      <td><c:out value="${call.voterData.id}"/></td>
+									      <td><c:out value="${call.volunteer.name}"/></th>
 									      <td><c:out value="${call.callTime}"/></td>
 									      <td><c:out value="${call.nextCall}"/></td>
 									      <td><c:out value="${call.result}"/></td>
@@ -237,6 +235,32 @@
 										<c:out value="${stateResponse.state.details.voterReg}"
 											escapeXml="false" />
 									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingFive">
+								<h2 class="mb-0">
+									<button class="btn btn-link btn-block text-left collapsed"
+										type="button" data-toggle="collapse"
+										data-target="#collapseFive" aria-expanded="false"
+										aria-controls="collapseFive">
+										Send Email to Voter
+									</button>
+								</h2>
+							</div>
+							<div id="collapseFive" class="collapse"
+								aria-labelledby="headingFive" data-parent="#accordionExample">
+								<div class="card-body">
+									<form action="/send-email">
+										<label>To:</label>
+										<input type="text" name="toEmail" required><br>
+										<label>Subject:</label>
+										<input type="text" name="subject"><br>
+										<label>Message:</label>
+										<textarea rows="3" cols="12" name="contentString" required></textarea><br>
+										<button>Send</button>
+									</form>
 								</div>
 							</div>
 						</div>

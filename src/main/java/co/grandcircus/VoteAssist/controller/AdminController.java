@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.grandcircus.VoteAssist.entity.AdminConfiguration;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.Volunteer;
+import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
@@ -97,6 +98,13 @@ public class AdminController implements Serializable{
 		
 		return "call-log";
 	
+	}
+	
+	@RequestMapping("/reset-database")
+	public String resetDatabaseForTesting() {
+		voterRepo.resetDatabase();
+		
+		return "redirect:/admin";
 	}
 	
 }	
