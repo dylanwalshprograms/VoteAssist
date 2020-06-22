@@ -57,7 +57,7 @@
 
 				</section>
 				
-				<a href="email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=400')">Send Email to Voter</a>
+				<a class="button btn-dark" href="email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=475')">Send Email to Voter</a>
 
 			</article>
 

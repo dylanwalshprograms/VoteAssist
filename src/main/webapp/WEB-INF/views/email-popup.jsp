@@ -15,11 +15,11 @@
 								<div class="card-body">
 									<form action="/send-email">
 										<label>To:</label>
-										<input type="text" name="toEmail" required><br>
+										<input type="email" name="toEmail" required><br>
 										<label>Subject:</label>
 										<input type="text" name="subject"><br>
 										<label>Message:</label>
-										<textarea rows="3" cols="12" name="contentString" required></textarea><br>
+										<textarea rows="10" cols="75" name="contentString" required></textarea><br>
 										<button>Send</button>
 									</form>
 								</div>
