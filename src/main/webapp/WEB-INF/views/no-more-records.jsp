@@ -24,7 +24,7 @@
 		<ul class="nav">
 			
 			<li class="nav-item">
-			<a class="nav-link" href="/logout">Logout</a>
+			<a type="button" class="btn btn-danger" href="/logout">Logout</a>
 			</li>
 		</ul>
 	</nav>

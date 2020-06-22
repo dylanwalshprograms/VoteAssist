@@ -12,6 +12,11 @@
 </head>
 <body>
 <main>
+
+<div>
+	<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
+</div>
+
 <div class="login">
 	<article class="card mx-auto">
 

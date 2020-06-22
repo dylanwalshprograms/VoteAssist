@@ -23,13 +23,13 @@
 			<button>Change "Current" Date</button>
 		</form>
 		
+		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
+		
 		<label>"Current" Date: ${timeMachineString}</label>
 		
 		<ul class="nav">
 			
-			<li class="nav-item">
-			<a class="nav-link" href="/logout">Logout</a>
-			</li>
+			
 		</ul>
 	</nav>
 	<div class="top left">
@@ -57,7 +57,7 @@
 
 				</section>
 				
-				<a class="button btn-dark" href="email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=475')">Send Email to Voter</a>
+				<a type="button" class="btn btn-primary" href="email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=525')">Send Email to Voter</a>
 
 			</article>
 
@@ -102,8 +102,8 @@
 			<label for="DNC">Do Not Call</label><br>
 		</div>
 		<div>
-			<button name="button" value="next" onClick="mySavedNoteAlert()">Submit/Next</button>
-			<button name="button" value="end">Submit/END</button>
+			<button class="btn btn-success" name="button" value="next" onClick="mySavedNoteAlert()">Submit/NEXT</button>
+			<button class="btn btn-danger" name="button" value="end">Submit/LOGOUT</button>
 		</div>
 	</form>
 
@@ -240,34 +240,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="card">
-							<div class="card-header" id="headingFive">
-								<h2 class="mb-0">
-									<button class="btn btn-link btn-block text-left collapsed"
-										type="button" data-toggle="collapse"
-										data-target="#collapseFive" aria-expanded="false"
-										aria-controls="collapseFive">
-										Send Email to Voter
-									</button>
-								</h2>
-							</div>
-							<!-- 
-							<div id="collapseFive" class="collapse"
-								aria-labelledby="headingFive" data-parent="#accordionExample">
-								<div class="card-body">
-									<form action="/send-email">
-										<label>To:</label>
-										<input type="text" name="toEmail" required><br>
-										<label>Subject:</label>
-										<input type="text" name="subject"><br>
-										<label>Message:</label>
-										<textarea rows="3" cols="12" name="contentString" required></textarea><br>
-										<button>Send</button>
-									</form>
-								</div>
-							</div>
-							 -->
-						</div>
+						
 					</div>
 				</section>
 			</article>

@@ -14,13 +14,13 @@
 
 								<div class="card-body">
 									<form action="/send-email">
-										<label>To:</label>
-										<input type="email" name="toEmail" required><br>
-										<label>Subject:</label>
-										<input type="text" name="subject"><br>
-										<label>Message:</label>
+										<label>To:</label><br>
+										<input type="email" name="toEmail" required width="200%"><br>
+										<label>Subject:</label><br>
+										<textarea rows="1" cols="75" name="subject">Vote by Mail with VoteAssist!</textarea><br>
+										<label>Message:</label><br>
 										<textarea rows="10" cols="75" name="contentString" required>
-
+[ADD YOUR PERSONAL MESSAGE HERE!]
 
 Thanks for taking the time to speak with our volunteer today.
 You can get detailed instructions of voting by mail in your area at turbovote.org
@@ -29,7 +29,7 @@ You can get detailed instructions of voting by mail in your area at turbovote.or
 	Thanks again,
 	VoteAssist
 										</textarea><br>
-										<button>Send</button>
+										<button class="btn btn-success">Send</button>
 									</form>
 								</div>
 

@@ -22,3 +22,13 @@
 	font-size: smaller;
 	position:absolute;
 }
+
+.img-centered {
+    display: block;
+    margin: 0 auto;
+}
+
+.img-icon {
+	width : 5%
+		
+}

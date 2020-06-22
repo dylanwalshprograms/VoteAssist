@@ -29,3 +29,13 @@
 	right:  0;
 	float: right;
 }
+
+.img-centered {
+    display: block;
+    margin: 0 auto;
+}
+
+.img-icon {
+	width : 5%
+		
+}
