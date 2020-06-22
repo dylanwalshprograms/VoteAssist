@@ -101,6 +101,9 @@ public class VolunteerPageController implements Serializable{
 	public String home(Model model) {
 		
 		String campaignName = adminRepo.findByLowestId().getCampaignName();
+		String priority = adminRepo.findByLowestId().getPriority();
+		
+		
 		
 		// Check to verify if user is in a session, goes to login if no
 		if (session.getAttribute("user") == null) {
@@ -109,10 +112,23 @@ public class VolunteerPageController implements Serializable{
 		
 		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
 		// Logic to pull next record, default filter method is by next call chronologically.
-		VoterData voterData = voterRepo.findVoterByNextCall();
+		VoterData voterData = new VoterData();
+
+		if (priority == null) {
+			priority = "prioritizeSTD";
+		}
+		if (priority.equals("prioritizeWVIP")) {
+			voterData = voterRepo.findbyVIP();
+		} else if (priority.equals("prioritizeWVBM")) {
+			voterData = voterRepo.findbyWVBM();
+		} else {
+			voterData = voterRepo.findVoterByNextCall();
+		}
+		
 		if (voterData == null) {
 			return "no-more-records";
-		} 
+		}
+ 
 		// Keeps multiple volunteers from pulling the same record
 		voterData.setInUse(true);
 		voterRepo.save(voterData);

@@ -27,6 +27,12 @@ public interface VoterRepository extends JpaRepository<VoterData, Long>{
 	@Query(value = "SELECT count(*) FROM vote_assist.voter_data WHERE NOT result = 'NA' OR result = 'RQ';", nativeQuery = true)
 	double findAllResponsesMinusNAAndRQ();
 	
+	@Query(value = "SELECT * FROM vote_assist.voter_data WHERE result = 'WVBM' LIMIT 1;", nativeQuery = true)
+	VoterData findbyWVBM();
+	
+	@Query(value = "SELECT * FROM vote_assist.voter_data WHERE result = 'VIP' LIMIT 1;", nativeQuery = true)
+	VoterData findbyVIP();
+	
 	@Query(value = "UPDATE `vote_assist`.`voter_data` SET `do_not_call` = NULL, `last_call` = NULL, `next_call` = NULL, `result` = NULL, `in_use` = NULL;", nativeQuery = true)
 	@Modifying
 	@Transactional
