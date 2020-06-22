@@ -23,7 +23,7 @@
 
 
 Thanks for taking the time to speak with our volunteer today.
-You can get detailed instructions of voting by mail in your area at https://turbovote.org/
+You can get detailed instructions of voting by mail in your area at turbovote.org
 
 
 	Thanks again,
