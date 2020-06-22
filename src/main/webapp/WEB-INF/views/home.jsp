@@ -16,11 +16,13 @@
 </head>
 <body>
 
+
+
 	<nav class="navbar bg-light">
 		
 		<form action="/reset-time">
 			<input type="datetime-local" name="time" required>
-			<button>Change "Current" Date</button>
+			<button class="btn btn-dark">Change "Current" Date</button>
 		</form>
 		
 		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">

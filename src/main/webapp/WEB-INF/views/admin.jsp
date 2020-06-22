@@ -21,12 +21,16 @@
 		<ul class="nav">
 			
 			<li class="nav-item">
-			<a class="nav-link" href="/logout">Logout</a>
+			<a type="button" class="btn btn-danger" href="/logout">Logout</a>
 			</li>
 			<li>
-			<a href="/reset-database">Reset Database for Testing</a>
+			<a type="button" class="btn btn-dark" href="/reset-database">Reset Database for Testing</a>
+			</li>
+			<li>
+			<a type="button" class="btn btn-success" href="/home">Start Calling!</a>
 			</li>
 		</ul>
+		
 	</nav>
 	
 
@@ -67,8 +71,8 @@
 						<input type="number" name="delayNV" min="0" value = "${adminConfig.delayNV}">
 						<label>MIN HOURS before next call scheduled.</label><br>
 						
-						<label>Set Response Priority:</label><br>
-						<p>Current priority set to: ${adminConfig.priority}</p>
+						<label><b>Set Response Priority:</b></label><br>
+						<p>Current priority set to: <b>${adminConfig.priority}</b></p>
 						<input type="radio" id="prioritizeWVBM" name="priority" value="prioritizeWVBM">
 						<label for="prioritizeWVBM">Prioritize WVBM reminders</label><br>
 						 
@@ -78,7 +82,7 @@
 						<input type="radio" id="prioritizeSTD" name="priority" value="prioritizeSTD"> 
 						<label for="prioritizeSTD">Standard Priority</label><br>
 						
-						<button>UPDATE CAMPAIGN</button>
+						<button class="btn btn-info">UPDATE CAMPAIGN</button>
 					
 					
 					</form>
@@ -107,7 +111,7 @@
                 <p>Attempts per WVBM or WVIP: <fmt:formatNumber value="${totalWillVote}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
                 <p>Percentage of NV: <fmt:formatNumber value="${percentNV}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
                 <p>Percentage of DNC: <fmt:formatNumber value="${percentOfDNC}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
-                <a href="/call-log">View Call Log</a>
+                <a type="button" class="btn btn-info" href="/call-log">View Call Log</a>
 
                 </section>
 
