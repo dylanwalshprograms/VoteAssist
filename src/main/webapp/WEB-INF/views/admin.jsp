@@ -30,6 +30,7 @@
 			<a type="button" class="btn btn-success" href="/home">Start Calling!</a>
 			</li>
 		</ul>
+		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
 		
 	</nav>
 	

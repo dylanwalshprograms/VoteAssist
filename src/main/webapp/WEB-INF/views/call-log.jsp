@@ -31,6 +31,7 @@
     			</form>	
 			<li>
 		</ul>
+		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
 	</nav>
 	
 	<table class="table">
