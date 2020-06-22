@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class VoteAssistMethods {
 	
+	// Method to convert localdatetime timestamp into string more easily readable by humans
 	public static String localDateTimeInWords(LocalDateTime ldt) {
 		
 		String dayOfWeek = ldt.getDayOfWeek().toString();

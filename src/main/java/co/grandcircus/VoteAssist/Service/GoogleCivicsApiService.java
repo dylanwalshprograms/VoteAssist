@@ -16,7 +16,7 @@ public class GoogleCivicsApiService {
 	
 	@Value("${app.key}")
 	private String key; 
-	
+
 	public CivicApiResponse civicResponse(String address, String city, String state, String zip) {
 		
 		URI url = buildAddressList(address, city, state, zip);

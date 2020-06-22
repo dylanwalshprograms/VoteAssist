@@ -28,7 +28,7 @@ public class SignUpAndLoginController implements Serializable{
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping ("/") 
+	@RequestMapping ("/") // Initial view for all users
 	public String login(Model model) {
 		if (session.getAttribute("user") != null) {
 			return "redirect:/home";
@@ -37,7 +37,7 @@ public class SignUpAndLoginController implements Serializable{
 		}
 	}
 	
-	@RequestMapping("/login/submit") 
+	@RequestMapping("/login/submit") // Checks login credentials against DB for confirmation. Also checks admin login
 	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password, @RequestParam(required = true) String loginType,
 			Model model) {
 
@@ -64,25 +64,26 @@ public class SignUpAndLoginController implements Serializable{
 		
 	}
 	
-	@RequestMapping("/sign-up")
+	@RequestMapping("/sign-up") // Sign-up view
 	public String signUpForm() {
 		return "sign-up";
 	}
 	
-	@RequestMapping("/sign-up/submit")
+	@RequestMapping("/sign-up/submit") // Volunteer credential creation
 	public String signUpSubmit(Volunteer volunteer, @RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm, Model model) {
 		
 		Volunteer volunteerCheck = volunteerRepo.findByUserName(volunteer.getUserName());
-				
+		// Checks against multiple of the same username		
 		if (volunteerCheck != null) {
 			model.addAttribute("message", "Username already exists. Please try again.");
 			return "sign-up";
+			// Checks to confirm passwords match as well as meet a minimum length
 		} else if (password.length() < 8) {
 			if (! password.equals(passwordConfirm)) {
 				model.addAttribute("message", "Passwords do not match. Please try again.");
 				return "sign-up";
 			}
-			model.addAttribute("message", "Password is too short. Please try again with a length of 8-20 characters (letters and numbers only).");
+			model.addAttribute("message", "Password is too short. Please try again with a length of 8-20 characters (letters, numbers, and special characters only).");
 			return "sign-up";
 		} else {
 			volunteerRepo.save(volunteer);

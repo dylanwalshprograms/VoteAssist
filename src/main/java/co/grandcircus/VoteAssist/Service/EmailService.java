@@ -23,7 +23,7 @@ public class EmailService {
 		sendEmail(toEmail, subject, contentString);
 	}
 	
-
+	// Method to send email, example from Send Grid API
 	private void sendEmail(String to, String subject, String content) {
 		Email fromEmail = new Email("voteassist.admn@gmail.com");
 		Email toEmail = new Email(to);

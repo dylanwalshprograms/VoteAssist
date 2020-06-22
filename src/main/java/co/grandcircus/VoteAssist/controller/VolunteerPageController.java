@@ -65,12 +65,12 @@ public class VolunteerPageController implements Serializable{
 	private LocalDateTime timeMachineLDT = LocalDateTime.now();
 	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 	
-	@RequestMapping("/training") 
+	@RequestMapping("/training") // Training view
 	public String training() {
 		return "training";
 	}
 	
-	@RequestMapping("/logout") 
+	@RequestMapping("/logout") // Logout logic, checks session to confirm user is logged in
 	public String logout(RedirectAttributes redir, Model model) {
 		if (session.getAttribute("user") != null) {
 			redir.addFlashAttribute("message","Logged out successfully");
@@ -83,7 +83,7 @@ public class VolunteerPageController implements Serializable{
 		}
 	}
 		
-	@RequestMapping("/reset-time")
+	@RequestMapping("/reset-time") // Mapping to force time change in program (For testing and demoing purposes).
 	public String resetTime(@RequestParam(required = true) String time) {
 		
 		if (time == null || time.isEmpty()) {
@@ -97,35 +97,37 @@ public class VolunteerPageController implements Serializable{
 		return "redirect:/home";
 	}
 		
-	@RequestMapping("/home")
+	@RequestMapping("/home") // Primary view of program
 	public String home(Model model) {
 		
 		String campaignName = adminRepo.findByLowestId().getCampaignName();
 		
-		
+		// Check to verify if user is in a session, goes to login if no
 		if (session.getAttribute("user") == null) {
 			return "login";
 		}
 		
 		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
-		
+		// Logic to pull next record, default filter method is by next call chronologically.
 		VoterData voterData = voterRepo.findVoterByNextCall();
 		if (voterData == null) {
 			return "no-more-records";
 		} 
+		// Keeps multiple volunteers from pulling the same record
 		voterData.setInUse(true);
 		voterRepo.save(voterData);
-		
+		// List of calls made by voter ID (displays call log for volunteer)
 		List<CallLog> callLog = callLogRepo.findByVoterDataId(voterData.getId());
 		
 		model.addAttribute("callLog", callLog);
-				
+		// Pulls from Google Civic API the list of offices and representatives, based on parameters of voter		
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
 				voterData.getCity(), voterData.getState(), voterData.getZip());
-		
+		// Calls Vote Smart API for state instructions to register/vote
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
-		
+		// regCutOff is the logic that calculates deadline to register to vote in the voters state, based on current campaign
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
+		// Logic to filter DB in order to pull next record, based on lastCall and nextCall timestamps
 		String lastCall = "";
 		String nextCall = "";
 		if (voterData.getLastCall() != null && voterData.getNextCall() != null) {
@@ -146,7 +148,7 @@ public class VolunteerPageController implements Serializable{
 		model.addAttribute("civicResponse", civicResponse);
 		model.addAttribute("voter", voterData);
 		
-	
+		// Logic to determine what script is used for voter, based on current disposition of voter
 		if (voterData.getResult() == null) {
 			scriptName = "main-script";
 		} else if (voterData.getResult().equals("VIP")) {
@@ -156,7 +158,7 @@ public class VolunteerPageController implements Serializable{
 		}
 		
 		model.addAttribute("script", scriptName);
-		
+		// Logic to navigate to no more records view when no records are available
 		if (voterData.getNextCall() == null) {
 			return "home";
 		}
@@ -168,11 +170,11 @@ public class VolunteerPageController implements Serializable{
 		
 	}
 	
-	@RequestMapping("/submit")
+	@RequestMapping("/submit") // Submit/Next button in home view, saves notes and disposition of voter to DB
 	public String submitNext(@RequestParam String notes,
 			@RequestParam(required = true) String result, @RequestParam(required = false) String nextCall,
 			@RequestParam String button, @RequestParam Long voterId, Model model) {
-		
+		// Applies delays set by admin
 		Long delayNA = adminRepo.findByLowestId().getDelayNA();
 		Long delayVIP = adminRepo.findByLowestId().getDelayVIP();
 		Long delayWVBM = adminRepo.findByLowestId().getDelayWVBM();
@@ -180,11 +182,11 @@ public class VolunteerPageController implements Serializable{
 		Long delayNV = adminRepo.findByLowestId().getDelayNV();
 				
 		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
-		
+		// Logic to pull next record
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
-				
+		// Displays cutoff to register to vote		
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voter.getState()).getDaysBeforeElection());
-				
+		// Sets disposition based on call results (Ln 190-240)		
 		if (result.equals("NA")) {
 			
 			voter.setLastCall(currentTime);
@@ -236,13 +238,13 @@ public class VolunteerPageController implements Serializable{
 			voter.setDoNotCall(true);
 			
 		}
-		
+		// Sets record out of use and able to be pulled by another volunteer, then saves info on voter
 		voter.setInUse(false);
 		voterRepo.save(voter);
-		
+		// Creates new entry in call log DB with current fields, then saves
 		CallLog log = new CallLog(currentTime, voter.getNextCall(), (Volunteer) session.getAttribute("user"), voterRepo.findById(voterId).orElse(null), voter.getResult(), voter.getNotes());
 		callLogRepo.save(log);
-		
+		// Logic to either go next record or logout
 		if (button.equals("next")) {
 			return "redirect:/home";
 		} else {
@@ -251,12 +253,12 @@ public class VolunteerPageController implements Serializable{
 		
 	}
 	
-	@RequestMapping("email-popup")
+	@RequestMapping("email-popup") // Displays email popup window
 	public String emailPopup() {
 		return "email-popup";
 	}
 	
-	@RequestMapping("/send-email")
+	@RequestMapping("/send-email") // Sends email
 	public String email(@RequestParam(required = true) String toEmail, @RequestParam String subject, @RequestParam String contentString) {
 		emailService.emailParams(toEmail, subject, contentString);
 		return "email-sent";

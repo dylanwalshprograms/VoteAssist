@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.grandcircus.VoteAssist.entity.AdminConfiguration;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.Volunteer;
-import co.grandcircus.VoteAssist.entity.VoterData;
+
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
@@ -29,7 +29,7 @@ public class AdminController implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private AdminRepository adminRepo;
+	private AdminRepository adminRepo;  
 	
 	@Autowired
 	private CallLogRepository callLogRepo;
@@ -43,10 +43,11 @@ public class AdminController implements Serializable{
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/admin") // Checks current session, finds user
 	public String adminDashboard(Model model) {
 		String loginType = (String)session.getAttribute("loginType");
 		Volunteer foundUser = (Volunteer)session.getAttribute("user");
+		// Calcs stats shown in admin view (Ln 51-60)
 		int totalCalls = callLogRepo.findAllCallsMade();
 		int totalVolunteers = volunteerRepo.findAllVolunteers();
 		double totalWVBMAndWVIP = voterRepo.findAllWVBMAndWVIP();
@@ -63,9 +64,10 @@ public class AdminController implements Serializable{
 		model.addAttribute("totalWillVote", totalVotersWhoWillVote);
 		model.addAttribute("totalVolunteers", totalVolunteers);
 		model.addAttribute("totalCalls", totalCalls);
-		
+		// Limiter to only pull one campaign at a time (Ln 68+69)
 		AdminConfiguration adminConfig = adminRepo.findByLowestId();
 		model.addAttribute("adminConfig", adminConfig);
+		// Logout
 		if (foundUser != null && loginType.equals("admin")) {
 			return "admin";
 		} else {
@@ -73,7 +75,7 @@ public class AdminController implements Serializable{
 		}
 	}
 	
-	@RequestMapping("/admin/update-config")
+	@RequestMapping("/admin/update-config") // Updates campaign information
 	public String adminUpdateConfig(AdminConfiguration adminConfig) {
 		
 		adminRepo.deleteAll();
@@ -83,7 +85,7 @@ public class AdminController implements Serializable{
 		return "redirect:/admin";
 
 	}
-	@RequestMapping("/call-log")
+	@RequestMapping("/call-log") // Displays entire list with no keyword, can be filtered in admin view, goes to call-log
 	public String callLog(Model model, @RequestParam(value="keyword",required=false) String keyword) {
 		if(keyword != null && !keyword.isEmpty()) {
 			List<CallLog> callLog = callLogRepo.findByResultContainingIgnoreCase(keyword);
@@ -100,7 +102,7 @@ public class AdminController implements Serializable{
 	
 	}
 	
-	@RequestMapping("/reset-database")
+	@RequestMapping("/reset-database") // Resets DB (for testing purposes)
 	public String resetDatabaseForTesting() {
 		voterRepo.resetDatabase();
 		
