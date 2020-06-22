@@ -19,7 +19,16 @@
 										<label>Subject:</label>
 										<input type="text" name="subject"><br>
 										<label>Message:</label>
-										<textarea rows="10" cols="75" name="contentString" required></textarea><br>
+										<textarea rows="10" cols="75" name="contentString" required>
+
+
+Thanks for taking the time to speak with our volunteer today.
+You can get detailed instructions of voting by mail in your area at https://turbovote.org/
+
+
+	Thanks again,
+	VoteAssist
+										</textarea><br>
 										<button>Send</button>
 									</form>
 								</div>
