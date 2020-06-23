@@ -2,6 +2,7 @@ package co.grandcircus.VoteAssist.controller;
 
 import java.io.Serializable;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 
@@ -27,6 +29,9 @@ public class SignUpAndLoginController implements Serializable {
 
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private EmailService emailService;
 
 	@RequestMapping("/") // Initial view for all users
 	public String login(Model model) {
@@ -92,19 +97,59 @@ public class SignUpAndLoginController implements Serializable {
 			return "redirect:/training";
 		}
 	}
-	
+
 	@RequestMapping("/forgot-password")
 	public String forgotPassword() {
-		
+
 		return "forgot-password";
 	}
-	
+
 	@RequestMapping("forgot-password/submit")
 	public String forgotPasswordSubmit(@RequestParam String email, Model model) {
-		
-		String message = "";
-		
-		model.addAttribute("message", message)
-		return "redirect:/forgot-password";
+		Volunteer volunteer = volunteerRepo.findByEmail(email);
+		if (volunteer == null) {
+			String message = "No volunteer accounts are associated with " + email;
+			model.addAttribute("message", message);
+			return "redirect:/forgot-password";
+
+		} else {
+			Random rand = new Random();
+			int randomNumber = rand.nextInt(1000000);
+			session.setAttribute("email", email);
+			session.setAttribute("randomNumber", randomNumber);
+			emailService.emailParams(email, "Password Reset Code", "Your reset code is: " + randomNumber,
+					"voteassist.admn@gmail.com");
+		}
+		return "recover-password";
+	}
+
+	@RequestMapping("/recover-password")
+	public String recoverPassword(@RequestParam int code, Model model) {
+		System.out.println(code);
+		int randomNumber = (int) session.getAttribute("randomNumber");
+		if (code == randomNumber) {
+			return "reset-password";
+		} else {
+			model.addAttribute("message", "Your code does not match, please try again.");
+			return "redirect:/recover-password";
+		}
+	}
+
+	@RequestMapping("/reset-password/submit")
+	public String resetPassword(@RequestParam String password, @RequestParam String passwordConfirm, Model model) {
+		if (password.length() < 8) {
+			if (!password.equals(passwordConfirm)) {
+				model.addAttribute("message", "Passwords do not match. Please try again.");
+				return "redirect:/reset-password/submit";
+			}
+			model.addAttribute("message",
+					"Password is too short. Please try again with a length of 8-20 characters (letters, numbers, and special characters only).");
+			return "redirect:/reset-password/submit";
+		} else {
+			Volunteer volunteer = volunteerRepo.findByEmail((String) session.getAttribute("email"));
+			volunteer.setPassword(password);
+			volunteerRepo.save(volunteer);
+			return "redirect:/";
+		}
 	}
 }

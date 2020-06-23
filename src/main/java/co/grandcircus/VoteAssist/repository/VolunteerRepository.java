@@ -14,5 +14,7 @@ public interface VolunteerRepository extends JpaRepository<Volunteer, Long>{
 	
 	@Query(value = "SELECT count(*) FROM vote_assist.volunteer;", nativeQuery = true)
 	Integer findAllVolunteers();
+	
+	Volunteer findByEmail(String email);
 
 }
