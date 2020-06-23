@@ -109,6 +109,10 @@ public class AdminController implements Serializable{
 		return "redirect:/admin";
 	}
 	
+	@RequestMapping("/test")
+	public String test() {
+		return "test";
+	}
 }	
 	
 	
