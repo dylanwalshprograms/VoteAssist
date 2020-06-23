@@ -143,6 +143,13 @@ public class VolunteerPageController implements Serializable{
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
 		// regCutOff is the logic that calculates deadline to register to vote in the voters state, based on current campaign
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
+		//checks if registration deadline has passed
+		if (regCutoff.compareTo(timeMachineLDT) <= 0) {
+			voterData.setNextCall(electionDay.minusDays(adminRepo.findByLowestId().getDelayVIP()));
+			voterData.setResult("VIP");
+			voterRepo.save(voterData);
+			return "redirect:/home";
+		}
 		// Logic to filter DB in order to pull next record, based on lastCall and nextCall timestamps
 		String lastCall = "";
 		String nextCall = "";
