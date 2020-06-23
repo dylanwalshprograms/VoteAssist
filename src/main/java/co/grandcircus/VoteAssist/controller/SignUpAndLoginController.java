@@ -104,14 +104,13 @@ public class SignUpAndLoginController implements Serializable {
 		return "forgot-password";
 	}
 
-	@RequestMapping("forgot-password/submit")
+	@RequestMapping("/forgot-password/submit")
 	public String forgotPasswordSubmit(@RequestParam String email, Model model) {
-<<<<<<< Updated upstream
 		Volunteer volunteer = volunteerRepo.findByEmail(email);
 		if (volunteer == null) {
 			String message = "No volunteer accounts are associated with " + email;
 			model.addAttribute("message", message);
-			return "redirect:/forgot-password";
+			return "forgot-password";
 
 		} else {
 			Random rand = new Random();
@@ -125,14 +124,14 @@ public class SignUpAndLoginController implements Serializable {
 	}
 
 	@RequestMapping("/recover-password")
-	public String recoverPassword(@RequestParam int code, Model model) {
+	public String recoverPassword(@RequestParam(required = false) int code, Model model) {
 		System.out.println(code);
 		int randomNumber = (int) session.getAttribute("randomNumber");
 		if (code == randomNumber) {
 			return "reset-password";
 		} else {
-			model.addAttribute("message", "Your code does not match, please try again.");
-			return "redirect:/recover-password";
+			model.addAttribute("message", "Your code did not match, please try again.");
+			return "forgot-password";
 		}
 	}
 
@@ -141,23 +140,16 @@ public class SignUpAndLoginController implements Serializable {
 		if (password.length() < 8) {
 			if (!password.equals(passwordConfirm)) {
 				model.addAttribute("message", "Passwords do not match. Please try again.");
-				return "redirect:/reset-password/submit";
+				return "reset-password";
 			}
 			model.addAttribute("message",
 					"Password is too short. Please try again with a length of 8-20 characters (letters, numbers, and special characters only).");
-			return "redirect:/reset-password/submit";
+			return "reset-password";
 		} else {
 			Volunteer volunteer = volunteerRepo.findByEmail((String) session.getAttribute("email"));
 			volunteer.setPassword(password);
 			volunteerRepo.save(volunteer);
 			return "redirect:/";
 		}
-=======
-		
-		String message = "";
-		
-		model.addAttribute("message", message);
-		return "redirect:/forgot-password";
->>>>>>> Stashed changes
 	}
 }

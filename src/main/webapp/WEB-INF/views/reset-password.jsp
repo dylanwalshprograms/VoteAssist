@@ -18,7 +18,7 @@
 	<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
 </div>
 	<article class="card mx-auto">
-		<section class="card-header">${message}</section>
+		<section class="card-header"><c:out value="${message}" /></section>
 
 		<section class="card-body">
 			<div>

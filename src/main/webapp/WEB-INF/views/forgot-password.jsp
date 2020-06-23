@@ -16,7 +16,7 @@
 </div>
 	<article class="card mx-auto">
 		<section class="card-header">
-			${message}
+			<c:out value="${message}" />
 		</section>
 
 		<section class="card-body">
