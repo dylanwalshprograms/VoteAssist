@@ -18,14 +18,14 @@
 	<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
 </div>
 	<article class="card mx-auto">
-		<section class="card-header">${message}</section>
+		<section class="card-header"><c:out value="${message}" /></section>
 
 		<section class="card-body">
 			<div>
 
 				<form action="/recover-password">
-					<label>Enter the 6 digit code:</label> <input type="number"
-						name="code" />
+					<label>Enter code:</label> <input type="number"
+						name="code" required/>
 
 					<button class="btn btn-primary">Submit</button>
 				</form>
