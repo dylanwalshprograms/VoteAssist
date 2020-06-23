@@ -106,6 +106,7 @@ public class SignUpAndLoginController implements Serializable {
 
 	@RequestMapping("forgot-password/submit")
 	public String forgotPasswordSubmit(@RequestParam String email, Model model) {
+<<<<<<< Updated upstream
 		Volunteer volunteer = volunteerRepo.findByEmail(email);
 		if (volunteer == null) {
 			String message = "No volunteer accounts are associated with " + email;
@@ -151,5 +152,12 @@ public class SignUpAndLoginController implements Serializable {
 			volunteerRepo.save(volunteer);
 			return "redirect:/";
 		}
+=======
+		
+		String message = "";
+		
+		model.addAttribute("message", message);
+		return "redirect:/forgot-password";
+>>>>>>> Stashed changes
 	}
 }

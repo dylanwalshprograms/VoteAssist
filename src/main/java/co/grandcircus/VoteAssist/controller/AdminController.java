@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.grandcircus.VoteAssist.Service.AdminService;
 import co.grandcircus.VoteAssist.entity.AdminConfiguration;
 import co.grandcircus.VoteAssist.entity.CallLog;
+import co.grandcircus.VoteAssist.entity.Scripts;
 import co.grandcircus.VoteAssist.entity.Volunteer;
 
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
+import co.grandcircus.VoteAssist.repository.ScriptRepository;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
@@ -46,6 +48,9 @@ public class AdminController implements Serializable{
 	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private ScriptRepository scriptRepo;
 	
 	@RequestMapping("/admin") // Checks current session, finds user
 	public String adminDashboard(Model model) {
@@ -117,14 +122,16 @@ public class AdminController implements Serializable{
 	public String test(@RequestParam String scriptName, Model model) {
 		
 		String script = adminService.adminScriptEditor(scriptName);
+		Scripts scriptActual = scriptRepo.findByScriptName(script);
 		
-		model.addAttribute("script", script);
+		model.addAttribute("script", scriptActual);
 		
 		return "admin-script-edit";
 	}
 	
 	@RequestMapping("/script-submit") 
-	public String submitEditedScript() {
+	public String submitEditedScript(Scripts script) {
+		// scriptRepo.();
 		return "redirect:/admin";
 	}
 }	
