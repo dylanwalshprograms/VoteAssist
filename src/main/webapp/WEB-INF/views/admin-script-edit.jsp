@@ -24,13 +24,17 @@
                 	<h1>Script Editor</h1>
 
                 </section>
-				<form method="post" action="/script-submit">
+				
                 <section class="card-body">
-                <div id="editor"><textarea name="scriptText" rows="50" cols="50">${script.scriptText}</textarea></div>
+                <form action="/script-submit" method="post">
+               		 
+               		 	<textarea id="editor" name="scriptText" rows="50" cols="50">${script.scriptText}</textarea>
+               		
+               		 	<input type="hidden" name="scriptName" value="${script.scriptName}" />
+			    		<button>Submit</button>
+				</form>
                 </section>
-				<input type="hidden" name="scriptName" value="${script.scriptName}" />
-			    <input type="submit" value="Submit Changes" class="link" />
-			</form>
+				
             </article>
             
 			    
