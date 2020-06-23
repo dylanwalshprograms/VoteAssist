@@ -47,8 +47,10 @@
 
 				</form>
 				
-				<a href="/sign-up">Sign Up</a>
-				<a href="/forgot-password">Forgot Password?</a>
+				<a class="btn btn-primary" href="/sign-up">Sign Up</a>
+				
+				<a type="button" class="btn btn-dark" href="/forgot-password" target="popup" onclick="window.open('/forgot-password','Forgot Password?','width=750,height=600')">Forgot Password?</a>
+				
 
 			</section>
 

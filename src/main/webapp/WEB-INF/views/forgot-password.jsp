@@ -11,15 +11,24 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
+<div>
+	<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
+</div>
+	<article class="card mx-auto">
+		<section class="card-header">
+			${message}
+		</section>
 
-${message}
-
-<form action="/forgot-password/submit">
-
-	<label>Enter your email address</label>
-	<input type="email" name="email">
-	<button class = "btn btn-primary">Submit</button>
-</form>
+		<section class="card-body">
+			<div>
+				<form action="/forgot-password/submit">
+					<label>Enter your email address</label>
+					<input type="email" name="email">
+					<button class = "btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</section>
+	</article>
 
 </body>
 </html>
