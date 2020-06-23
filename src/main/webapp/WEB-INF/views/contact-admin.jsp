@@ -19,17 +19,12 @@
 										<input type="hidden" name="fromEmail" value="voteassist.admn@gmail.com">
 										<input type="hidden" name="toEmail" value="voteassist.admn@gmail.com">
 										<label>Subject:</label><br>
-										<textarea rows="1" cols="75" name="subject">Vote by Mail with VoteAssist!</textarea><br>
+										<textarea rows="1" cols="75" name="subject">VOLUNTEER REQUEST</textarea><br>
 										<label>Message:</label><br>
 										<textarea rows="10" cols="75" name="contentString" required>
 [ADD YOUR PERSONAL MESSAGE HERE!]
 
-Thanks for taking the time to speak with our volunteer today.
-You can get detailed instructions of voting by mail in your area at turbovote.org
 
-
-	Thanks again,
-	VoteAssist
 										</textarea><br>
 										<button class="btn btn-success">Send</button>
 									</form>
