@@ -26,7 +26,7 @@
                 </section>
 				<form method="post" action="/script-submit">
                 <section class="card-body">
-                <div id="editor"><textarea name="scriptText" value="${script.scriptText}" rows="50" cols="50">${script.scriptText}</textarea></div>
+                <div id="editor"><textarea name="scriptText" rows="50" cols="50">${script.scriptText}</textarea></div>
                 </section>
 				<input type="hidden" name="scriptName" value="${script.scriptName}" />
 			    <input type="submit" value="Submit Changes" class="link" />
