@@ -118,7 +118,21 @@
 
             </article>
             
-            <a href="/test">test</a>
+            
+            <form method="post" action="/script-edit">
+			    <input type="hidden" name="scriptName" value="main_script" />
+			    <input type="submit" value="Edit Main Script" class="link" />
+			</form>
+			
+			<form method="post" action="/script-edit">
+			    <input type="hidden" name="scriptName" value="vip_reminder_script" />
+			    <input type="submit" value="Edit Vote in Person Script" class="link" />
+			</form>
+			
+			<form method="post" action="/script-edit">
+			    <input type="hidden" name="scriptName" value="vbm_reminder_script" />
+			    <input type="submit" value="Edit Vote by Mail Script" class="link" />
+			</form>
 
         	</main>
        
