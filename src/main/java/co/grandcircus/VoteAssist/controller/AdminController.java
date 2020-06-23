@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.grandcircus.VoteAssist.Service.AdminService;
 import co.grandcircus.VoteAssist.entity.AdminConfiguration;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.Volunteer;
@@ -39,6 +40,9 @@ public class AdminController implements Serializable{
 	
 	@Autowired 
 	private VoterRepository voterRepo;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@Autowired
 	private HttpSession session;
@@ -109,9 +113,19 @@ public class AdminController implements Serializable{
 		return "redirect:/admin";
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
-		return "test";
+	@RequestMapping("/script-edit")
+	public String test(@RequestParam String scriptName, Model model) {
+		
+		String script = adminService.adminScriptEditor(scriptName);
+		
+		model.addAttribute("script", script);
+		
+		return "admin-script-edit";
+	}
+	
+	@RequestMapping("/script-submit") 
+	public String submitEditedScript() {
+		return "redirect:/admin";
 	}
 }	
 	
