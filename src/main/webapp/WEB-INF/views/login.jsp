@@ -48,6 +48,7 @@
 				</form>
 				
 				<a href="/sign-up">Sign Up</a>
+				<a href="/forgot-password">Forgot Password?</a>
 
 			</section>
 

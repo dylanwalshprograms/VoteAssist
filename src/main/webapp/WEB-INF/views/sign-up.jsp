@@ -31,6 +31,12 @@
 							name="name" type="text" required />
 
 					</div>
+					
+					<div class="form-group">
+						<label>Email</label> <input class="form-control"
+							name="email" type="email" required />
+
+					</div>
 
 					<div class="form-group">
 						<label>Username</label> <input class="form-control"
