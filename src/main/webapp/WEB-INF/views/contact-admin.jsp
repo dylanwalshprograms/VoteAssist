@@ -13,10 +13,11 @@
 <body>
 
 								<div class="card-body">
-									<form action="/send-email">
-										<label>To:</label><br>
-										<input type="email" name="toEmail" required width="200%"><br>
+									<form action="/send-admin-email">
+										<label>Your Email:</label><br>
+										<input type="email" name="returnAddress">
 										<input type="hidden" name="fromEmail" value="voteassist.admn@gmail.com">
+										<input type="hidden" name="toEmail" value="voteassist.admn@gmail.com">
 										<label>Subject:</label><br>
 										<textarea rows="1" cols="75" name="subject">Vote by Mail with VoteAssist!</textarea><br>
 										<label>Message:</label><br>

@@ -18,14 +18,14 @@ public class EmailService {
 	@Autowired
 	private SendGrid sendGrid;
 	
-	public void emailParams(String toEmail, String subject, String contentString) {
+	public void emailParams(String toEmail, String subject, String contentString, String fromEmail) {
 		
-		sendEmail(toEmail, subject, contentString);
+		sendEmail(toEmail, fromEmail, subject, contentString);
 	}
 	
 	// Method to send email, example from Send Grid API
-	private void sendEmail(String to, String subject, String content) {
-		Email fromEmail = new Email("voteassist.admn@gmail.com");
+	private void sendEmail(String to, String from, String subject, String content) {
+		Email fromEmail = new Email(from);
 		Email toEmail = new Email(to);
 		Content contentObj = new Content("text/plain", content);
 	    Mail mail = new Mail(fromEmail, subject, toEmail, contentObj);

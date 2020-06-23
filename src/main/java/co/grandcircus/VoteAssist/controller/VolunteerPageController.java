@@ -276,14 +276,35 @@ public class VolunteerPageController implements Serializable{
 		
 	}
 	
-	@RequestMapping("email-popup") // Displays email popup window
+	@RequestMapping("/contact-admin") // Displays email popup window for admin contact
+	public String contactAdmin() {
+		return "contact-admin";
+	}
+	
+	@RequestMapping("/send-admin-email") // Sends email
+	public String emailAdmin(@RequestParam(required = true) String toEmail, 
+			@RequestParam String subject, 
+			@RequestParam String contentString,
+			@RequestParam String fromEmail,
+			@RequestParam String returnAddress) {
+		contentString = "Volunteer return email: " + returnAddress + "\n\n" + contentString;
+		
+		emailService.emailParams(toEmail, subject, contentString, fromEmail);
+		
+		return "email-sent";
+	}
+	
+	@RequestMapping("/email-popup") // Displays email popup window for voter communication
 	public String emailPopup() {
 		return "email-popup";
 	}
 	
 	@RequestMapping("/send-email") // Sends email
-	public String email(@RequestParam(required = true) String toEmail, @RequestParam String subject, @RequestParam String contentString) {
-		emailService.emailParams(toEmail, subject, contentString);
+	public String email(@RequestParam(required = true) String toEmail, 
+			@RequestParam String subject, 
+			@RequestParam String contentString,
+			@RequestParam String fromEmail) {
+		emailService.emailParams(toEmail, subject, contentString, fromEmail);
 		return "email-sent";
 	}
 

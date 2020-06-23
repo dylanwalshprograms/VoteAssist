@@ -29,6 +29,8 @@
 		
 		<label>"Current" Date: ${timeMachineString}</label>
 		
+				<a type="button" class="btn btn-warning" href="/contact-admin" target="popup" onclick="window.open('/contact-admin','Email','width=600,height=525')">Contact Admin</a>
+		
 		<ul class="nav">
 			
 			
@@ -59,7 +61,7 @@
 
 				</section>
 				
-				<a type="button" class="btn btn-primary" href="email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=525')">Send Email to Voter</a>
+				<a type="button" class="btn btn-primary" href="/email-popup" target="popup" onclick="window.open('/email-popup','Email','width=600,height=525')">Send Email to Voter</a>
 
 			</article>
 
