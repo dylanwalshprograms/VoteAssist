@@ -14,14 +14,14 @@
 
 	<div>
 		<p>
-			1. Hello, may I speak with <b>${voter.name}</b>.
+			1. Hello, may I speak with <b>${voterinformation.voterData.name}</b>.
 		</p>
 		<p>
-			2. This is <b>${volunteerName}</b> calling on behalf of <b>${campaignName}</b>.
+			2. This is <b>${voterinformation.currentVolunteer.name}</b> calling on behalf of <b>${voterinformation.campaignName}</b>.
 		</p>
 		<p>
-			3. We last reached out on <b>${lastCall}</b> and you indicated that you
-			would be voting in person.  Are you still planning to vote on <b>${electionDay}</b>?
+			3. We last reached out on <b>${voterinformation.lastCall}</b> and you indicated that you
+			would be voting in person.  Are you still planning to vote on <b>${voterinformation.electionDay}</b>?
 		</p>
 		<p>
 			4. Thanks for your time and think about how great you’ll feel

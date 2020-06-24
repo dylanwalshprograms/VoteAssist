@@ -6,6 +6,9 @@ public class VoteAssistMethods {
 	
 	// Method to convert localdatetime timestamp into string more easily readable by humans
 	public static String localDateTimeInWords(LocalDateTime ldt) {
+		if (null == ldt) {
+			return null;
+		}
 		
 		String dayOfWeek = ldt.getDayOfWeek().toString();
 		String month = ldt.getMonth().toString();

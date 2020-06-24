@@ -42,11 +42,7 @@
 
 
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+    const editor = ClassicEditor.create(document.querySelector('#editor'));
 </script>
 </body>
 </html>

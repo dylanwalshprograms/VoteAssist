@@ -9,6 +9,8 @@ import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
+
 @Entity
 public class VoterData {
 
@@ -160,7 +162,15 @@ public class VoterData {
 	public void setInUse(Boolean inUse) {
 		this.inUse = inUse;
 	}
-
+	
+	public String getLastCallInWords() {
+		return VoteAssistMethods.localDateTimeInWords(lastCall);
+	}
+	
+	public String getNextCallInWords() {
+		return VoteAssistMethods.localDateTimeInWords(nextCall);
+	}
+	
 	@Override
 	public String toString() {
 		return "VoterData [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", city=" + city

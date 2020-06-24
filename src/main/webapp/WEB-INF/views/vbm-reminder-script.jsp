@@ -14,13 +14,13 @@
 
 	<div>
 		<p>
-			1. Hello, may I speak with <b>${voter.name}</b>.
+			1. Hello, may I speak with <b>${voterinformation.voterData.name}</b>.
 		</p>
 		<p>
-			2. This is <b>${volunteerName}</b> calling on behalf of <b>${campaignName}</b>.
+			2. This is <b>${voterinformation.currentVolunteer.name}</b> calling on behalf of <b>${voterinformation.campaignName}</b>.
 		</p>
 		<p>
-			3. We last reached out on <b>${lastCall}</b> and you indicated that you
+			3. We last reached out on <b>${voterinformation.lastCall}</b> and you indicated that you
 			would be registering to vote by mail.  Have you had a chance to register
 			to vote by mail?
 		</p>
@@ -31,7 +31,7 @@
 		</p>
 		<p>
 			NO 4(b) No problem, this call was actually scheduled to remind you that
-			you still have until <b>${regCutOffDay}</b> to register to vote by mail.
+			you still have until <b>${voterinformation.regCutOffDay}</b> to register to vote by mail.
 			Do you have any specific question I can answer to assist you in getting
 			registered to vote by mail?		
 		</p>
