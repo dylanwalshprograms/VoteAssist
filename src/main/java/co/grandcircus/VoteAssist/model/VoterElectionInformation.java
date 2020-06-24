@@ -14,7 +14,11 @@ public class VoterElectionInformation {
 	private String campaignName;
 	private StateVoteInfoResponse stateResponse;
 	private CivicApiResponse civicResponse;
-	private VoterData voterData;
+	public VoterData voterData;
+	
+	public VoterElectionInformation() {
+		
+	}
 
 	public VoterElectionInformation(LocalDateTime electionDay, LocalDateTime regCutoff, Volunteer currentVolunteer,
 			String campaignName, StateVoteInfoResponse stateResponse, CivicApiResponse civicResponse,

@@ -125,7 +125,7 @@
 
                 <section class="card-header">
 
-                    <c:set var="main-script" value="${script}"/>
+                   <!-- <c:set var="main-script" value="${script}"/>
                 <c:if test = "${script == 'main-script'}">
 					<h1>Main Script</h1>
 					</c:if>
@@ -136,14 +136,14 @@
 					<c:set var="vbm-reminder-script" value="${script}"/>
                 <c:if test = "${script == 'vbm-reminder-script'}">
 					<h1>Will Vote by Mail Script</h1>
-					</c:if>
+					</c:if> -->
 
 
                 </section>
 
                 <section class="card-body">
 
-					<jsp:include page="${script}.jsp"/>
+					<c:out value="${template}"/>
 
                 </section>
 
