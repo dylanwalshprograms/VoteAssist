@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
+import co.grandcircus.VoteAssist.Service.TimeMachineService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.Volunteer;
@@ -58,12 +59,12 @@ public class VolunteerPageController implements Serializable{
 	private AdminRepository adminRepo;
 	
 	@Autowired
+	private TimeMachineService timeMachineService;
+	
+	@Autowired
 	private HttpSession session;
 		
 	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
-	
-	private LocalDateTime timeMachineLDT = LocalDateTime.now();
-	private String timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
 	
 	@RequestMapping("/training") // Training view
 	public String training() {
@@ -85,15 +86,13 @@ public class VolunteerPageController implements Serializable{
 		
 	@RequestMapping("/reset-time") // Mapping to force time change in program (For testing and demoing purposes).
 	public String resetTime(@RequestParam(required = true) String time) {
-		
 		if (time == null || time.isEmpty()) {
-			timeMachineLDT = LocalDateTime.now();
-			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
+			timeMachineService.disableTimeMachine();
+		} else {
+			LocalDateTime timeMachineTime = LocalDateTime.parse(time);
+			timeMachineService.enableTimeMachine(timeMachineTime);
 		}
-		else {
-			timeMachineLDT = LocalDateTime.parse(time);
-			timeMachineString = VoteAssistMethods.localDateTimeInWords(timeMachineLDT);
-		}
+		
 		return "redirect:/home";
 	}
 		
@@ -144,7 +143,7 @@ public class VolunteerPageController implements Serializable{
 		// regCutOff is the logic that calculates deadline to register to vote in the voters state, based on current campaign
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
 		//checks if registration deadline has passed
-		if (regCutoff.compareTo(timeMachineLDT) <= 0) {
+		if (regCutoff.compareTo(timeMachineService.getTime()) <= 0) {
 			voterData.setNextCall(electionDay.minusDays(adminRepo.findByLowestId().getDelayVIP()));
 			voterData.setResult("VIP");
 			voterRepo.save(voterData);
@@ -157,7 +156,7 @@ public class VolunteerPageController implements Serializable{
 			lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
 			nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
 		}
-		model.addAttribute("timeMachineString", timeMachineString);
+		model.addAttribute("timeMachineString", timeMachineService.getTimeInWords());
 		model.addAttribute("nextCall", nextCall);
 		model.addAttribute("lastCall", lastCall);
 		
@@ -185,7 +184,7 @@ public class VolunteerPageController implements Serializable{
 		if (voterData.getNextCall() == null) {
 			return "home";
 		}
-		else if (voterData.getNextCall().compareTo(timeMachineLDT) >= 0) {  //REPLACED BY TIME MACHINE LocalDateTime.now()) >= 0) { 
+		else if (voterData.getNextCall().compareTo(timeMachineService.getTime()) >= 0) {  //REPLACED BY TIME MACHINE LocalDateTime.now()) >= 0) { 
 			return "no-more-records";
 		}
 			
@@ -204,7 +203,7 @@ public class VolunteerPageController implements Serializable{
 		Long delayAVBM = adminRepo.findByLowestId().getDelayAVBM();
 		Long delayNV = adminRepo.findByLowestId().getDelayNV();
 				
-		LocalDateTime currentTime = timeMachineLDT;		// Replaced by TimeMachine LocalDateTime.now();
+		LocalDateTime currentTime = timeMachineService.getTime();
 		// Logic to pull next record
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
 		// Displays cutoff to register to vote		

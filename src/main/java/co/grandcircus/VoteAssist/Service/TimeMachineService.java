@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
+
 /**
  * The Time Machine allows the application to switch between 
  * wall clock time for normal use and a fixed time for demoing.
@@ -41,5 +43,13 @@ public class TimeMachineService {
 	 */
 	public LocalDateTime getTime() {
 		return fixedTime.orElseGet(() -> LocalDateTime.now());
+	}
+	
+	/**
+	 * @return Return the string representation of current time machine time or 
+	 * wallclock time if time machine time is unavailable.
+	 */
+	public String getTimeInWords() {
+		return VoteAssistMethods.localDateTimeInWords(getTime());
 	}
 }
