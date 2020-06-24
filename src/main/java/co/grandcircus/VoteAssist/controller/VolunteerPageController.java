@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.VoteAssist.Service.ElectionService;
 import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
 import co.grandcircus.VoteAssist.Service.TimeMachineService;
@@ -59,13 +60,14 @@ public class VolunteerPageController implements Serializable{
 	private AdminRepository adminRepo;
 	
 	@Autowired
+	private ElectionService electionService;
+	
+	@Autowired
 	private TimeMachineService timeMachineService;
 	
 	@Autowired
 	private HttpSession session;
 		
-	private LocalDateTime electionDay = LocalDateTime.of(2020, 11, 03, 8, 00, 00);
-	
 	@RequestMapping("/training") // Training view
 	public String training() {
 		return "training";
@@ -102,7 +104,7 @@ public class VolunteerPageController implements Serializable{
 		String campaignName = adminRepo.findByLowestId().getCampaignName();
 		String priority = adminRepo.findByLowestId().getPriority();
 		
-		
+		LocalDateTime electionDay = electionService.getNextElectionDate();
 		
 		// Check to verify if user is in a session, goes to login if no
 		if (session.getAttribute("user") == null) {
@@ -187,6 +189,9 @@ public class VolunteerPageController implements Serializable{
 	public String submitNext(@RequestParam String notes,
 			@RequestParam(required = true) String result, @RequestParam(required = false) String nextCall,
 			@RequestParam String button, @RequestParam Long voterId, Model model) {
+
+		LocalDateTime electionDay = electionService.getNextElectionDate();
+
 		// Applies delays set by admin
 		Long delayNA = adminRepo.findByLowestId().getDelayNA();
 		Long delayVIP = adminRepo.findByLowestId().getDelayVIP();
