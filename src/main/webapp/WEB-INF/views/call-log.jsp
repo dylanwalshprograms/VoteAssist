@@ -15,12 +15,16 @@
 </head>
 <body>
 	<nav class="navbar bg-light">
+	
+			<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">
 				
 				<div>	
 			
-					<a type="button" class="btn btn-danger" href="/logout">Logout</a>
+					
 				
 					<a type="button" class="btn btn-primary" href="/admin">Return to Admin Dashboard</a>
+					
+					<a type="button" class="btn btn-danger" href="/logout">Logout</a>
 					
 					<p/>
 				
@@ -31,7 +35,7 @@
 				
 				</div>
 		
-		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
+		
 	</nav>
 	
 	<table class="table">
