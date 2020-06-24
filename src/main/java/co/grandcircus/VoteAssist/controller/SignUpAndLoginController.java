@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -50,7 +51,7 @@ public class SignUpAndLoginController implements Serializable {
 		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
 		if (foundUser.isPresent()) {
 			if (loginType.equals("admin")) {
-				if (foundUser.get().getIsAdmin()) {
+				if (foundUser.get().getIsAdmin() != null && foundUser.get().getIsAdmin() == true) {
 					session.setAttribute("user", foundUser.get());
 					session.setAttribute("loginType", loginType);
 					return "redirect:/admin";
@@ -76,7 +77,7 @@ public class SignUpAndLoginController implements Serializable {
 		return "sign-up";
 	}
 
-	@RequestMapping("/sign-up/submit") // Volunteer credential creation
+	@PostMapping("/sign-up/submit") // Volunteer credential creation
 	public String signUpSubmit(Volunteer volunteer, @RequestParam("password") String password,
 			@RequestParam("passwordConfirm") String passwordConfirm, @RequestParam String email, Model model) {
 
@@ -136,7 +137,7 @@ public class SignUpAndLoginController implements Serializable {
 		}
 	}
 
-	@RequestMapping("/reset-password/submit")
+	@PostMapping("/reset-password/submit")
 	public String resetPassword(@RequestParam String password, @RequestParam String passwordConfirm, Model model, RedirectAttributes redir) {
 		if (password.length() < 8) {
 			if (!password.equals(passwordConfirm)) {
@@ -150,7 +151,7 @@ public class SignUpAndLoginController implements Serializable {
 			Volunteer volunteer = volunteerRepo.findByEmail((String) session.getAttribute("email"));
 			volunteer.setPassword(password);
 			volunteerRepo.save(volunteer);
-			return "redirect:/";
+			return "password-update-success";
 		}
 	}
 }

@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.samskivert.mustache.Template;
+
 import co.grandcircus.VoteAssist.Service.ElectionService;
 import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.Service.GoogleCivicsApiService;
+import co.grandcircus.VoteAssist.Service.JMustacheService;
 import co.grandcircus.VoteAssist.Service.TimeMachineService;
 import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
@@ -64,6 +67,9 @@ public class VolunteerPageController implements Serializable{
 	
 	@Autowired
 	private TimeMachineService timeMachineService;
+	
+	@Autowired
+	private JMustacheService jMustacheService;
 	
 	@Autowired
 	private HttpSession session;
@@ -147,26 +153,19 @@ public class VolunteerPageController implements Serializable{
 
 		model.addAttribute("timeMachineString", timeMachineService.getTimeInWords());
 		
-		String scriptName = "main-script";
-		VoterElectionInformation voterElectionInformaiton = new VoterElectionInformation(electionDay, regCutoff, currentVolunteer, campaignName, stateResponse, civicResponse, voterData);
+		VoterElectionInformation voterElectionInformation = new VoterElectionInformation(electionDay, regCutoff, currentVolunteer, campaignName, stateResponse, civicResponse, voterData);
 		
-		model.addAttribute("voterInformation", voterElectionInformaiton);
+		model.addAttribute("voterInformation", voterElectionInformation);
 		
-		// Logic to determine what script is used for voter, based on current disposition of voter
-		if (voterData.getResult() == null) {
-			scriptName = "main-script";
-		} else if (voterData.getResult().equals("VIP")) {
-			scriptName = "vip-reminder-script";
-		} else if (voterData.getResult().equals("WVBM")) {
-			scriptName = "vbm-reminder-script";
-		}
+		Template template = jMustacheService.changeExpressionLanguageToContext(voterElectionInformation);
+		System.out.println(template);
+		model.addAttribute("template", template);
 		
-		model.addAttribute("script", scriptName);
 		// Logic to navigate to no more records view when no records are available
 		if (voterData.getNextCall() == null) {
 			return "home";
 		}
-		else if (voterData.getNextCall().compareTo(timeMachineService.getTime()) >= 0) {  //REPLACED BY TIME MACHINE LocalDateTime.now()) >= 0) { 
+		else if (voterData.getNextCall().compareTo(timeMachineService.getTime()) >= 0) {  
 			return "no-more-records";
 		}
 			

@@ -131,12 +131,9 @@ public class AdminController implements Serializable{
 	
 	@RequestMapping("/script-submit") 
 	public String submitEditedScript(@RequestParam String scriptName, @RequestParam String scriptText) {
-		System.out.println(scriptName);
-		System.out.println(scriptText);
 		Scripts script = scriptRepo.findByScriptName(scriptName);
 		script.setScriptText(scriptText);
 		scriptRepo.save(script);
-		System.out.println(script.getScriptText());
 		return "redirect:/admin";
 	}
 }	

@@ -27,7 +27,7 @@
 			the polls and votes. A lot of people think that this election is one
 			of the most significant in years. Issues such as National Security,
 			Taxes, and Healthcare will all be affected by this election, and we
-			want every voter in <b>${voter.state}</b> to stand up and be counted.</p>
+			want every voter in <b>${voterInformation.voterData.state}</b> to stand up and be counted.</p>
 		<p>
 			4. Do you plan to  vote on <b>${voterInformation.getElectionDateInWords()}</b>?
 		</p>

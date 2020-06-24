@@ -73,6 +73,12 @@
 			<artifactId>sendgrid-java</artifactId>
 			<version>4.0.1</version>
 		</dependency>
+		<!-- Added for Jmustache template -->
+		<dependency>
+			<groupId>com.samskivert</groupId>
+			<artifactId>jmustache</artifactId>
+			<version>1.15</version>
+		</dependency>
 	</dependencies>
 
 	<build>
