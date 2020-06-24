@@ -22,7 +22,6 @@ import co.grandcircus.VoteAssist.Service.VoteSmartApiService;
 import co.grandcircus.VoteAssist.entity.CallLog;
 import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.entity.VoterData;
-import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
 import co.grandcircus.VoteAssist.model.VoterElectionInformation;
