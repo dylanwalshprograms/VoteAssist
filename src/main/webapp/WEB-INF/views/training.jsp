@@ -83,12 +83,16 @@
 	                </ul>
                 </div>
                 
-				<div>By clicking the checkbox you acknowledge the above information and have read it to its fullest.</div>
+				<div>
+				
+				
 				
                     <form action="/">
+                    	<label>By clicking the checkbox you acknowledge the above information and have read it to its fullest.</label>
 						<input type="checkbox" required/>
 						<button class = "btn btn-primary">Confirm</button>
 					</form>
+				</div>
 
                 </section>
 

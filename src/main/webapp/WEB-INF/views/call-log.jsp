@@ -15,22 +15,22 @@
 </head>
 <body>
 	<nav class="navbar bg-light">
-					
-		<ul class="nav">
-			<li class="nav-item">
-				<a type="button" class="btn btn-primary" href="/admin">Return to Admin Dashboard</a>
-			</li>
+				
+				<div>	
 			
-			<li class="nav-item">
-				<a type="button" class="btn btn-danger" href="/logout">Logout</a><br>
-			</li>
-			<li class="nav-item">
-				<form class="form-inline my-2 my-lg-0" action = "/call-log">
-      				<input class="form-control mr-sm-2" type="search" value="${param.keyword}" name="keyword" placeholder="Search by Result" aria-label="Search">
-      				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    			</form>	
-			<li>
-		</ul>
+					<a type="button" class="btn btn-danger" href="/logout">Logout</a>
+				
+					<a type="button" class="btn btn-primary" href="/admin">Return to Admin Dashboard</a>
+					
+					<p/>
+				
+					<form class="form-inline my-2 my-lg-0" action = "/call-log">
+	      				<input class="form-control mr-sm-2" type="search" value="${param.keyword}" name="keyword" placeholder="Search by Result" aria-label="Search">
+	      				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    			</form>	
+				
+				</div>
+		
 		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
 	</nav>
 	

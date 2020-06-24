@@ -45,12 +45,12 @@
 					</div>
 
 					<div class="form-group">
-						<label>Password</label> <input class="form-control"
+						<label>Password</label> <input minlength="8" class="form-control"
 							name="password" type="password" required />
 					</div>
 					
 					<div class="form-group">
-						<label>Confirm Password</label> <input class="form-control"
+						<label>Confirm Password</label> <input minlength="8" class="form-control"
 							name="passwordConfirm" type="password" required />
 					</div>
 
