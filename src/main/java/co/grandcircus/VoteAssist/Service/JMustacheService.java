@@ -32,18 +32,16 @@ public class JMustacheService {
 			Scripts voteByMailScript = scriptRepo.findByScriptName("vbm_reminder_script");
 			text = voteByMailScript.getScriptText();
 		}
-		
-		System.out.println(text);
 
 		Template tmpl = Mustache.compiler().compile(text);
 		Map<String, String> data = new HashMap<String, String>();
-		data.put("voterInformation.voterData.name", voterElectionInformation.getVoterData().getName());
-		data.put("voterInformation.currentVolunteer.name", voterElectionInformation.getCurrentVolunteer().getName());
-		data.put("voterInformation.campaignName", voterElectionInformation.getCampaignName());
-		data.put("voterInformation.voterData.state", voterElectionInformation.getVoterData().getState());
-		data.put("voterInformation.getElectionDateInWords()", voterElectionInformation.getElectionDateInWords());
-		data.put("voterInformation.getRegCutoffDateInWords()", voterElectionInformation.getRegCutoffDateInWords());
-		data.put("voterInformation.getLastCallInWords()", voterElectionInformation.getLastCallInWords());
+		data.put("Voter Name", voterElectionInformation.getVoterData().getName());
+		data.put("Volunteer Name", voterElectionInformation.getCurrentVolunteer().getName());
+		data.put("Campaign Name", voterElectionInformation.getCampaignName());
+		data.put("Voter State", voterElectionInformation.getVoterData().getState());
+		data.put("Election Date", voterElectionInformation.getElectionDateInWords());
+		data.put("Registration Cutoff Date", voterElectionInformation.getRegCutoffDateInWords());
+		data.put("Last Call", voterElectionInformation.getLastCallInWords());
 		
 		String renderedTemplate = tmpl.execute(data);
 		return renderedTemplate;
