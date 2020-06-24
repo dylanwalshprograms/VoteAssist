@@ -84,7 +84,7 @@
 
 	<form action="/submit">
 		<div>
-			<textarea class="note-text" rows="3" name="notes">${voter.notes}</textarea>
+			<textarea class="note-text" rows="3" name="notes"></textarea>
 		</div>
 		<div>
 			<input type = "hidden"name = "voterId" value = "${voter.id}">
