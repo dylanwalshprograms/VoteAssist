@@ -157,7 +157,7 @@ public class VolunteerPageController implements Serializable{
 		String scriptName = "main-script";
 		VoterElectionInformation voterElectionInformaiton = new VoterElectionInformation(electionDay, regCutoff, currentVolunteer, campaignName, stateResponse, civicResponse, voterData);
 		
-		model.addAttribute("voterinformation", voterElectionInformaiton);
+		model.addAttribute("voterInformation", voterElectionInformaiton);
 		
 		// Logic to determine what script is used for voter, based on current disposition of voter
 		if (voterData.getResult() == null) {

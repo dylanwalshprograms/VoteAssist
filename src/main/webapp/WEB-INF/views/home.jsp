@@ -47,17 +47,17 @@
 
 				<section class="card-body">
 
-					Name - ${voterinformation.voterData.name}<br> 
-					Phone - ${voterinformation.voterData.phone}<br>
-					Street Address - ${voterinformation.voterData.address}<br> 
-					City - ${voterinformation.voterData.city}<br>
-					State - ${voterinformation.voterData.state}<br> 
-					Zip Code - ${voterinformation.voterData.zip}<br>
-					Party Preference - ${voterinformation.voterData.partyPref}<br> 
-					Is this person voting by mail? - ${voterinformation.voterData.voteByMail}<br> 
-					Next Scheduled Call - ${voterinformation.getNextCallInWords()}<br> 
-					Last Call - ${voterinformation.getLastCallInWords()}<br>
-					Last Call Result - ${voterinformation.voterData.result}<br>
+					Name - ${voterInformation.voterData.name}<br> 
+					Phone - ${voterInformation.voterData.phone}<br>
+					Street Address - ${voterInformation.voterData.address}<br> 
+					City - ${voterInformation.voterData.city}<br>
+					State - ${voterInformation.voterData.state}<br> 
+					Zip Code - ${voterInformation.voterData.zip}<br>
+					Party Preference - ${voterInformation.voterData.partyPref}<br> 
+					Is this person voting by mail? - ${voterInformation.voterData.voteByMail}<br> 
+					Next Scheduled Call - ${voterInformation.getNextCallInWords()}<br> 
+					Last Call - ${voterInformation.getLastCallInWords()}<br>
+					Last Call Result - ${voterInformation.voterData.result}<br>
 
 				</section>
 				
@@ -87,7 +87,7 @@
 			<textarea class="note-text" rows="3" name="notes"></textarea>
 		</div>
 		<div>
-			<input type = "hidden"name = "voterId" value = "${voter.id}">
+			<input type = "hidden"name = "voterId" value = "${voterInformation.voterData.id}">
 
 			<input type="radio" id="NA" name="result" value="NA" required>
 			<label for="NA">No Answer/Voicemail</label><br> 
@@ -207,14 +207,14 @@
 								aria-labelledby="headingThree" data-parent="#accordionExample">
 								<div class="card-body">
 										<p>
-											<c:forEach items="${civicResponse.offices}" var="office">
+											<c:forEach items="${voterInformation.civicResponse.offices}" var="office">
 												<br><b><c:out value="${office.name}" /></b><br>
 											<ul>
 												<c:forEach items="${office.officialIndices}" var="index">
-													<li><c:out value="${civicResponse.officials.get(index).name}" />, <i><c:out value="	${civicResponse.officials.get(index).party}" /></i><br></li>
+													<li><c:out value="${voterInformation.civicResponse.officials.get(index).name}" />, <i><c:out value="	${voterInformation.civicResponse.officials.get(index).party}" /></i><br></li>
 												</c:forEach>
 												<c:forEach items="${office.officialIndices}" var="index">
-												<c:forEach items="${civicResponse.officials.get(index).emails}" var="email">
+												<c:forEach items="${voterInformation.civicResponse.officials.get(index).emails}" var="email">
 													<c:out value="	${email}" />
 												</c:forEach>
 												</c:forEach>
@@ -238,7 +238,7 @@
 								aria-labelledby="headingFour" data-parent="#accordionExample">
 								<div class="card-body">
 									<div>
-										<c:out value="${stateResponse.state.details.voterReg}"
+										<c:out value="${voterInformation.stateResponse.state.details.voterReg}"
 											escapeXml="false" />
 									</div>
 								</div>

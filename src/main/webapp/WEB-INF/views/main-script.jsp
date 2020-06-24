@@ -17,10 +17,10 @@
 <body>
 	<div>
 		<p>
-			1. Hello, may I speak with <b>${voterinformation.voterData.name}</b>.
+			1. Hello, may I speak with <b>${voterInformation.voterData.name}</b>.
 		</p>
 		<p>
-			2. This is <b>${voterinformation.currentVolunteer.name}</b> calling on behalf of <b>${voterinformation.campaignName}</b>.
+			2. This is <b>${voterInformation.currentVolunteer.name}</b> calling on behalf of <b>${voterInformation.campaignName}</b>.
 		</p>
 		<p>3. We aren’t concerned if you’re a Democrat or a Republican.
 			What we want to do is make sure that every registered voter goes to
@@ -29,11 +29,11 @@
 			Taxes, and Healthcare will all be affected by this election, and we
 			want every voter in <b>${voter.state}</b> to stand up and be counted.</p>
 		<p>
-			4. Do you plan to  vote on <b>${voterinformation.getElectionDateInWords()}</b>?
+			4. Do you plan to  vote on <b>${voterInformation.getElectionDateInWords()}</b>?
 		</p>
 		<p>
 			YES 5(a). That’s Great! Remember, the deadline to register to vote by
-			mail in <b>${voterinformation.voterData.state}</b> is <b>${voterinformation.getRegCutoffDateInWords()}</b>. 
+			mail in <b>${voterinformation.voterData.state}</b> is <b>${voterInformation.getRegCutoffDateInWords()}</b>. 
 		</p>
 		<p>
 			Do you need information about getting registered to vote by mail in your district? 
