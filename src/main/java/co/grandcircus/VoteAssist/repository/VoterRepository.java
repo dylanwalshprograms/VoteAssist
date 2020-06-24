@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import co.grandcircus.VoteAssist.entity.VoterData;
 
@@ -32,6 +33,11 @@ public interface VoterRepository extends JpaRepository<VoterData, Long>{
 	
 	@Query(value = "SELECT * FROM vote_assist.voter_data WHERE result = 'VIP' LIMIT 1;", nativeQuery = true)
 	VoterData findbyVIP();
+	
+	@Query(value = "UPDATE `vote_assist`.`voter_data` SET `result` = 'VIP' WHERE state = :state ;", nativeQuery = true)
+	@Modifying
+	@Transactional
+	void updatePastRegistrationStateVoters(@Param("state") String state);
 	
 	@Query(value = "UPDATE `vote_assist`.`voter_data` SET `do_not_call` = NULL, `last_call` = NULL, `next_call` = NULL, `result` = NULL, `in_use` = NULL;", nativeQuery = true)
 	@Modifying
