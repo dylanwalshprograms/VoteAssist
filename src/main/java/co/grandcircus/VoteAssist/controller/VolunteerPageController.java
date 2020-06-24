@@ -277,15 +277,8 @@ public class VolunteerPageController implements Serializable{
 	}
 	
 	@RequestMapping("/send-admin-email") // Sends email
-	public String emailAdmin(@RequestParam(required = true) String toEmail, 
-			@RequestParam String subject, 
-			@RequestParam String contentString,
-			@RequestParam String fromEmail,
-			@RequestParam String returnAddress) {
-		contentString = "Volunteer return email: " + returnAddress + "\n\n" + contentString;
-		
-		emailService.emailParams(toEmail, subject, contentString, fromEmail);
-		
+	public String emailAdmin(@RequestParam String returnAddress, @RequestParam String message) {
+		emailService.sendMessageToAdmin(returnAddress, message);
 		return "email-sent";
 	}
 	
@@ -297,9 +290,10 @@ public class VolunteerPageController implements Serializable{
 	@RequestMapping("/send-email") // Sends email
 	public String email(@RequestParam(required = true) String toEmail, 
 			@RequestParam String subject, 
-			@RequestParam String contentString,
-			@RequestParam String fromEmail) {
-		emailService.emailParams(toEmail, subject, contentString, fromEmail);
+			@RequestParam String contentString) {
+		
+		emailService.sendMessageToVoter(toEmail, subject, contentString);
+		
 		return "email-sent";
 	}
 

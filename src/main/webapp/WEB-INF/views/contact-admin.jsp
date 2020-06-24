@@ -16,12 +16,8 @@
 									<form action="/send-admin-email">
 										<label>Your Email:</label><br>
 										<input type="email" name="returnAddress">
-										<input type="hidden" name="fromEmail" value="voteassist.admn@gmail.com">
-										<input type="hidden" name="toEmail" value="voteassist.admn@gmail.com">
-										<label>Subject:</label><br>
-										<textarea rows="1" cols="75" name="subject">VOLUNTEER REQUEST</textarea><br>
 										<label>Message:</label><br>
-										<textarea rows="10" cols="75" name="contentString" required>
+										<textarea rows="10" cols="75" name="message" required>
 [ADD YOUR PERSONAL MESSAGE HERE!]
 
 

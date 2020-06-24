@@ -15,15 +15,25 @@ import com.sendgrid.SendGrid;
 @Service
 public class EmailService {
 
+	private static final String VOTEASSIST_ADMN = "voteassist.admn@gmail.com";
+	
 	@Autowired
 	private SendGrid sendGrid;
 	
-	public void emailParams(String toEmail, String subject, String contentString, String fromEmail) {
+	public void sendMessageToAdmin(String returnAddress, String message) {
+		StringBuilder bodyBuilder = new StringBuilder();
+		bodyBuilder.append("Volunteer return email: ");
+		bodyBuilder.append(returnAddress);
+		bodyBuilder.append("\n\n");
+		bodyBuilder.append(message);
 		
-		sendEmail(toEmail, fromEmail, subject, contentString);
+		sendEmail(VOTEASSIST_ADMN, VOTEASSIST_ADMN, "Volunteer Request", bodyBuilder.toString());
+	}
+
+	public void sendMessageToVoter(String toEmail, String subject, String contentString) {
+		sendEmail(toEmail, VOTEASSIST_ADMN, subject, contentString);
 	}
 	
-	// Method to send email, example from Send Grid API
 	private void sendEmail(String to, String from, String subject, String content) {
 		Email fromEmail = new Email(from);
 		Email toEmail = new Email(to);

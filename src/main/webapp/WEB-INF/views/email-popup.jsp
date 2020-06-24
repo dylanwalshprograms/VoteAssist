@@ -16,7 +16,6 @@
 									<form action="/send-email">
 										<label>To:</label><br>
 										<input type="email" name="toEmail" required width="200%"><br>
-										<input type="hidden" name="fromEmail" value="voteassist.admn@gmail.com">
 										<label>Subject:</label><br>
 										<textarea rows="1" cols="75" name="subject">Vote by Mail with VoteAssist!</textarea><br>
 										<label>Message:</label><br>
