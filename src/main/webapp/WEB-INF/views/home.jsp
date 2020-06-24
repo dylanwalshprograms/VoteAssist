@@ -30,11 +30,6 @@
 		<label>"Current" Date: ${timeMachineString}</label>
 		
 				<a type="button" class="btn btn-warning" href="/contact-admin" target="popup" onclick="window.open('/contact-admin','Email','width=600,height=525')">Contact Admin</a>
-		
-		<ul class="nav">
-			
-			
-		</ul>
 	</nav>
 	<div class="top left">
 		<main class="container">

@@ -87,7 +87,7 @@
 				
                     <form action="/">
 						<input type="checkbox" required/>
-						<button>Confirm</button>
+						<button class = "btn btn-primary">Confirm</button>
 					</form>
 
                 </section>

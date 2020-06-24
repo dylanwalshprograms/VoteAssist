@@ -36,6 +36,12 @@
 }
 
 .img-icon {
-	width : 5%
+	width : 5%;
 		
+}
+.btn {
+	margin: 5px;
+}
+.btn-warning {
+	margin:15px;
 }

@@ -18,18 +18,14 @@
 
 <nav class="navbar bg-light">
 					
-		<ul class="nav">
+		
 			
-			<li class="nav-item">
-			<a type="button" class="btn btn-danger" href="/logout">Logout</a>
-			</li>
-			<li>
-			<a type="button" class="btn btn-dark" href="/reset-database">Reset Database for Testing</a>
-			</li>
-			<li>
-			<a type="button" class="btn btn-success" href="/home">Start Calling!</a>
-			</li>
-		</ul>
+			<div>
+				<a type="button" class="btn btn-danger" href="/logout">Logout</a>
+				<a type="button" class="btn btn-dark" href="/reset-database">Reset Database for Testing</a>
+				<a type="button" class="btn btn-success" href="/home">Start Calling!</a>
+			</div>
+		
 		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
 		
 	</nav>
