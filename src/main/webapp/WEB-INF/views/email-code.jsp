@@ -15,7 +15,7 @@
 </head>
 <body>
 <div>
-	<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
+	<img alt="vote-assist-logo" src="<c:url value="VoteAssistLogo.png"/>" class="img-centered">
 </div>
 	<article class="card mx-auto">
 		<section class="card-header"><c:out value="${message}" /></section>
@@ -23,7 +23,7 @@
 		<section class="card-body">
 			<div>
 
-				<form action="/recover-password">
+				<form action="/email-code">
 					<label>Enter code:</label> <input type="number"
 						name="code" required/>
 

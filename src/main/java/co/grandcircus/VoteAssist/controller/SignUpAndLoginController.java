@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.entity.Volunteer;
@@ -44,7 +45,7 @@ public class SignUpAndLoginController implements Serializable {
 
 	@RequestMapping("/login/submit") // Checks login credentials against DB for confirmation. Also checks admin login
 	public String submitLoginForm(@RequestParam("userName") String userName, @RequestParam("password") String password,
-			@RequestParam(required = true) String loginType, Model model) {
+			@RequestParam(required = true) String loginType, Model model, RedirectAttributes redir) {
 
 		Optional<Volunteer> foundUser = volunteerRepo.findByUserNameAndPassword(userName, password);
 		if (foundUser.isPresent()) {
@@ -63,8 +64,9 @@ public class SignUpAndLoginController implements Serializable {
 				return "redirect:/home";
 			}
 		} else {
-			model.addAttribute("message", "Incorrect username or password.");
-			return "login";
+			//model.addAttribute("message", "Incorrect username or password.");
+			redir.addFlashAttribute("message", "Incorrect username or password.");
+			return "redirect:/";
 		}
 
 	}
@@ -105,12 +107,12 @@ public class SignUpAndLoginController implements Serializable {
 	}
 
 	@RequestMapping("/forgot-password/submit")
-	public String forgotPasswordSubmit(@RequestParam String email, Model model) {
+	public String forgotPasswordSubmit(@RequestParam String email, Model model, RedirectAttributes redir) {
 		Volunteer volunteer = volunteerRepo.findByEmail(email);
 		if (volunteer == null) {
 			String message = "No volunteer accounts are associated with " + email;
-			model.addAttribute("message", message);
-			return "forgot-password";
+			redir.addFlashAttribute("message", message);
+			return "redirect:/forgot-password";
 
 		} else {
 			Random rand = new Random();
@@ -118,30 +120,30 @@ public class SignUpAndLoginController implements Serializable {
 			session.setAttribute("email", email);
 			session.setAttribute("randomNumber", randomNumber);
 			emailService.messageToResetForgottonPasswords(email, randomNumber);
+			return "email-code";
 		}
-		return "recover-password";
 	}
 
-	@RequestMapping("/recover-password")
-	public String recoverPassword(@RequestParam(required = false) int code, Model model) {
+	@RequestMapping("/email-code")
+	public String recoverPassword(@RequestParam(required = false) int code, Model model, RedirectAttributes redir) {
 		System.out.println(code);
 		int randomNumber = (int) session.getAttribute("randomNumber");
 		if (code == randomNumber) {
 			return "reset-password";
 		} else {
-			model.addAttribute("message", "Your code did not match, please try again.");
-			return "forgot-password";
+			redir.addFlashAttribute("message", "Your code did not match, please try again.");
+			return "redirect:/forgot-password";
 		}
 	}
 
 	@RequestMapping("/reset-password/submit")
-	public String resetPassword(@RequestParam String password, @RequestParam String passwordConfirm, Model model) {
+	public String resetPassword(@RequestParam String password, @RequestParam String passwordConfirm, Model model, RedirectAttributes redir) {
 		if (password.length() < 8) {
 			if (!password.equals(passwordConfirm)) {
-				model.addAttribute("message", "Passwords do not match. Please try again.");
+				redir.addFlashAttribute("message", "Passwords do not match. Please try again.");
 				return "reset-password";
 			}
-			model.addAttribute("message",
+			redir.addFlashAttribute("message",
 					"Password is too short. Please try again with a length of 8-20 characters (letters, numbers, and special characters only).");
 			return "reset-password";
 		} else {
