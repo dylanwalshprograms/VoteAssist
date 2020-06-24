@@ -47,17 +47,17 @@
 
 				<section class="card-body">
 
-					Name - ${voter.name}<br> 
-					Phone - ${voter.phone}<br>
-					Street Address - ${voter.address}<br> 
-					City - ${voter.city}<br>
-					State - ${voter.state}<br> 
-					Zip Code - ${voter.zip}<br>
-					Party Preference - ${voter.partyPref}<br> 
-					Is this person voting by mail? - ${voter.voteByMail}<br> 
-					Next Scheduled Call - ${nextCall}<br> 
-					Last Call - ${lastCall}<br>
-					Last Call Result - ${voter.result}<br>
+					Name - ${voterinformation.voterData.name}<br> 
+					Phone - ${voterinformation.voterData.phone}<br>
+					Street Address - ${voterinformation.voterData.address}<br> 
+					City - ${voterinformation.voterData.city}<br>
+					State - ${voterinformation.voterData.state}<br> 
+					Zip Code - ${voterinformation.voterData.zip}<br>
+					Party Preference - ${voterinformation.voterData.partyPref}<br> 
+					Is this person voting by mail? - ${voterinformation.voterData.voteByMail}<br> 
+					Next Scheduled Call - ${voterinformation.getNextCallInWords()}<br> 
+					Last Call - ${voterinformation.getLastCallInWords()}<br>
+					Last Call Result - ${voterinformation.voterData.result}<br>
 
 				</section>
 				

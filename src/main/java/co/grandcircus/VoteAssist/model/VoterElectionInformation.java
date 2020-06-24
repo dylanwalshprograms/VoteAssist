@@ -96,6 +96,10 @@ public class VoterElectionInformation {
 	public String getLastCallInWords() {
 		return VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
 	}
+	
+	public String getNextCallInWords() {
+		return VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
+	}
 
 	@Override
 	public String toString() {
