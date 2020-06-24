@@ -105,7 +105,7 @@
                 
                 <p>Number of Volunteers: ${totalVolunteers}</p>
                 <p>Total Calls Made: ${totalCalls}</p>
-                <p>Attempts per WVBM or WVIP: <fmt:formatNumber value="${totalWillVote}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
+                <p>Percentage of WVBM or WVIP: <fmt:formatNumber value="${totalWillVote}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
                 <p>Percentage of NV: <fmt:formatNumber value="${percentNV}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
                 <p>Percentage of DNC: <fmt:formatNumber value="${percentOfDNC}" type="number" pattern="###.##"></fmt:formatNumber>%</p>
                 <a type="button" class="btn btn-info" href="/call-log">View Call Log</a>
