@@ -13,20 +13,20 @@
 <body>
 
 	<nav class="navbar bg-light">
+	
+		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">
 		
 		<form action="/reset-time">
-			<input type="datetime-local" name="time" required>
+			<input type="datetime-local" name="time">
 			<button class="btn btn-dark">Change "Current" Date</button>
 		</form>
 		
 		<label>"Current" Date: ${timeMachineString}</label>
 		
-		<ul class="nav">
-			
-			<li class="nav-item">
+		<div>
+			<a type="button" class="btn btn-warning" href="/contact-admin" target="popup" onclick="window.open('/contact-admin','Email','width=600,height=525')">Contact Admin</a>
 			<a type="button" class="btn btn-danger" href="/logout">Logout</a>
-			</li>
-		</ul>
+		</div>
 	</nav>
 	<div class="records">
 	<main>

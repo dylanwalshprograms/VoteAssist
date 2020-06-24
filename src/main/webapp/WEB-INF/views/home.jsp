@@ -12,7 +12,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<link href="/static/style.css" rel="stylesheet" />
+<link href="/style.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -20,17 +20,17 @@
 
 
 	<nav class="navbar bg-light">
+	
+		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">
 		
 		<form action="/reset-time">
 			<input type="datetime-local" name="time">
 			<button class="btn btn-dark">Change "Current" Date</button>
 		</form>
 		
-		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
-		
 		<label>"Current" Date: ${timeMachineString}</label>
 		
-				<a type="button" class="btn btn-warning" href="/contact-admin" target="popup" onclick="window.open('/contact-admin','Email','width=600,height=525')">Contact Admin</a>
+		<a type="button" class="btn btn-warning" href="/contact-admin" target="popup" onclick="window.open('/contact-admin','Email','width=600,height=525')">Contact Admin</a>
 	</nav>
 	<div class="top left">
 		<main class="container">

@@ -14,6 +14,24 @@
 </head>
 <body>
 
+<nav class="navbar bg-light">
+				
+		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">
+		
+				<div>	
+			
+					
+				
+					<a type="button" class="btn btn-primary" href="/admin">Return to Admin Dashboard</a>
+					
+					<a type="button" class="btn btn-danger" href="/logout">Logout</a>
+				
+				</div>
+		
+		
+		
+	</nav>
+
 
 		<main class="container">
 			
@@ -31,7 +49,7 @@
                		 	<textarea id="editor" name="scriptText" rows="50" cols="50">${script.scriptText}</textarea>
                		
                		 	<input type="hidden" name="scriptName" value="${script.scriptName}" />
-			    		<button>Submit</button>
+			    		<button class="btn btn-info">Submit</button>
 				</form>
                 </section>
 				

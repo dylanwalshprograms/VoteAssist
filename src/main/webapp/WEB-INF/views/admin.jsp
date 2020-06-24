@@ -18,15 +18,17 @@
 
 <nav class="navbar bg-light">
 					
-		
+		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
 			
 			<div>
-				<a type="button" class="btn btn-danger" href="/logout">Logout</a>
+				
 				<a type="button" class="btn btn-dark" href="/reset-database">Reset Database for Testing</a>
 				<a type="button" class="btn btn-success" href="/home">Start Calling!</a>
+				<a type="button" class="btn btn-danger" href="/logout">Logout</a>
+				
 			</div>
 		
-		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon img-centered">
+		
 		
 	</nav>
 	
@@ -114,24 +116,37 @@
 
             </article>
             
+			
+
+        	<article class="card mx-auto">
+
+            	<section class="card-header">
+
+                	<h1>Edit Scripts</h1>
+
+                </section>
+
+                <section class="card-body">
+            
             
             <form method="post" action="/script-edit">
 			    <input type="hidden" name="scriptName" value="main_script" />
-			    <input type="submit" value="Edit Main Script" class="link" />
-			</form>
+			    <input class="btn btn-info" type="submit" value="Edit Main Script" class="link" />
+			</form><p/>
 			
 			<form method="post" action="/script-edit">
 			    <input type="hidden" name="scriptName" value="vip_reminder_script" />
-			    <input type="submit" value="Edit Vote in Person Script" class="link" />
-			</form>
+			    <input class="btn btn-info" type="submit" value="Edit Vote in Person Script" class="link" />
+			</form><p/>
 			
 			<form method="post" action="/script-edit">
 			    <input type="hidden" name="scriptName" value="vbm_reminder_script" />
-			    <input type="submit" value="Edit Vote by Mail Script" class="link" />
+			    <input class="btn btn-info" type="submit" value="Edit Vote by Mail Script" class="link" />
 			</form>
-
-        	</main>
-       
+			
+			</section>
+			</article>
+			
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
