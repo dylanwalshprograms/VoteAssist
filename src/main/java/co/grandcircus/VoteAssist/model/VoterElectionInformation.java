@@ -85,12 +85,16 @@ public class VoterElectionInformation {
 		this.voterData = voterData;
 	}
 	
-	public String getRegDateInWords() {
+	public String getRegCutoffDateInWords() {
 		return VoteAssistMethods.localDateTimeInWords(regCutoff);
 	}
 	
-	public String getCutoffDateInWords() {
+	public String getElectionDateInWords() {
 		return VoteAssistMethods.localDateTimeInWords(electionDay);
+	}
+	
+	public String getLastCallInWords() {
+		return VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
 	}
 
 	@Override

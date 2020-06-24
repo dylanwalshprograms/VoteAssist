@@ -29,11 +29,11 @@
 			Taxes, and Healthcare will all be affected by this election, and we
 			want every voter in <b>${voter.state}</b> to stand up and be counted.</p>
 		<p>
-			4. Do you plan to  vote on <b>${voterinformation.electionDay}</b>?
+			4. Do you plan to  vote on <b>${voterinformation.getElectionDateInWords()}</b>?
 		</p>
 		<p>
 			YES 5(a). That’s Great! Remember, the deadline to register to vote by
-			mail in <b>${voterinformation.voterData.state}</b> is <b>${voterinformation.regCutOffDay}</b>. 
+			mail in <b>${voterinformation.voterData.state}</b> is <b>${voterinformation.getRegCutoffDateInWords()}</b>. 
 		</p>
 		<p>
 			Do you need information about getting registered to vote by mail in your district? 

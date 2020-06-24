@@ -25,6 +25,7 @@ import co.grandcircus.VoteAssist.entity.VoterData;
 import co.grandcircus.VoteAssist.methods.VoteAssistMethods;
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
+import co.grandcircus.VoteAssist.model.VoterElectionInformation;
 import co.grandcircus.VoteAssist.repository.AdminRepository;
 import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.RegDayRepo;
@@ -154,14 +155,9 @@ public class VolunteerPageController implements Serializable{
 		model.addAttribute("lastCall", lastCall);
 		
 		String scriptName = "main-script";
+		VoterElectionInformation voterElectionInformaiton = new VoterElectionInformation(electionDay, regCutoff, currentVolunteer, campaignName, stateResponse, civicResponse, voterData);
 		
-		model.addAttribute("electionDay", VoteAssistMethods.localDateTimeInWords(electionDay));
-		model.addAttribute("regCutOffDay", VoteAssistMethods.localDateTimeInWords(regCutoff));
-		model.addAttribute("volunteerName", currentVolunteer.getName());
-		model.addAttribute("campaignName", campaignName);
-		model.addAttribute("stateResponse", stateResponse);
-		model.addAttribute("civicResponse", civicResponse);
-		model.addAttribute("voter", voterData);
+		model.addAttribute("voterinformation", voterElectionInformaiton);
 		
 		// Logic to determine what script is used for voter, based on current disposition of voter
 		if (voterData.getResult() == null) {

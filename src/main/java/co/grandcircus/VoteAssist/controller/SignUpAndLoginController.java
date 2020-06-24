@@ -33,7 +33,7 @@ public class SignUpAndLoginController implements Serializable {
 	@Autowired
 	private EmailService emailService;
 
-	@RequestMapping("/") // Initial view for all users
+	@RequestMapping("/") 
 	public String login(Model model) {
 		if (session.getAttribute("user") != null) {
 			return "redirect:/home";
@@ -69,7 +69,7 @@ public class SignUpAndLoginController implements Serializable {
 
 	}
 
-	@RequestMapping("/sign-up") // Sign-up view
+	@RequestMapping("/sign-up") 
 	public String signUpForm() {
 		return "sign-up";
 	}
@@ -117,8 +117,7 @@ public class SignUpAndLoginController implements Serializable {
 			int randomNumber = rand.nextInt(1000000);
 			session.setAttribute("email", email);
 			session.setAttribute("randomNumber", randomNumber);
-			emailService.emailParams(email, "Password Reset Code", "Your reset code is: " + randomNumber,
-					"voteassist.admn@gmail.com");
+			emailService.messageToResetForgottonPasswords(email, randomNumber);
 		}
 		return "recover-password";
 	}

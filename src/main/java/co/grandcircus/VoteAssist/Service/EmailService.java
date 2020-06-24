@@ -34,6 +34,15 @@ public class EmailService {
 		sendEmail(toEmail, VOTEASSIST_ADMN, subject, contentString);
 	}
 	
+	public void messageToResetForgottonPasswords(String toEmail, int randomNumber) {
+		StringBuilder bodyBuilder = new StringBuilder();
+		bodyBuilder.append("Your code is : ");
+		bodyBuilder.append(randomNumber);
+		bodyBuilder.append("\n\n");
+		bodyBuilder.append("Please enter your code in order to reset your password.");
+		sendEmail(toEmail, VOTEASSIST_ADMN, "Password Reset", bodyBuilder.toString());
+	}
+	
 	private void sendEmail(String to, String from, String subject, String content) {
 		Email fromEmail = new Email(from);
 		Email toEmail = new Email(to);

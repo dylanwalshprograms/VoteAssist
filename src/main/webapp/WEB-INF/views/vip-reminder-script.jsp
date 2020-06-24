@@ -20,8 +20,8 @@
 			2. This is <b>${voterinformation.currentVolunteer.name}</b> calling on behalf of <b>${voterinformation.campaignName}</b>.
 		</p>
 		<p>
-			3. We last reached out on <b>${voterinformation.lastCall}</b> and you indicated that you
-			would be voting in person.  Are you still planning to vote on <b>${voterinformation.electionDay}</b>?
+			3. We last reached out on <b>${voterinformation.getLastCallInWords}</b> and you indicated that you
+			would be voting in person.  Are you still planning to vote on <b>${voterinformation.getElectionDateInWords()}</b>?
 		</p>
 		<p>
 			4. Thanks for your time and think about how great you’ll feel
