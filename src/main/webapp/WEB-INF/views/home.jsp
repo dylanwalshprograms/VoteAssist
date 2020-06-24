@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,25 +121,13 @@
 
                 <section class="card-header">
 
-                   <!-- <c:set var="main-script" value="${script}"/>
-                <c:if test = "${script == 'main-script'}">
-					<h1>Main Script</h1>
-					</c:if>
-					<c:set var="vip-reminder-script" value="${script}"/>
-                <c:if test = "${script == 'vip-reminder-script'}">
-					<h1>Voting in Person Script</h1>
-					</c:if>
-					<c:set var="vbm-reminder-script" value="${script}"/>
-                <c:if test = "${script == 'vbm-reminder-script'}">
-					<h1>Will Vote by Mail Script</h1>
-					</c:if> -->
-
+                  <h1>Script</h1>
 
                 </section>
 
                 <section class="card-body">
 
-					<c:out value="${template}"/>
+					${template}
 
                 </section>
 
@@ -206,11 +195,11 @@
 												<br><b><c:out value="${office.name}" /></b><br>
 											<ul>
 												<c:forEach items="${office.officialIndices}" var="index">
-													<li><c:out value="${voterInformation.civicResponse.officials.get(index).name}" />, <i><c:out value="	${voterInformation.civicResponse.officials.get(index).party}" /></i><br></li>
+													<li><c:out value="${voterInformation.civicResponse.officials.get(index).name}" />, <i><c:out value="${voterInformation.civicResponse.officials.get(index).party}" /></i><br></li>
 												</c:forEach>
 												<c:forEach items="${office.officialIndices}" var="index">
 												<c:forEach items="${voterInformation.civicResponse.officials.get(index).emails}" var="email">
-													<c:out value="	${email}" />
+													<c:out value="${email}" />
 												</c:forEach>
 												</c:forEach>
 											</ul>

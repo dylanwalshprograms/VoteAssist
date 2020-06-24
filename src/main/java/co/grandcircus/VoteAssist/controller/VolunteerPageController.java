@@ -157,8 +157,7 @@ public class VolunteerPageController implements Serializable{
 		
 		model.addAttribute("voterInformation", voterElectionInformation);
 		
-		Template template = jMustacheService.changeExpressionLanguageToContext(voterElectionInformation);
-		System.out.println(template);
+		String template = jMustacheService.changeExpressionLanguageToContext(voterElectionInformation);
 		model.addAttribute("template", template);
 		
 		// Logic to navigate to no more records view when no records are available

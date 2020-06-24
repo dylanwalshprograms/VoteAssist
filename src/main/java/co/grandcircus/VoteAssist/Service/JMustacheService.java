@@ -19,20 +19,22 @@ public class JMustacheService {
 	@Autowired
 	private ScriptRepository scriptRepo;
 
-	public Template changeExpressionLanguageToContext(VoterElectionInformation voterElectionInformation) { 
+	public String changeExpressionLanguageToContext(VoterElectionInformation voterElectionInformation) { 
 		String text = "";
 		
-		if (voterElectionInformation.voterData.getResult() == null) {
+		if (voterElectionInformation.getVoterData().getResult() == null) {
 			Scripts mainScript = scriptRepo.findByScriptName("main_script");
 			text = mainScript.getScriptText();
-		} else if (voterElectionInformation.voterData.getResult().equals("VIP")) {
+		} else if (voterElectionInformation.getVoterData().getResult().equals("VIP")) {
 			Scripts voteInPersonScript = scriptRepo.findByScriptName("vip_reminder_script");
 			text = voteInPersonScript.getScriptText();
-		} else if (voterElectionInformation.voterData.getResult().equals("WVBM")) {
+		} else if (voterElectionInformation.getVoterData().getResult().equals("WVBM")) {
 			Scripts voteByMailScript = scriptRepo.findByScriptName("vbm_reminder_script");
 			text = voteByMailScript.getScriptText();
 		}
 		
+		System.out.println(text);
+
 		Template tmpl = Mustache.compiler().compile(text);
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("voterInformation.voterData.name", voterElectionInformation.getVoterData().getName());
@@ -42,7 +44,8 @@ public class JMustacheService {
 		data.put("voterInformation.getElectionDateInWords()", voterElectionInformation.getElectionDateInWords());
 		data.put("voterInformation.getRegCutoffDateInWords()", voterElectionInformation.getRegCutoffDateInWords());
 		data.put("voterInformation.getLastCallInWords()", voterElectionInformation.getLastCallInWords());
-//		System.out.println(tmpl.execute(data));
-		return tmpl;
+		
+		String renderedTemplate = tmpl.execute(data);
+		return renderedTemplate;
 	}
 }
