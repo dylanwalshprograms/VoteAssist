@@ -144,12 +144,9 @@ public class VolunteerPageController implements Serializable{
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
 
 		// Logic to filter DB in order to pull next record, based on lastCall and nextCall timestamps
-		String lastCall = "";
-		String nextCall = "";
-		if (voterData.getLastCall() != null && voterData.getNextCall() != null) {
-			lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
-			nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
-		}
+		String lastCall = VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
+		String nextCall = VoteAssistMethods.localDateTimeInWords(voterData.getNextCall());
+
 		model.addAttribute("timeMachineString", timeMachineService.getTimeInWords());
 		model.addAttribute("nextCall", nextCall);
 		model.addAttribute("lastCall", lastCall);
