@@ -10,6 +10,11 @@
 <link href="/login-and-sign-up.css" rel="stylesheet" />
 </head>
 <body>
+
+<div>
+	<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
+</div>
+
 <main>
 <div class="sign-up">
 	<article class="card mx-auto">
