@@ -9,6 +9,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import co.grandcircus.VoteAssist.model.CivicApiResponse;
 
+/**
+ * In this service the url for the Google Civics API is being built, pulls 
+ * representative information based on the address, city, state, and zip code that
+ * is passed in.
+ */
 @Service
 public class GoogleCivicsApiService {
 	

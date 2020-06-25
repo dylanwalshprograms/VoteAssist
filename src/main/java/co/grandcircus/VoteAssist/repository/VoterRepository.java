@@ -10,9 +10,7 @@ import org.springframework.data.repository.query.Param;
 import co.grandcircus.VoteAssist.entity.VoterData;
 
 public interface VoterRepository extends JpaRepository<VoterData, Long>{
-	
-	
-	// NOTE: IF THE WHOLE LIST IS DNC, DNC RECORDS WILL PULL???
+
 	@Query(value = "SELECT * FROM vote_assist.voter_data WHERE (in_use = 0 OR in_use IS NULL) AND (do_not_call = 0 OR do_not_call IS NULL) ORDER BY next_call LIMIT 1", nativeQuery = true)
 	VoterData findVoterByNextCall();
 	
@@ -43,5 +41,4 @@ public interface VoterRepository extends JpaRepository<VoterData, Long>{
 	@Modifying
 	@Transactional
 	void resetDatabase();
-
 }

@@ -70,7 +70,4 @@ public class Volunteer {
 		return "Volunteer [id=" + id + ", name=" + name + ", userName=" + userName + ", password=" + password
 				+ ", isAdmin=" + isAdmin + ", email=" + email + "]";
 	}
-
-	
-
 }

@@ -178,6 +178,4 @@ public class VoterData {
 				+ ", nextCall=" + nextCall + ", lastCall=" + lastCall + ", notes=" + notes + ", result=" + result
 				+ ", emailSent=" + emailSent + ", doNotCall=" + doNotCall + ", inUse=" + inUse + "]";
 	}
-
-	
 }

@@ -15,5 +15,4 @@ public interface CallLogRepository extends JpaRepository<CallLog,Long>{
 	List<CallLog> findByResultContainingIgnoreCase(String keyword);
 	
 	List<CallLog> findByVoterDataId(Long id);
-
 }

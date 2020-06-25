@@ -19,22 +19,37 @@
 		<img width = "5%" alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">
 		
 				<div>	
-			
-					
-				
 					<a type="button" class="btn btn-primary" href="/admin">Return to Admin Dashboard</a>
 					
 					<a type="button" class="btn btn-danger" href="/logout">Logout</a>
-				
 				</div>
-		
-		
-		
 	</nav>
-
-
 		<main class="container">
-			
+			<article class="card mx-auto">
+
+            	<section class="card-header">
+
+                	<h1>Script Editing Guide</h1>
+
+                </section>
+				
+                <section class="card-body">
+                	<p>You can edit the script here and what you see is what will appear on the caller screen. This will include any formatting you choose to add to the script. (bold, italics, etc.)</p>
+                	<p>You have access to the follow fields from the voter database. They can be accessed using the tags below.</p>
+                	<ul>
+                	<li>{{Voter Name}}</li>
+                	<li>{{Volunteer Name}}</li>
+                	<li>{{Campaign Name}}</li>
+                	<li>{{Voter State}}</li>
+                	<li>{{Election Date}}</li>
+                	<li>{{Registration Cutoff Date}}</li>
+                	<li>{{Last Call}}</li>
+                	</ul>
+                	<p>These tags must match exactly or the script will not display properly.</p>
+                </section>
+				
+            </article>
+            
         	<article class="card mx-auto">
 
             	<section class="card-header">
@@ -54,7 +69,6 @@
                 </section>
 				
             </article>
-            
 			    
         	</main>
 

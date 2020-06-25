@@ -33,12 +33,12 @@ import co.grandcircus.VoteAssist.repository.CallLogRepository;
 import co.grandcircus.VoteAssist.repository.RegDayRepo;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
+/**
+ * This controller handles all of the requests made by the volunteer using the application.
+ */
 @Controller
 public class VolunteerPageController implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
@@ -74,12 +74,12 @@ public class VolunteerPageController implements Serializable{
 	@Autowired
 	private HttpSession session;
 		
-	@RequestMapping("/training") // Training view
+	@RequestMapping("/training") 
 	public String training() {
 		return "training";
 	}
 	
-	@RequestMapping("/logout") // Logout logic, checks session to confirm user is logged in
+	@RequestMapping("/logout")
 	public String logout(RedirectAttributes redir, Model model) {
 		if (session.getAttribute("user") != null) {
 			redir.addFlashAttribute("message","Logged out successfully");
@@ -106,18 +106,18 @@ public class VolunteerPageController implements Serializable{
 		
 	@RequestMapping("/home") // Primary view of program
 	public String home(Model model) {
-		
 		String campaignName = adminRepo.findByLowestId().getCampaignName();
 		String priority = adminRepo.findByLowestId().getPriority();
 		
 		LocalDateTime electionDay = electionService.getNextElectionDate();
 		
-		// Check to verify if user is in a session, goes to login if no
+		// Check to verify if user is in a session, goes to login if not
 		if (session.getAttribute("user") == null) {
 			return "login";
 		}
 		
 		Volunteer currentVolunteer = (Volunteer) session.getAttribute("user");
+		
 		// Logic to pull next record, default filter method is by next call chronologically.
 		VoterData voterData = new VoterData();
 
@@ -139,15 +139,19 @@ public class VolunteerPageController implements Serializable{
 		// Keeps multiple volunteers from pulling the same record
 		voterData.setInUse(true);
 		voterRepo.save(voterData);
+		
 		// List of calls made by voter ID (displays call log for volunteer)
 		List<CallLog> callLog = callLogRepo.findByVoterDataId(voterData.getId());
 		
 		model.addAttribute("callLog", callLog);
+		
 		// Pulls from Google Civic API the list of offices and representatives, based on parameters of voter		
 		CivicApiResponse civicResponse = googleService.civicResponse(voterData.getAddress(), 
 				voterData.getCity(), voterData.getState(), voterData.getZip());
+		
 		// Calls Vote Smart API for state instructions to register/vote
 		StateVoteInfoResponse stateResponse = voteSmartService.stateVoterInfoResponse(voterData.getState());
+		
 		// regCutOff is the logic that calculates deadline to register to vote in the voters state, based on current campaign
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voterData.getState()).getDaysBeforeElection());
 
@@ -169,7 +173,6 @@ public class VolunteerPageController implements Serializable{
 		}
 			
 		return "home";
-		
 	}
 	
 	@RequestMapping("/submit") // Submit/Next button in home view, saves notes and disposition of voter to DB
@@ -187,10 +190,13 @@ public class VolunteerPageController implements Serializable{
 		Long delayNV = adminRepo.findByLowestId().getDelayNV();
 				
 		LocalDateTime currentTime = timeMachineService.getTime();
+		
 		// Logic to pull next record
 		VoterData voter = voterRepo.findById(voterId).orElse(null);
+		
 		// Displays cutoff to register to vote		
 		LocalDateTime regCutoff = electionDay.minusDays(regDayRepo.findByStateId(voter.getState()).getDaysBeforeElection());
+		
 		// Sets disposition based on call results (Ln 190-240)		
 		if (result.equals("NA")) {
 			
@@ -240,22 +246,22 @@ public class VolunteerPageController implements Serializable{
 			voter.setNextCall(currentTime.plusHours(0));
 			voter.setNotes(notes);
 			voter.setResult(result);
-			voter.setDoNotCall(true);
-			
+			voter.setDoNotCall(true);	
 		}
+		
 		// Sets record out of use and able to be pulled by another volunteer, then saves info on voter
 		voter.setInUse(false);
 		voterRepo.save(voter);
+		
 		// Creates new entry in call log DB with current fields, then saves
 		CallLog log = new CallLog(currentTime, voter.getNextCall(), (Volunteer) session.getAttribute("user"), voterRepo.findById(voterId).orElse(null), voter.getResult(), voter.getNotes());
 		callLogRepo.save(log);
-		// Logic to either go next record or logout
+		
 		if (button.equals("next")) {
 			return "redirect:/home";
 		} else {
 			return "redirect:/logout";
 		}
-		
 	}
 	
 	@RequestMapping("/contact-admin") // Displays email popup window for admin contact
@@ -263,7 +269,7 @@ public class VolunteerPageController implements Serializable{
 		return "contact-admin";
 	}
 	
-	@RequestMapping("/send-admin-email") // Sends email
+	@RequestMapping("/send-admin-email")
 	public String emailAdmin(@RequestParam String returnAddress, @RequestParam String message) {
 		emailService.sendMessageToAdmin(returnAddress, message);
 		return "email-sent";
@@ -274,7 +280,7 @@ public class VolunteerPageController implements Serializable{
 		return "email-popup";
 	}
 	
-	@RequestMapping("/send-email") // Sends email
+	@RequestMapping("/send-email")
 	public String email(@RequestParam(required = true) String toEmail, 
 			@RequestParam String subject, 
 			@RequestParam String contentString) {
@@ -283,5 +289,4 @@ public class VolunteerPageController implements Serializable{
 		
 		return "email-sent";
 	}
-
 }

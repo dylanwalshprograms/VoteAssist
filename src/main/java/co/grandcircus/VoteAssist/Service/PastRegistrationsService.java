@@ -12,6 +12,10 @@ import co.grandcircus.VoteAssist.entity.RegDates;
 import co.grandcircus.VoteAssist.repository.RegDayRepo;
 import co.grandcircus.VoteAssist.repository.VoterRepository;
 
+/**
+ * In this service there is a check for each voters registration date against the 
+ * current date. If the date has passed then that voters disposition is set to VIP (vote in person).
+ */
 @Service
 public class PastRegistrationsService {
 	

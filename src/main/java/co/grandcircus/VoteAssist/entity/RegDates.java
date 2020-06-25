@@ -47,7 +47,4 @@ public class RegDates {
 	public String toString() {
 		return "RegDates [Id=" + Id + ", stateId=" + stateId + ", daysBeforeElection=" + daysBeforeElection + "]";
 	}
-	
-	
-
 }

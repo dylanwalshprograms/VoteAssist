@@ -113,5 +113,4 @@ public class CallLog {
 				+ ", voterData=" + voterData + ", result=" + result + ", notes=" + notes + ", doNotCall=" + doNotCall
 				+ "]";
 	}
-
 }

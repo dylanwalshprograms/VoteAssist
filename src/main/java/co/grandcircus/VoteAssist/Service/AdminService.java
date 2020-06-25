@@ -2,6 +2,9 @@ package co.grandcircus.VoteAssist.Service;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * In this service is the logic to determine which script the admin would like to edit.
+ */
 @Service
 public class AdminService {
 

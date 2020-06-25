@@ -9,6 +9,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import co.grandcircus.VoteAssist.model.StateVoteInfoResponse;
 
+/**
+ * In this service the url for the VoteSmart API is being built,
+ * pulls the registation information based on the current voters 
+ * state. 
+ */
 @Service
 public class VoteSmartApiService {
 

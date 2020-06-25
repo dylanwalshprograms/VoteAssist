@@ -13,6 +13,10 @@ import co.grandcircus.VoteAssist.entity.Scripts;
 import co.grandcircus.VoteAssist.model.VoterElectionInformation;
 import co.grandcircus.VoteAssist.repository.ScriptRepository;
 
+/**
+ * This is where we are able to decide which script will be rendered using the JMustache
+ * template to display on the volunteer page.
+ */
 @Service
 public class JMustacheService {
 	

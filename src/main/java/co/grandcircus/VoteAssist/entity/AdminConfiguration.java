@@ -85,6 +85,4 @@ public class AdminConfiguration {
 				+ campaignPresetName + ", delayNA=" + delayNA + ", delayVIP=" + delayVIP + ", delayWVBM=" + delayWVBM
 				+ ", delayAVBM=" + delayAVBM + ", delayNV=" + delayNV + ", priority=" + priority + "]";
 	}
-
-	
 }

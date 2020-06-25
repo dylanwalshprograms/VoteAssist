@@ -16,5 +16,4 @@ public interface VolunteerRepository extends JpaRepository<Volunteer, Long>{
 	Integer findAllVolunteers();
 	
 	Volunteer findByEmail(String email);
-
 }

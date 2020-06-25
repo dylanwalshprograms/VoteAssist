@@ -18,12 +18,12 @@ import co.grandcircus.VoteAssist.Service.EmailService;
 import co.grandcircus.VoteAssist.entity.Volunteer;
 import co.grandcircus.VoteAssist.repository.VolunteerRepository;
 
+/**
+ * This controller handles all of the login and sign up requests from the user.
+ */
 @Controller
 public class SignUpAndLoginController implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
@@ -69,7 +69,6 @@ public class SignUpAndLoginController implements Serializable {
 			redir.addFlashAttribute("message", "Incorrect username or password.");
 			return "redirect:/";
 		}
-
 	}
 
 	@RequestMapping("/sign-up") 

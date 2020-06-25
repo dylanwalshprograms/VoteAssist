@@ -12,6 +12,9 @@ import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.SendGrid;
 
+/**
+ * In this service we have methods to build the correct email the volunteer would like to send.
+ */
 @Service
 public class EmailService {
 

@@ -2,9 +2,11 @@ package co.grandcircus.VoteAssist.methods;
 
 import java.time.LocalDateTime;
 
+/**
+ * Method to convert LocalDateTime into a string.
+ */
 public class VoteAssistMethods {
 	
-	// Method to convert localdatetime timestamp into string more easily readable by humans
 	public static String localDateTimeInWords(LocalDateTime ldt) {
 		if (null == ldt) {
 			return null;
@@ -20,8 +22,6 @@ public class VoteAssistMethods {
 		
 		String timeInWords = dayOfWeek + " " + month + " " + date + ", " + year;
 		
-		return timeInWords;
-		
+		return timeInWords;	
 	}
-
 }
