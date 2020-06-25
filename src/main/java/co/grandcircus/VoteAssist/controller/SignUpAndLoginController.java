@@ -79,22 +79,18 @@ public class SignUpAndLoginController implements Serializable {
 
 	@PostMapping("/sign-up/submit") // Volunteer credential creation
 	public String signUpSubmit(Volunteer volunteer, @RequestParam("password") String password,
-			@RequestParam("passwordConfirm") String passwordConfirm, @RequestParam String email, Model model) {
+			@RequestParam("passwordConfirm") String passwordConfirm, @RequestParam String email, RedirectAttributes redir, Model model) {
 
-		Volunteer volunteerCheck = volunteerRepo.findByUserName(volunteer.getUserName());
+		Volunteer volunteerCheckUserName = volunteerRepo.findByUserName(volunteer.getUserName());
+		Volunteer volunteerCheckEmail = volunteerRepo.findByEmail(volunteer.getEmail());
 		// Checks against multiple of the same username
-		if (volunteerCheck != null) {
-			model.addAttribute("message", "Username already exists. Please try again.");
-			return "sign-up";
+		if (volunteerCheckUserName != null || volunteerCheckEmail != null) {
+			redir.addFlashAttribute("message", "Username or Email already exists. Please try again.");
+			return "redirect:/sign-up";
 			// Checks to confirm passwords match as well as meet a minimum length
-		} else if (password.length() < 8) {
-			if (!password.equals(passwordConfirm)) {
-				model.addAttribute("message", "Passwords do not match. Please try again.");
-				return "sign-up";
-			}
-			model.addAttribute("message",
-					"Password is too short. Please try again with a length of 8-20 characters (letters, numbers, and special characters only).");
-			return "sign-up";
+		} else if (!password.equals(passwordConfirm)) {
+				redir.addFlashAttribute("message", "Passwords do not match. Please try again.");
+				return "redirect:/sign-up";
 		} else {
 			volunteerRepo.save(volunteer);
 			return "redirect:/training";
