@@ -27,12 +27,8 @@
 				<a type="button" class="btn btn-danger" href="/logout">Logout</a>
 				
 			</div>
-		
-		
-		
 	</nav>
 	
-
 		<main class="container">
 
         	<article class="card mx-auto">
@@ -92,9 +88,6 @@
 
         	</main>
 
-	
-		<main class="container">
-
         	<article class="card mx-auto">
 
             	<section class="card-header">
@@ -147,7 +140,6 @@
 			</section>
 			</article>
 			
-
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

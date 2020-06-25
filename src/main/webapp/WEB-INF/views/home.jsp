@@ -16,9 +16,6 @@
 
 </head>
 <body>
-
-
-
 	<nav class="navbar bg-light">
 	
 		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">
@@ -106,7 +103,6 @@
 			<button class="btn btn-danger" name="button" value="end">Submit/LOGOUT</button>
 		</div>
 	</form>
-
                 </section>
 
             </article>

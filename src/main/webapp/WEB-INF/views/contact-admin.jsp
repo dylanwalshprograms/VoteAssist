@@ -11,7 +11,6 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-
 								<div class="card-body">
 									<form action="/send-admin-email">
 										<label>Your Email:</label><br>
@@ -19,13 +18,9 @@
 										<label>Message:</label><br>
 										<textarea rows="10" cols="75" name="message" required>
 [ADD YOUR PERSONAL MESSAGE HERE!]
-
-
 										</textarea><br>
 										<button class="btn btn-success">Send</button>
 									</form>
 								</div>
-
-
 </body>
 </html>

@@ -32,6 +32,5 @@
 			</div>
 		</section>
 	</article>
-
 </body>
 </html>

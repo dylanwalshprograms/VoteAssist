@@ -11,7 +11,6 @@
 <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-
 								<div class="card-body">
 									<form action="/send-email">
 										<label>To:</label><br>
@@ -32,7 +31,5 @@ You can get detailed instructions of voting by mail in your area at turbovote.or
 										<button class="btn btn-success">Send</button>
 									</form>
 								</div>
-
-
 </body>
 </html>

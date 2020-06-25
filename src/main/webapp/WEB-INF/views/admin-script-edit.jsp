@@ -72,7 +72,6 @@
 			    
         	</main>
 
-
 <script>
     const editor = ClassicEditor.create(document.querySelector('#editor'));
 </script>

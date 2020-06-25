@@ -35,6 +35,9 @@ public class JMustacheService {
 		} else if (voterElectionInformation.getVoterData().getResult().equals("WVBM")) {
 			Scripts voteByMailScript = scriptRepo.findByScriptName("vbm_reminder_script");
 			text = voteByMailScript.getScriptText();
+		} else {
+			Scripts mainScript = scriptRepo.findByScriptName("main_script");
+			text = mainScript.getScriptText();
 		}
 
 		Template tmpl = Mustache.compiler().compile(text);

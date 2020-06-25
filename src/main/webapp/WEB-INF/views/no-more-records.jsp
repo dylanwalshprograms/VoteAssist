@@ -11,7 +11,6 @@
 <link href="/login-and-sign-up.css" rel="stylesheet" />
 </head>
 <body>
-
 	<nav class="navbar bg-light">
 	
 		<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-icon">

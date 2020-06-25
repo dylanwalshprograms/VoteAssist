@@ -16,7 +16,6 @@
 
 </head>
 <body>
-
 		<div>
 			<img alt="vote-assist-logo" src="VoteAssistLogo.png" class="img-centered">
 		</div>
@@ -90,8 +89,6 @@
                 
 				<div>
 				
-				
-				
                     <form action="/">
                     	<label>By clicking the checkbox you acknowledge the above information and have read it to its fullest.</label>
 						<input type="checkbox" required/>
@@ -104,9 +101,6 @@
             </article>
 
         </main>
-
-
-
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
