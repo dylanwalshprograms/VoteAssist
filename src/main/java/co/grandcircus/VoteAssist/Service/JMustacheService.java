@@ -35,7 +35,10 @@ public class JMustacheService {
 		} else if (voterElectionInformation.getVoterData().getResult().equals("WVBM")) {
 			Scripts voteByMailScript = scriptRepo.findByScriptName("vbm_reminder_script");
 			text = voteByMailScript.getScriptText();
-		} else {
+		} else if (voterElectionInformation.getVoterData().getResult().equals("NA")) {
+			Scripts mainScript = scriptRepo.findByScriptName("main_script");
+			text = mainScript.getScriptText();
+		} else if (voterElectionInformation.getVoterData().getResult().equals("RQ")) {
 			Scripts mainScript = scriptRepo.findByScriptName("main_script");
 			text = mainScript.getScriptText();
 		}

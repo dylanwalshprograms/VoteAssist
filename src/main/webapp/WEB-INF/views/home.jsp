@@ -77,7 +77,7 @@
 
 	<form action="/submit">
 		<div>
-			<textarea class="note-text" rows="3" name="notes"></textarea>
+			<textarea class="note-text" rows="3" name="notes">${voterInformation.voterData.notes}</textarea>
 		</div>
 		<div>
 			<input type = "hidden"name = "voterId" value = "${voterInformation.voterData.id}">
