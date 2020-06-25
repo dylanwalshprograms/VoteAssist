@@ -98,7 +98,11 @@ public class VoterElectionInformation {
 	}
 	
 	public String getLastCallInWords() {
+		if (voterData.getLastCall() == null) {
+			return "no last call data";
+		} else {
 		return VoteAssistMethods.localDateTimeInWords(voterData.getLastCall());
+		}
 	}
 	
 	public String getNextCallInWords() {
