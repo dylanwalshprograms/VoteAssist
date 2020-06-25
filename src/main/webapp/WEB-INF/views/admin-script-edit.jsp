@@ -35,7 +35,7 @@
 				
                 <section class="card-body">
                 	<p>You can edit the script here and what you see is what will appear on the caller screen. This will include any formatting you choose to add to the script. (bold, italics, etc.)</p>
-                	<p>You have access to the follow fields from the voter database. They can be accessed using the tags below.</p>
+                	<p>You have access to the following fields from the voter database. They can be accessed using the tags below.</p>
                 	<ul>
                 	<li>{{Voter Name}}</li>
                 	<li>{{Volunteer Name}}</li>

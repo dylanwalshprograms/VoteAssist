@@ -15,7 +15,7 @@
 								<div class="card-body">
 									<form action="/send-admin-email">
 										<label>Your Email:</label><br>
-										<input type="email" name="returnAddress">
+										<input type="email" name="returnAddress"><br>
 										<label>Message:</label><br>
 										<textarea rows="10" cols="75" name="message" required>
 [ADD YOUR PERSONAL MESSAGE HERE!]
